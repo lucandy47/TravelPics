@@ -1,1 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.required-label {
+    &::before {
+        content: "*";
+        color: red;
+        margin-right: 3px;
+    }
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+a.disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+.field {
+    position: relative;
+    small.p-error {
+        position: absolute;
+        top: 100%;
+        margin-left: 10px;
+    }
+}
+
+.p-tooltip>.p-tooltip-text {
+    font-size: 0.8rem;
+}
+
+.page-title {
+    width: 100%;
+    height: 5px;
+    margin-top: 30px;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color-secondary);
+}
+
+.page-title-setup {
+    width: 100%;
+    height: 1px;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color-secondary);
+}

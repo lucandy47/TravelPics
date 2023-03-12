@@ -1,0 +1,17 @@
+::ng-deep p-table::-webkit-scrollbar {
+    width: 10px !important;
+}
+
+::ng-deep p-table::-webkit-scrollbar-thumb {
+    background: grey 0% 0% no-repeat padding-box !important;
+    box-shadow: 5px 15px 20px #26416829 !important;
+    opacity: 1 !important;
+}
+
+::ng-deep p-table::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::ng-deep.p-datatable {
+    font-size: 0.8rem;
+}
