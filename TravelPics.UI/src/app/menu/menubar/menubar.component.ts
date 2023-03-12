@@ -38,7 +38,13 @@ export class MenubarComponent implements OnInit  {
             routerLink: ''
           },
           {
+            label: "Map",
+            icon: 'pi pi-map',
+            routerLink: ''
+          },
+          {
             label: 'Posts',
+            icon:'pi pi-fw pi-user',
             visible: this.isUserLoggedIn,
             items: [
               {
@@ -50,12 +56,6 @@ export class MenubarComponent implements OnInit  {
                 routerLink: '',
               },
             ],
-          },
-          {
-            label: 'My Profile',
-            icon:'pi pi-fw pi-user',
-            visible: this.isUserLoggedIn,
-            routerLink: ''
           }
         ];
       },

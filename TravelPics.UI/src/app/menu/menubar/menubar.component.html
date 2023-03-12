@@ -9,6 +9,8 @@
 
     <ng-template pTemplate="end" style="height:70px;">
         <div *ngIf="isUserLoggedIn">
+            <span style="margin-right:5px;"><i class="pi pi-cog"></i></span>
+            <a (click)="logout()" style="margin-right: 20px;">My Account</a>
             <span style="margin-right:5px;"><i class="pi pi-sign-out"></i></span>
             <a (click)="logout()">Logout</a>
         </div>
