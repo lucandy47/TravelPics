@@ -1,4 +1,8 @@
-﻿namespace TravelPics.Dashboard.API
+﻿using TravelPics.Domains.DataAccess;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+
+namespace TravelPics.Dashboard.API
 {
     public class Startup
     {
@@ -13,7 +17,12 @@
             services.AddControllers();
 
             services.AddCors();
-            var connectionString = Configuration.GetConnectionString("TravelPicsDb");
+            var connectionString = Configuration.GetConnectionString("TravelPicsDB");
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                object value = options.UseSqlServer(connectionString);
+            });
 
             //services.AddTransient<IUsersRepository>(sp => new UsersRepository(connectionString));
             //services.AddTransient<IUsersService, UsersService>();
