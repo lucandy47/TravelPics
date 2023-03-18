@@ -1,6 +1,12 @@
 ﻿using TravelPics.Domains.DataAccess;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using TravelPics.Users;
+using TravelPics.Users.Abstraction;
+using TravelPics.Users.Repository;
+using TravelPics.Users.Profiles;
+using TravelPics.Security;
+using TravelPics.Security.Models;
 
 namespace TravelPics.Dashboard.API
 {
@@ -16,16 +22,23 @@ namespace TravelPics.Dashboard.API
         {
             services.AddControllers();
 
+
             services.AddCors();
             var connectionString = Configuration.GetConnectionString("TravelPicsDB");
 
+            services.AddSingleton(Configuration.GetSection("Jwt").Get<AuthorizationConfiguration>());
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-            //services.AddTransient<IUsersRepository>(sp => new UsersRepository(connectionString));
-            //services.AddTransient<IUsersService, UsersService>();
+
+            services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<IUsersService, UsersService>();
+
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             services.AddAzureAppConfiguration();
 
+            services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(typeof(UserProfile));
 
             services.AddMvc();
         }

@@ -13,7 +13,6 @@ namespace TravelPics.Dashboard.API
                 {
                     webBuilder.ConfigureAppConfiguration((context, config) =>
                     {
-
                         var appConfigurationConnectionString = "Endpoint=https://travelpicsappconfiguration.azconfig.io;Id=/9U6-l0-s0:oHtG9HIFpsW3rua+iYCD;Secret=KcpyeMOfEhyp1/Uds6MXxzBvWl3Yj2SWPTtzvw7LRw8=";
                         config
                         .AddAzureAppConfiguration(options =>

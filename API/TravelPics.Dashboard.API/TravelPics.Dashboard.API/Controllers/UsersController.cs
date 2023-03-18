@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TravelPics.Users.Abstraction;
+using TravelPics.Users.Abstraction.DTO;
 
 namespace TravelPics.Dashboard.API.Controllers
 {
@@ -7,5 +9,30 @@ namespace TravelPics.Dashboard.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly IUsersService _usersService;
+
+        public UsersController(IUsersService usersService)
+        {
+            _usersService = usersService;
+        }
+
+        [HttpGet]
+        [Route("{userId:int}")]
+        public async Task<IActionResult> GetUserById([FromRoute] int userId)
+        {
+            return Ok(await _usersService.GetUserById(userId));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RegisterUser([FromBody] UserCreateDTO userCreateDTO)
+        {
+            if(userCreateDTO == null || string.IsNullOrWhiteSpace(userCreateDTO.Password) || string.IsNullOrWhiteSpace(userCreateDTO.Email))
+            {
+                return BadRequest();
+            }
+            await _usersService.RegisterUser(userCreateDTO);
+
+            return Ok();
+        }
     }
 }

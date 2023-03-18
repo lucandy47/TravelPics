@@ -5,7 +5,13 @@ VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Dashboard.API", "TravelPics.Dashboard.API\TravelPics.Dashboard.API.csproj", "{029BDCE9-DB26-47F6-9EA8-BE112C1F9F25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelPics.Domains", "TravelPics.Domains\TravelPics.Domains.csproj", "{4C9E9A93-3FBF-4065-B852-CF08E6EBFF44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Domains", "TravelPics.Domains\TravelPics.Domains.csproj", "{4C9E9A93-3FBF-4065-B852-CF08E6EBFF44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelPics.Users", "TravelPics.Users\TravelPics.Users.csproj", "{9D47BC10-F3BC-478F-8F4C-A55AC732033B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelPics.Users.Abstraction", "TravelPics.Users.Abstraction\TravelPics.Users.Abstraction.csproj", "{2199E249-E013-41D6-9BAB-99EC56E3BA79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelPics.Security", "TravelPics.Security\TravelPics.Security.csproj", "{D3C98780-F383-46EB-ACBA-1FAA4328D34D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{4C9E9A93-3FBF-4065-B852-CF08E6EBFF44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C9E9A93-3FBF-4065-B852-CF08E6EBFF44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C9E9A93-3FBF-4065-B852-CF08E6EBFF44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D47BC10-F3BC-478F-8F4C-A55AC732033B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D47BC10-F3BC-478F-8F4C-A55AC732033B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D47BC10-F3BC-478F-8F4C-A55AC732033B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D47BC10-F3BC-478F-8F4C-A55AC732033B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2199E249-E013-41D6-9BAB-99EC56E3BA79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2199E249-E013-41D6-9BAB-99EC56E3BA79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2199E249-E013-41D6-9BAB-99EC56E3BA79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2199E249-E013-41D6-9BAB-99EC56E3BA79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3C98780-F383-46EB-ACBA-1FAA4328D34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3C98780-F383-46EB-ACBA-1FAA4328D34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3C98780-F383-46EB-ACBA-1FAA4328D34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3C98780-F383-46EB-ACBA-1FAA4328D34D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
