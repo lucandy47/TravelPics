@@ -19,11 +19,8 @@ namespace TravelPics.Dashboard.API
             services.AddCors();
             var connectionString = Configuration.GetConnectionString("TravelPicsDB");
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                object value = options.UseSqlServer(connectionString);
-            });
 
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
             //services.AddTransient<IUsersRepository>(sp => new UsersRepository(connectionString));
             //services.AddTransient<IUsersService, UsersService>();
 

@@ -1,12 +1,14 @@
-D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\bin\Debug\net6.0\TravelPics.Domains.deps.json
-D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\bin\Debug\net6.0\TravelPics.Domains.dll
-D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\bin\Debug\net6.0\TravelPics.Domains.pdb
 D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\obj\Debug\net6.0\TravelPics.Domains.csproj.AssemblyReference.cache
 D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\obj\Debug\net6.0\TravelPics.Domains.GeneratedMSBuildEditorConfig.editorconfig
 D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\obj\Debug\net6.0\TravelPics.Domains.AssemblyInfoInputs.cache
 D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\obj\Debug\net6.0\TravelPics.Domains.AssemblyInfo.cs
 D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\obj\Debug\net6.0\TravelPics.Domains.csproj.CoreCompileInputs.cache
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\bin\Debug\net6.0\TravelPics.Domains.deps.json
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\bin\Debug\net6.0\TravelPics.Domains.runtimeconfig.json
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\bin\Debug\net6.0\TravelPics.Domains.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\bin\Debug\net6.0\TravelPics.Domains.pdb
 D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\obj\Debug\net6.0\TravelPics.Domains.dll
 D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\obj\Debug\net6.0\refint\TravelPics.Domains.dll
 D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\obj\Debug\net6.0\TravelPics.Domains.pdb
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\obj\Debug\net6.0\TravelPics.Domains.genruntimeconfig.cache
 D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Domains\obj\Debug\net6.0\ref\TravelPics.Domains.dll
