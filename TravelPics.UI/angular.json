@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "TravelPics.UI": {
+        "TRAVELPICS.UI": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -15,7 +15,7 @@
             },
             "root": "",
             "sourceRoot": "src",
-            "prefix": "app",
+            "prefix": "travelpics",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
@@ -41,7 +41,7 @@
                         "scripts": []
                     },
                     "configurations": {
-                        "production": {
+                        "travelpics-prod": {
                             "budgets": [{
                                     "type": "initial",
                                     "maximumWarning": "5mb",
@@ -59,33 +59,52 @@
                             }],
                             "outputHashing": "all"
                         },
-                        "development": {
+                        "travelpics-dev": {
                             "buildOptimizer": false,
                             "optimization": false,
                             "vendorChunk": true,
                             "extractLicenses": false,
                             "sourceMap": true,
-                            "namedChunks": true
+                            "namedChunks": true,
+                            "fileReplacements": [{
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.dev.ts"
+                            }]
+                        },
+                        "travelpics-local": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true,
+                            "fileReplacements": [{
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.local.ts"
+                            }]
                         }
                     },
-                    "defaultConfiguration": "production"
+                    "defaultConfiguration": "travelpics-prod"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
-                        "production": {
-                            "browserTarget": "TravelPics.UI:build:production"
+                        "travelpics-prod": {
+                            "browserTarget": "TRAVELPICS.UI:build:travelpics-prod"
                         },
-                        "development": {
-                            "browserTarget": "TravelPics.UI:build:development"
+                        "travelpics-dev": {
+                            "browserTarget": "TRAVELPICS.UI:build:travelpics-dev"
+                        },
+                        "travelpics-local": {
+                            "browserTarget": "TRAVELPICS.UI:build:travelpics-local"
                         }
                     },
-                    "defaultConfiguration": "development"
+                    "defaultConfiguration": "travelpics-dev"
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "TravelPics.UI:build"
+                        "browserTarget": "TRAVELPICS.UI:build"
                     }
                 },
                 "test": {
@@ -116,5 +135,6 @@
     },
     "cli": {
         "analytics": false
-    }
+    },
+    "defaultProject": "TRAVELPICS.UI"
 }

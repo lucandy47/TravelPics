@@ -51,17 +51,19 @@ namespace TravelPics.Dashboard.API
                 app.UseDeveloperExceptionPage();
             }
 
+            var cors = Configuration.GetValue<string>("Dashboard:ApiCors");
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins(
-                "http://localhost:4200"
-            ));
+            app.UseCors(policy => policy.WithOrigins(
+                cors.Split(",").Select(site=>site.Trim()).ToArray()
+            ).AllowAnyHeader().AllowAnyMethod());
 
             app.UseAuthentication();
             app.UseAuthorization();
-            //app.UseAzureAppConfiguration();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

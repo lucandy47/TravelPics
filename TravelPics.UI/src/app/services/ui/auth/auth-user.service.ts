@@ -7,13 +7,17 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthUserService {
 
   private loggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    true
+    false
   );
   public loggedIn = this.loggedIn$.asObservable();
 
   constructor() { }
 
   logout(): void{
+
+  }
+
+  login(): void{
 
   }
 }

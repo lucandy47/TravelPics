@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1>Login</h1>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" name="email" formControlName="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" formControlName="password" required>
+                </div>
+                <button [disabled]="!loginForm.valid" pButton pRipple type="submit" label="Login" class="p-button-raised p-button-primary"></button>
+            </form>
+        </div>
+    </div>
+</div>

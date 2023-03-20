@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthUserService } from 'src/app/services/ui/auth/auth-user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'travelpics-menubar',
@@ -15,6 +16,7 @@ export class MenubarComponent implements OnInit  {
   public isUserLoggedIn!: boolean;
   constructor(
     private _authUserService: AuthUserService,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -69,6 +71,6 @@ export class MenubarComponent implements OnInit  {
     this._authUserService.logout();
   }
   public goToLogin(): void{
-
+    this.router.navigate(['auth/login']);
   }
 }
