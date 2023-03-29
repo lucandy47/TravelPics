@@ -130,6 +130,21 @@
           "lib/net6.0/Humanizer.dll": {}
         }
       },
+      "Microsoft.AspNetCore.Authentication.Certificate/6.0.15": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Memory": "6.0.1"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Certificate.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Certificate.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.AspNetCore.Authentication.JwtBearer/6.0.12": {
         "type": "package",
         "dependencies": {
@@ -196,10 +211,10 @@
           "lib/net6.0/Microsoft.AspNetCore.DataProtection.Abstractions.dll": {}
         }
       },
-      "Microsoft.Azure.AppConfiguration.AspNetCore/5.2.0": {
+      "Microsoft.Azure.AppConfiguration.AspNetCore/6.0.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Configuration.AzureAppConfiguration": "5.2.0"
+          "Microsoft.Extensions.Configuration.AzureAppConfiguration": "6.0.0"
         },
         "compile": {
           "lib/net6.0/Microsoft.Azure.AppConfiguration.AspNetCore.dll": {}
@@ -457,7 +472,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Configuration.AzureAppConfiguration/5.2.0": {
+      "Microsoft.Extensions.Configuration.AzureAppConfiguration/6.0.0": {
         "type": "package",
         "dependencies": {
           "Azure.Data.AppConfiguration": "1.2.0",
@@ -900,7 +915,7 @@
           "lib/netstandard2.0/Microsoft.SqlServer.Server.dll": {}
         }
       },
-      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.15.1": {
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.18.1": {
         "type": "package",
         "build": {
           "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props": {},
@@ -1658,6 +1673,21 @@
         "logo.png"
       ]
     },
+    "Microsoft.AspNetCore.Authentication.Certificate/6.0.15": {
+      "sha512": "1MmDnHupQ7+gbToQCjvFAVuOrYBuRQKC4A+vWfPu9wcovkV56xQZm4EzA7Luun1DNdUUragbqwm2kLzHcOxgwQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.certificate/6.0.15",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.Certificate.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.Certificate.xml",
+        "microsoft.aspnetcore.authentication.certificate.6.0.15.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.certificate.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.Authentication.JwtBearer/6.0.12": {
       "sha512": "rmuhCPoty7f44XoLwQeGlUw0RzGfDBbb48hMqsodbaYi92KPIZJJjf/f2fu+F80LhLWPiCt6ftcCpG9U0nsWUA==",
       "type": "package",
@@ -1745,15 +1775,13 @@
         "microsoft.aspnetcore.dataprotection.abstractions.nuspec"
       ]
     },
-    "Microsoft.Azure.AppConfiguration.AspNetCore/5.2.0": {
-      "sha512": "PJ5Ww7oEMJM5sIBEzvViw7oh6qXs2a1LbUj+4EPMT6L4i28Ue5DJYNomKZaGmb7aiCP7iFrCBz9Jx0BW/eivLQ==",
+    "Microsoft.Azure.AppConfiguration.AspNetCore/6.0.0": {
+      "sha512": "K44hEJEy6VFvwpukxQxcnpTnQ2GSPdbqJUFZbKLK+XXLyc4OYxo5yP0JI74xbX1DZ7fJEMODLveWU5GZNkUtFQ==",
       "type": "package",
-      "path": "microsoft.azure.appconfiguration.aspnetcore/5.2.0",
+      "path": "microsoft.azure.appconfiguration.aspnetcore/6.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/net5.0/Microsoft.Azure.AppConfiguration.AspNetCore.dll",
-        "lib/net5.0/Microsoft.Azure.AppConfiguration.AspNetCore.xml",
         "lib/net6.0/Microsoft.Azure.AppConfiguration.AspNetCore.dll",
         "lib/net6.0/Microsoft.Azure.AppConfiguration.AspNetCore.xml",
         "lib/net7.0/Microsoft.Azure.AppConfiguration.AspNetCore.dll",
@@ -1762,7 +1790,7 @@
         "lib/netcoreapp3.1/Microsoft.Azure.AppConfiguration.AspNetCore.xml",
         "lib/netstandard2.0/Microsoft.Azure.AppConfiguration.AspNetCore.dll",
         "lib/netstandard2.0/Microsoft.Azure.AppConfiguration.AspNetCore.xml",
-        "microsoft.azure.appconfiguration.aspnetcore.5.2.0.nupkg.sha512",
+        "microsoft.azure.appconfiguration.aspnetcore.6.0.0.nupkg.sha512",
         "microsoft.azure.appconfiguration.aspnetcore.nuspec"
       ]
     },
@@ -2183,16 +2211,16 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Configuration.AzureAppConfiguration/5.2.0": {
-      "sha512": "Qy6AtBMS3Bmw3mrtlwtz9vf+XCvOuoRJW2tIFfsQ/vLGr1REZsHsDMEeyrcGix8Ce/wIrD/j9xqfjQH7m76PPg==",
+    "Microsoft.Extensions.Configuration.AzureAppConfiguration/6.0.0": {
+      "sha512": "oRCr8qqBp/37CXttfgbEWnPznHy0/ZCkgNVFFQ5cnXGvG8TBWicnAK032opyrbGIH3n2jYSg/PvIw7aLoOTy3Q==",
       "type": "package",
-      "path": "microsoft.extensions.configuration.azureappconfiguration/5.2.0",
+      "path": "microsoft.extensions.configuration.azureappconfiguration/6.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.AzureAppConfiguration.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.AzureAppConfiguration.xml",
-        "microsoft.extensions.configuration.azureappconfiguration.5.2.0.nupkg.sha512",
+        "microsoft.extensions.configuration.azureappconfiguration.6.0.0.nupkg.sha512",
         "microsoft.extensions.configuration.azureappconfiguration.nuspec"
       ]
     },
@@ -2930,14 +2958,15 @@
         "microsoft.sqlserver.server.nuspec"
       ]
     },
-    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.15.1": {
-      "sha512": "dcsF7rjxvMnqtfckpzWYvBsZsJD51yQVHSSgd2EN5/CJ/zQigJrfo313lvAwf0VL9ZOHLnJthuboadjnBAU7Ng==",
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.18.1": {
+      "sha512": "RtNQEQQ/bgaxzrsZEkPB+/DFaUgNiq8GtZz/R4lt+mKXPcEvEuawlbl0PB1s7ND9kvkUVZtMphPxE9Ma1VGiFg==",
       "type": "package",
-      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.15.1",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.18.1",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "CHANGELOG.md",
         "EULA.md",
         "ThirdPartyNotices.txt",
         "build/Container.props",
@@ -2961,7 +2990,7 @@
         "build/ToolsTarget.props",
         "build/ToolsTarget.targets",
         "icon.png",
-        "microsoft.visualstudio.azure.containers.tools.targets.1.15.1.nupkg.sha512",
+        "microsoft.visualstudio.azure.containers.tools.targets.1.18.1.nupkg.sha512",
         "microsoft.visualstudio.azure.containers.tools.targets.nuspec",
         "tools/Microsoft.VisualStudio.Containers.Tools.Common.dll",
         "tools/Microsoft.VisualStudio.Containers.Tools.Shared.dll",
@@ -4612,11 +4641,12 @@
     "net6.0": [
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.0",
-      "Microsoft.Azure.AppConfiguration.AspNetCore >= 5.2.0",
+      "Microsoft.AspNetCore.Authentication.Certificate >= 6.0.15",
+      "Microsoft.Azure.AppConfiguration.AspNetCore >= 6.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.4",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.4",
       "Microsoft.Extensions.DependencyInjection >= 7.0.0",
-      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.15.1",
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.18.1",
       "Swashbuckle.AspNetCore >= 6.2.3",
       "TravelPics.Domains >= 1.0.0",
       "TravelPics.Security >= 1.0.0",
@@ -4684,9 +4714,13 @@
             "target": "Package",
             "version": "[12.0.0, )"
           },
+          "Microsoft.AspNetCore.Authentication.Certificate": {
+            "target": "Package",
+            "version": "[6.0.15, )"
+          },
           "Microsoft.Azure.AppConfiguration.AspNetCore": {
             "target": "Package",
-            "version": "[5.2.0, )"
+            "version": "[6.0.0, )"
           },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
@@ -4704,7 +4738,7 @@
           },
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
             "target": "Package",
-            "version": "[1.15.1, )"
+            "version": "[1.18.1, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

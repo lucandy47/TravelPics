@@ -7,6 +7,7 @@ using TravelPics.Users.Repository;
 using TravelPics.Users.Profiles;
 using TravelPics.Security;
 using TravelPics.Security.Models;
+using Microsoft.AspNetCore.Authentication.Certificate;
 
 namespace TravelPics.Dashboard.API
 {
@@ -21,7 +22,9 @@ namespace TravelPics.Dashboard.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+            services.AddAuthentication(
+                CertificateAuthenticationDefaults.AuthenticationScheme)
+                .AddCertificate();
 
             services.AddCors();
             var connectionString = Configuration.GetConnectionString("TravelPicsDB");

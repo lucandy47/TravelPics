@@ -14,5 +14,13 @@
     }
     .travelpics-content {
         height: calc(100% - 70px);
+        .content-page {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 60%;
+            max-width: 1900px;
+            margin: 0 auto;
+        }
     }
 }

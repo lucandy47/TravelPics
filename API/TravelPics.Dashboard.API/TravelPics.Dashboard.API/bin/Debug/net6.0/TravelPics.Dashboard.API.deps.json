@@ -10,11 +10,12 @@
         "dependencies": {
           "AutoMapper": "12.0.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.0",
-          "Microsoft.Azure.AppConfiguration.AspNetCore": "5.2.0",
+          "Microsoft.AspNetCore.Authentication.Certificate": "6.0.15",
+          "Microsoft.Azure.AppConfiguration.AspNetCore": "6.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.4",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.4",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.15.1",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.18.1",
           "Swashbuckle.AspNetCore": "6.2.3",
           "TravelPics.Domains": "1.0.0",
           "TravelPics.Security": "1.0.0",
@@ -143,6 +144,17 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Authentication.Certificate/6.0.15": {
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Memory": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.Certificate.dll": {
+            "assemblyVersion": "6.0.15.0",
+            "fileVersion": "6.0.1523.12404"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Authentication.JwtBearer/6.0.12": {
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.25.1"
@@ -198,14 +210,14 @@
           }
         }
       },
-      "Microsoft.Azure.AppConfiguration.AspNetCore/5.2.0": {
+      "Microsoft.Azure.AppConfiguration.AspNetCore/6.0.0": {
         "dependencies": {
-          "Microsoft.Extensions.Configuration.AzureAppConfiguration": "5.2.0"
+          "Microsoft.Extensions.Configuration.AzureAppConfiguration": "6.0.0"
         },
         "runtime": {
           "lib/net6.0/Microsoft.Azure.AppConfiguration.AspNetCore.dll": {
-            "assemblyVersion": "5.2.0.0",
-            "fileVersion": "5.2.0.0"
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.0.0"
           }
         }
       },
@@ -400,7 +412,7 @@
           }
         }
       },
-      "Microsoft.Extensions.Configuration.AzureAppConfiguration/5.2.0": {
+      "Microsoft.Extensions.Configuration.AzureAppConfiguration/6.0.0": {
         "dependencies": {
           "Azure.Data.AppConfiguration": "1.2.0",
           "Azure.Messaging.EventGrid": "4.7.0",
@@ -412,8 +424,8 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Configuration.AzureAppConfiguration.dll": {
-            "assemblyVersion": "5.2.0.0",
-            "fileVersion": "5.2.0.0"
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.0.0"
           }
         }
       },
@@ -755,7 +767,7 @@
           }
         }
       },
-      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.15.1": {},
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.18.1": {},
       "Microsoft.Win32.Registry/5.0.0": {
         "dependencies": {
           "System.Security.AccessControl": "6.0.0",
@@ -1214,6 +1226,13 @@
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.Authentication.Certificate/6.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1MmDnHupQ7+gbToQCjvFAVuOrYBuRQKC4A+vWfPu9wcovkV56xQZm4EzA7Luun1DNdUUragbqwm2kLzHcOxgwQ==",
+      "path": "microsoft.aspnetcore.authentication.certificate/6.0.15",
+      "hashPath": "microsoft.aspnetcore.authentication.certificate.6.0.15.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Authentication.JwtBearer/6.0.12": {
       "type": "package",
       "serviceable": true,
@@ -1249,12 +1268,12 @@
       "path": "microsoft.aspnetcore.dataprotection.abstractions/6.0.14",
       "hashPath": "microsoft.aspnetcore.dataprotection.abstractions.6.0.14.nupkg.sha512"
     },
-    "Microsoft.Azure.AppConfiguration.AspNetCore/5.2.0": {
+    "Microsoft.Azure.AppConfiguration.AspNetCore/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-PJ5Ww7oEMJM5sIBEzvViw7oh6qXs2a1LbUj+4EPMT6L4i28Ue5DJYNomKZaGmb7aiCP7iFrCBz9Jx0BW/eivLQ==",
-      "path": "microsoft.azure.appconfiguration.aspnetcore/5.2.0",
-      "hashPath": "microsoft.azure.appconfiguration.aspnetcore.5.2.0.nupkg.sha512"
+      "sha512": "sha512-K44hEJEy6VFvwpukxQxcnpTnQ2GSPdbqJUFZbKLK+XXLyc4OYxo5yP0JI74xbX1DZ7fJEMODLveWU5GZNkUtFQ==",
+      "path": "microsoft.azure.appconfiguration.aspnetcore/6.0.0",
+      "hashPath": "microsoft.azure.appconfiguration.aspnetcore.6.0.0.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",
@@ -1368,12 +1387,12 @@
       "path": "microsoft.extensions.configuration.abstractions/7.0.0",
       "hashPath": "microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.Configuration.AzureAppConfiguration/5.2.0": {
+    "Microsoft.Extensions.Configuration.AzureAppConfiguration/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Qy6AtBMS3Bmw3mrtlwtz9vf+XCvOuoRJW2tIFfsQ/vLGr1REZsHsDMEeyrcGix8Ce/wIrD/j9xqfjQH7m76PPg==",
-      "path": "microsoft.extensions.configuration.azureappconfiguration/5.2.0",
-      "hashPath": "microsoft.extensions.configuration.azureappconfiguration.5.2.0.nupkg.sha512"
+      "sha512": "sha512-oRCr8qqBp/37CXttfgbEWnPznHy0/ZCkgNVFFQ5cnXGvG8TBWicnAK032opyrbGIH3n2jYSg/PvIw7aLoOTy3Q==",
+      "path": "microsoft.extensions.configuration.azureappconfiguration/6.0.0",
+      "hashPath": "microsoft.extensions.configuration.azureappconfiguration.6.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection/7.0.0": {
       "type": "package",
@@ -1592,12 +1611,12 @@
       "path": "microsoft.sqlserver.server/1.0.0",
       "hashPath": "microsoft.sqlserver.server.1.0.0.nupkg.sha512"
     },
-    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.15.1": {
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.18.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-dcsF7rjxvMnqtfckpzWYvBsZsJD51yQVHSSgd2EN5/CJ/zQigJrfo313lvAwf0VL9ZOHLnJthuboadjnBAU7Ng==",
-      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.15.1",
-      "hashPath": "microsoft.visualstudio.azure.containers.tools.targets.1.15.1.nupkg.sha512"
+      "sha512": "sha512-RtNQEQQ/bgaxzrsZEkPB+/DFaUgNiq8GtZz/R4lt+mKXPcEvEuawlbl0PB1s7ND9kvkUVZtMphPxE9Ma1VGiFg==",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.18.1",
+      "hashPath": "microsoft.visualstudio.azure.containers.tools.targets.1.18.1.nupkg.sha512"
     },
     "Microsoft.Win32.Registry/5.0.0": {
       "type": "package",
