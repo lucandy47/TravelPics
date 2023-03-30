@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { StringValidators } from 'src/app/shared/validators/string.validators';
 import { LoginModel } from 'src/app/services/auth/login-model';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { AuthUserService } from 'src/app/services/ui/auth/auth-user.service';
 
 @Component({
   selector: 'travelpics-login',
@@ -14,9 +14,8 @@ import { MessageService } from 'primeng/api';
 export class LoginComponent implements OnInit {
 
   constructor(
-    private authService: AuthService,
+    private authUserService: AuthUserService,
     private router: Router,
-    private messageService: MessageService
   ){}
 
   public loginForm!: FormGroup;
@@ -37,28 +36,18 @@ export class LoginComponent implements OnInit {
   login(): void{
     const formData = this.loginForm.getRawValue();
     const loginModel = <LoginModel>{
-      email: formData.email,
-      password: formData.password
+      email: formData?.email.trim(),
+      password: formData?.password
     }
 
-    this.authService.login(loginModel).subscribe({
-      next: (data: any)=>{
-        this.errorMessage = "";
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Login',
-          detail: 'Your have been successfully logged in.',
-        });
+    this.authUserService.login(loginModel).subscribe({
+      next: (isLoginSuccessful:boolean)=>{
+        if(!isLoginSuccessful) this.errorMessage = "Incorrect email or password!";
       },
-      error: (error: any)=>{
-        this.errorMessage = "Incorrect email or password!"
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Login',
-          detail: 'Could not log in.',
-        });
+      error: ()=>{
+        this.errorMessage = "";
       }
-    })
+    });
   }
 
   public goToRegister(): void{

@@ -8,12 +8,14 @@ import { MenubarComponent } from './menu/menubar/menubar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    MenubarComponent
+    MenubarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
