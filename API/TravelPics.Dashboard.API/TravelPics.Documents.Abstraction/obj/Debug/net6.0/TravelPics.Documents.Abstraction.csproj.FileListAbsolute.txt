@@ -1,0 +1,12 @@
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents.Abstraction\bin\Debug\net6.0\TravelPics.Documents.Abstraction.deps.json
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents.Abstraction\bin\Debug\net6.0\TravelPics.Documents.Abstraction.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents.Abstraction\bin\Debug\net6.0\TravelPics.Documents.Abstraction.pdb
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents.Abstraction\obj\Debug\net6.0\TravelPics.Documents.Abstraction.csproj.AssemblyReference.cache
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents.Abstraction\obj\Debug\net6.0\TravelPics.Documents.Abstraction.GeneratedMSBuildEditorConfig.editorconfig
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents.Abstraction\obj\Debug\net6.0\TravelPics.Documents.Abstraction.AssemblyInfoInputs.cache
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents.Abstraction\obj\Debug\net6.0\TravelPics.Documents.Abstraction.AssemblyInfo.cs
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents.Abstraction\obj\Debug\net6.0\TravelPics.Documents.Abstraction.csproj.CoreCompileInputs.cache
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents.Abstraction\obj\Debug\net6.0\TravelPics.Documents.Abstraction.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents.Abstraction\obj\Debug\net6.0\refint\TravelPics.Documents.Abstraction.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents.Abstraction\obj\Debug\net6.0\TravelPics.Documents.Abstraction.pdb
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents.Abstraction\obj\Debug\net6.0\ref\TravelPics.Documents.Abstraction.dll

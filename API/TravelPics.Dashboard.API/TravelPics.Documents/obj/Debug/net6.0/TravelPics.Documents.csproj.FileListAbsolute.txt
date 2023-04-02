@@ -1,0 +1,17 @@
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\bin\Debug\net6.0\TravelPics.Documents.deps.json
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\bin\Debug\net6.0\TravelPics.Documents.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\bin\Debug\net6.0\TravelPics.Documents.pdb
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\bin\Debug\net6.0\TravelPics.Documents.Abstraction.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\bin\Debug\net6.0\TravelPics.Domains.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\bin\Debug\net6.0\TravelPics.Documents.Abstraction.pdb
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\bin\Debug\net6.0\TravelPics.Domains.pdb
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\obj\Debug\net6.0\TravelPics.Documents.csproj.AssemblyReference.cache
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\obj\Debug\net6.0\TravelPics.Documents.GeneratedMSBuildEditorConfig.editorconfig
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\obj\Debug\net6.0\TravelPics.Documents.AssemblyInfoInputs.cache
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\obj\Debug\net6.0\TravelPics.Documents.AssemblyInfo.cs
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\obj\Debug\net6.0\TravelPics.Documents.csproj.CoreCompileInputs.cache
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\obj\Debug\net6.0\TravelPics.Documents.csproj.CopyComplete
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\obj\Debug\net6.0\TravelPics.Documents.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\obj\Debug\net6.0\refint\TravelPics.Documents.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\obj\Debug\net6.0\TravelPics.Documents.pdb
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Documents\obj\Debug\net6.0\ref\TravelPics.Documents.dll

@@ -7,11 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Dashboard.API", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Domains", "TravelPics.Domains\TravelPics.Domains.csproj", "{4C9E9A93-3FBF-4065-B852-CF08E6EBFF44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelPics.Users", "TravelPics.Users\TravelPics.Users.csproj", "{9D47BC10-F3BC-478F-8F4C-A55AC732033B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Users", "TravelPics.Users\TravelPics.Users.csproj", "{9D47BC10-F3BC-478F-8F4C-A55AC732033B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelPics.Users.Abstraction", "TravelPics.Users.Abstraction\TravelPics.Users.Abstraction.csproj", "{2199E249-E013-41D6-9BAB-99EC56E3BA79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Users.Abstraction", "TravelPics.Users.Abstraction\TravelPics.Users.Abstraction.csproj", "{2199E249-E013-41D6-9BAB-99EC56E3BA79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelPics.Security", "TravelPics.Security\TravelPics.Security.csproj", "{D3C98780-F383-46EB-ACBA-1FAA4328D34D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Security", "TravelPics.Security\TravelPics.Security.csproj", "{D3C98780-F383-46EB-ACBA-1FAA4328D34D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelPics.Documents", "TravelPics.Documents\TravelPics.Documents.csproj", "{44589EE7-4786-41E5-879F-91453EDF21BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelPics.Documents.Abstraction", "TravelPics.Documents.Abstraction\TravelPics.Documents.Abstraction.csproj", "{08CF2B42-4CE7-42A2-951C-8ABB4E3916ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{D3C98780-F383-46EB-ACBA-1FAA4328D34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3C98780-F383-46EB-ACBA-1FAA4328D34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3C98780-F383-46EB-ACBA-1FAA4328D34D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44589EE7-4786-41E5-879F-91453EDF21BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44589EE7-4786-41E5-879F-91453EDF21BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44589EE7-4786-41E5-879F-91453EDF21BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44589EE7-4786-41E5-879F-91453EDF21BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08CF2B42-4CE7-42A2-951C-8ABB4E3916ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08CF2B42-4CE7-42A2-951C-8ABB4E3916ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08CF2B42-4CE7-42A2-951C-8ABB4E3916ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08CF2B42-4CE7-42A2-951C-8ABB4E3916ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
