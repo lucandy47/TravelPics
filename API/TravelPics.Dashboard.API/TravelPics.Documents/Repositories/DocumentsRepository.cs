@@ -43,9 +43,9 @@ namespace TravelPics.Documents.Repositories
             return docBlobContainer;
         }
 
-        public async Task<DocumentExtension?> GetDocumentExtension(int id)
+        public async Task<DocumentExtension?> GetDocumentExtension(string extension)
         {
-            var docExtension = await _dbContext.DocumentExtensions.FindAsync(id);
+            var docExtension = await _dbContext.DocumentExtensions.FirstOrDefaultAsync(x => x.Extension == extension);
 
             return docExtension;
         }

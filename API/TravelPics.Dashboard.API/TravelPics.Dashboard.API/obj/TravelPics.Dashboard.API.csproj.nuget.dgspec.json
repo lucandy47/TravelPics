@@ -31,6 +31,9 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Documents\\TravelPics.Documents.csproj": {
+                "projectPath": "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Documents\\TravelPics.Documents.csproj"
+              },
               "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Domains\\TravelPics.Domains.csproj": {
                 "projectPath": "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Domains\\TravelPics.Domains.csproj"
               },
@@ -106,6 +109,141 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Documents.Abstraction\\TravelPics.Documents.Abstraction.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Documents.Abstraction\\TravelPics.Documents.Abstraction.csproj",
+        "projectName": "TravelPics.Documents.Abstraction",
+        "projectPath": "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Documents.Abstraction\\TravelPics.Documents.Abstraction.csproj",
+        "packagesPath": "C:\\Users\\lucia\\.nuget\\packages\\",
+        "outputPath": "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Documents.Abstraction\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\lucia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Documents\\TravelPics.Documents.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Documents\\TravelPics.Documents.csproj",
+        "projectName": "TravelPics.Documents",
+        "projectPath": "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Documents\\TravelPics.Documents.csproj",
+        "packagesPath": "C:\\Users\\lucia\\.nuget\\packages\\",
+        "outputPath": "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Documents\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\lucia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Documents.Abstraction\\TravelPics.Documents.Abstraction.csproj": {
+                "projectPath": "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Documents.Abstraction\\TravelPics.Documents.Abstraction.csproj"
+              },
+              "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Domains\\TravelPics.Domains.csproj": {
+                "projectPath": "D:\\facultate\\master\\disertatie\\project\\TravelPics\\API\\TravelPics.Dashboard.API\\TravelPics.Domains\\TravelPics.Domains.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Azure.Storage.Blobs": {
+              "target": "Package",
+              "version": "[12.15.1, )"
+            },
+            "Polly": {
+              "target": "Package",
+              "version": "[7.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

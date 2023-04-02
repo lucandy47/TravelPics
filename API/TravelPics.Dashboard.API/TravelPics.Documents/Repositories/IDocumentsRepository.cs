@@ -10,7 +10,7 @@ namespace TravelPics.Documents.Repositories
 
         Task<DocumentBlobContainer?> GetDocumentBlobContainer(int id);
 
-        Task<DocumentExtension?> GetDocumentExtension(int id);
+        Task<DocumentExtension?> GetDocumentExtension(string extension);
 
         Task Delete(long documentId);   
     }

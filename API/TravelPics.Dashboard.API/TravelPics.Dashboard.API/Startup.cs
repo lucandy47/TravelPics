@@ -8,6 +8,10 @@ using TravelPics.Users.Profiles;
 using TravelPics.Security;
 using TravelPics.Security.Models;
 using Microsoft.AspNetCore.Authentication.Certificate;
+using TravelPics.Documents.Configs;
+using TravelPics.Documents;
+using TravelPics.Documents.Repositories;
+using TravelPics.Documents.Abstraction;
 
 namespace TravelPics.Dashboard.API
 {
@@ -36,9 +40,18 @@ namespace TravelPics.Dashboard.API
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IUsersService, UsersService>();
 
+            services.AddScoped<IDocumentsRepository, DocumentsRepository>();
+            services.AddScoped<IDocumentsService, DocumentsService>();
+
             services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             services.AddAzureAppConfiguration();
+
+            services.AddOptions<BlobContainerConfig>()
+                .Configure(options =>
+                {
+                    options.StorageConnectionString = Configuration.GetValue<string>("ConnectionStrings:BlobStorage");
+                }).ValidateDataAnnotations();
 
             services.AddAutoMapper(typeof(Startup));
             services.AddAutoMapper(typeof(UserProfile));
