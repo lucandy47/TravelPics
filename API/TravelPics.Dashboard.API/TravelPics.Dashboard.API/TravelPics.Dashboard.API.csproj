@@ -24,9 +24,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TravelPics.Documents\TravelPics.Documents.csproj" />
     <ProjectReference Include="..\TravelPics.Domains\TravelPics.Domains.csproj" />
     <ProjectReference Include="..\TravelPics.Security\TravelPics.Security.csproj" />
     <ProjectReference Include="..\TravelPics.Users\TravelPics.Users.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestFiles\" />
   </ItemGroup>
 
 </Project>

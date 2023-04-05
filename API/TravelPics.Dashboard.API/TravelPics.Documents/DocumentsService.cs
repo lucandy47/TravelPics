@@ -94,6 +94,7 @@ namespace TravelPics.Documents
                 Content = document.Content,
                 FileName = document.FileName,
                 UploadedById = document.UploadedById,
+                CreatedOn = DateTimeOffset.Now,
             };
 
             var blobContainerClient = await GetBlobContainerClient(docBlobContainer.ContainerName);
@@ -113,17 +114,17 @@ namespace TravelPics.Documents
                     }
                     throw new Exception($"Unable to save Document '{blobFileName}' to Blob Storage {docEntity.BlobUri}.");
                 }
-                try
-                {
-                    await _documentRepository.SaveDocument(docEntity);
-                }
-                catch (Exception ex)
-                {
-                    var deleteBlobResponse = await blobClient.DeleteAsync();
-                    throw new Exception($"Unable to save Document '{blobFileName}' to database.", ex);
-                }
             });
 
+            try
+            {
+                await _documentRepository.SaveDocument(docEntity);
+            }
+            catch (Exception ex)
+            {
+                var deleteBlobResponse = await blobClient.DeleteAsync();
+                throw new Exception($"Unable to save Document '{blobFileName}' to database.", ex);
+            }
         }
     }
 }

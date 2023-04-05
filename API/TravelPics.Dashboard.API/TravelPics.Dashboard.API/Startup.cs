@@ -35,7 +35,7 @@ namespace TravelPics.Dashboard.API
 
             services.AddSingleton(Configuration.GetSection("Jwt").Get<AuthorizationConfiguration>());
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Scoped);
 
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IUsersService, UsersService>();

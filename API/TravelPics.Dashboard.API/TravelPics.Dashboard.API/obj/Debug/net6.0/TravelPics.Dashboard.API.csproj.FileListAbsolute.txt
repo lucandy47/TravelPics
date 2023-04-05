@@ -115,3 +115,11 @@ D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\T
 D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Dashboard.API\obj\Debug\net6.0\TravelPics.Dashboard.API.genruntimeconfig.cache
 D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Dashboard.API\obj\Debug\net6.0\ref\TravelPics.Dashboard.API.dll
 D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Dashboard.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Certificate.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Dashboard.API\bin\Debug\net6.0\Azure.Storage.Blobs.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Dashboard.API\bin\Debug\net6.0\Azure.Storage.Common.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Dashboard.API\bin\Debug\net6.0\Polly.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Dashboard.API\bin\Debug\net6.0\System.IO.Hashing.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Dashboard.API\bin\Debug\net6.0\TravelPics.Documents.Abstraction.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Dashboard.API\bin\Debug\net6.0\TravelPics.Documents.dll
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Dashboard.API\bin\Debug\net6.0\TravelPics.Documents.pdb
+D:\facultate\master\disertatie\project\TravelPics\API\TravelPics.Dashboard.API\TravelPics.Dashboard.API\bin\Debug\net6.0\TravelPics.Documents.Abstraction.pdb
