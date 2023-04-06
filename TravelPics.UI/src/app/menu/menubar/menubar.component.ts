@@ -50,11 +50,11 @@ export class MenubarComponent implements OnInit  {
             visible: this.isUserLoggedIn,
             items: [
               {
-                label: 'My Posts',
-                routerLink: '',
+                label: 'New Post',
+                routerLink: 'posts/new',
               },
               {
-                label: 'Friends Posts',
+                label: 'My Posts',
                 routerLink: '',
               },
             ],

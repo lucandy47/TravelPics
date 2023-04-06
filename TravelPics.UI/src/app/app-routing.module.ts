@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { HomeComponent } from './home/home.component';
+import { PostModule } from './post/post.module';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => UserModule,
+  },
+  {
+    path: 'posts',
+    loadChildren: () => PostModule,
   },
 ];
 

@@ -16,15 +16,23 @@ namespace TravelPics.Dashboard.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UploadPhoto( CancellationToken cancellationToken)
+        public async Task<IActionResult> UploadPhoto(CancellationToken cancellationToken)
         {
-            var filePath = "TestFiles/default.jpg";
-            var content = System.IO.File.ReadAllBytes(filePath);
+            if (Request.Form.Files.Count == 0)
+            {
+                return BadRequest("No file was uploaded.");
+            }
+
+            var file = Request.Form.Files[0];
+
+            using var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream, cancellationToken);
+            var content = memoryStream.ToArray();
 
             var document = new DocumentDTO
             {
                 Content = content,
-                FileName = "default.jpg",
+                FileName = file.FileName,
                 UploadedById = 1,
                 CreatedOn = DateTime.Now,
                 Size = content.Length
