@@ -38,7 +38,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TreeModule } from 'primeng/tree';
 import { PasswordModule } from 'primeng/password';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { FileUploadModule } from 'primeng/fileupload';
 
 const PrimeModules = [
   TableModule,
@@ -78,6 +78,7 @@ const PrimeModules = [
   TreeModule,
   ProgressBarModule,
   SidebarModule,
+  FileUploadModule
 ]
 
 @NgModule({

@@ -1,0 +1,31 @@
+.new-post {
+    padding: 1rem;
+    margin-top: 50px;
+    margin-left: 20%;
+    margin-right: 20%;
+    -webkit-box-shadow: 0px 0px 30px -6px rgba(92, 112, 102, 1);
+    -moz-box-shadow: 0px 0px 30px -6px rgba(92, 112, 102, 1);
+    box-shadow: 0px 0px 30px -6px rgba(92, 112, 102, 1);
+    border-radius: 10px;
+    border: 0px solid;
+}
+
+.post-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.form-section {
+    width: 80%;
+    .description-area {
+        border: none;
+        outline: none;
+        resize: none;
+    }
+    .description-area:enabled:focus {
+        border: none;
+        outline: none;
+        resize: none;
+        box-shadow: none;
+    }
+}

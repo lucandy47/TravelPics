@@ -1,3 +1,32 @@
-<div>
-    <input type="file" #fileInput (change)="onFileSelected()" />
+<div class="col-12 md:col-12">
+    <div class="new-post flex flex-column">
+        <div class="post-header flex align-items-center justify-content-center">
+            Create a New Post
+        </div>
+        <hr/>
+        <div class="flex align-items-start justify-content-start mb-4 ml-8 flex-column">
+            <div class="flex inline-block mb-4">
+                <img src="../../../assets/images/avatar.png" alt="avatar" style="width:50px; border-radius:50%;">
+                <p class="ml-2 text-lg">Test username</p>
+            </div>
+            <form [formGroup]="newPostForm" (ngSubmit)="createPost()" class="form-section flex flex-column">
+                <div class="field">
+                    <textarea class="inputfield w-12 h-5rem description-area" placeholder="Describe your experience..." pInputTextarea placeholformControlName="description"></textarea>
+                </div>
+                <div [ngClass]="selectedFiles.length === 0 ? 'field w-8' : 'field w-12'">
+                    <p-fileUpload [previewWidth]="50" (onSelect)="selectFiles($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000" [showUploadButton]="false" [showCancelButton]="true" (onRemove)="removeSelectedFile($event)" (onClear)="removeAllFiles()" [cancelLabel]="'Clear'"
+                        [chooseLabel]="'Select photos'">
+                        <ng-template pTemplate="content">
+                            <div *ngIf="this.selectedFiles.length === 0">
+                                No photos selected.
+                            </div>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+            </form>
+        </div>
+        <div class="buttons flex align-items-center justify-content-center mb-8">
+            <button [disabled]="!newPostForm.valid || this.selectedFiles.length === 0" pButton pRipple type="submit" label="Post" class="p-button-large w-6 p-button-raised p-button-primary"></button>
+        </div>
+    </div>
 </div>

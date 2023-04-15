@@ -71,3 +71,13 @@ a.disabled {
     align-items: center;
     color: var(--text-color-secondary);
 }
+
+hr {
+    border-style: none;
+    border-top-style: dotted;
+    border-width: 10px;
+    border-color: rgb(55, 88, 69);
+    width: 40%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
