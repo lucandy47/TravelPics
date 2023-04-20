@@ -39,6 +39,7 @@ import { TreeModule } from 'primeng/tree';
 import { PasswordModule } from 'primeng/password';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FileUploadModule } from 'primeng/fileupload';
+import { AgmCoreModule } from '@agm/core';
 
 const PrimeModules = [
   TableModule,
@@ -88,6 +89,10 @@ const PrimeModules = [
     SharedRoutingModule,
     FontAwesomeModule,
     ...PrimeModules,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCohK-ELARdxi7pNbEwAFTEy8cKUEzEwfE',
+      libraries: ['places']
+    })
   ],
   exports: [
     CommonModule,
