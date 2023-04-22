@@ -32,7 +32,7 @@ export class NewPostComponent implements OnInit {
       description: new FormControl(null, [
       ]),
       photos: new FormControl(null,[]),
-      location: new FormControl(null)
+      location: new FormControl(null, [Validators.required])
     });
 
     this.mapsAPILoader.load().then(() => {
@@ -82,5 +82,8 @@ export class NewPostComponent implements OnInit {
     //     console.error('Error uploading photo:', error);
     //   }
     // });
+    const formData = this.newPostForm.getRawValue();
+    console.log(formData);
+    console.log(this.selectedFiles);
   }
 }

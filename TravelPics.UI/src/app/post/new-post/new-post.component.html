@@ -4,17 +4,17 @@
             Create a New Post
         </div>
         <hr/>
-        <div class="flex align-items-start justify-content-start mb-4 ml-8 flex-column">
-            <div class="flex inline-block mb-4">
+        <div class="flex align-items-start justify-content-start ml-8 flex-column">
+            <div class="flex inline-block mb-2">
                 <img src="../../../assets/images/avatar.png" alt="avatar" style="width:50px; border-radius:50%;">
                 <p class="ml-2 text-lg">Test username</p>
             </div>
             <form [formGroup]="newPostForm" (ngSubmit)="createPost()" class="form-section flex flex-column">
                 <div class="field">
-                    <textarea class="inputfield w-12 h-5rem description-area" placeholder="Describe your experience..." pInputTextarea placeholformControlName="description"></textarea>
+                    <textarea class="inputfield w-12 h-4rem description-area" placeholder="Describe your experience..." pInputTextarea formControlName="description"></textarea>
                 </div>
-                <div [ngClass]="selectedFiles.length === 0 ? 'field w-8' : 'field w-12'">
-                    <p-fileUpload [previewWidth]="50" (onSelect)="selectFiles($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000" [showUploadButton]="false" [showCancelButton]="true" (onRemove)="removeSelectedFile($event)" (onClear)="removeAllFiles()" [cancelLabel]="'Clear'"
+                <div [ngClass]="selectedFiles.length === 0 ? 'field w-10' : 'field w-12'">
+                    <p-fileUpload class="col-12 md:col-12" [previewWidth]="50" (onSelect)="selectFiles($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000" [showUploadButton]="false" [showCancelButton]="true" (onRemove)="removeSelectedFile($event)" (onClear)="removeAllFiles()" [cancelLabel]="'Clear'"
                         [chooseLabel]="'Select photos'">
                         <ng-template pTemplate="content">
                             <div *ngIf="this.selectedFiles.length === 0">
@@ -23,17 +23,20 @@
                         </ng-template>
                     </p-fileUpload>
                 </div>
-                <div>
-                    <div class="">
-                        <label>Enter address</label>
-                        <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
-                      </div>                     
-                      <h5>Address: {{address}}</h5>
+                <div class="field">
+                    <label for="location" class="col-12 " style="padding-left:0px;"><i class="pi pi-map-marker location-icon"></i>Location:</label>
+                    <div class="col-12  md:col-12 flex block " style="padding-left:0px;">
+                        <input id="location" class="inputfield w-8" pInputText (keydown.enter)="$event.preventDefault()" placeholder="Search Place" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search formControlName="location">
+                        <ng-container *ngIf="newPostForm.controls['location'].touched && newPostForm.controls['location'].invalid">
+                            <small class="p-error" *ngIf="newPostForm.controls['location'].errors?.required">Location is required.</small>
+                        </ng-container>
+                    </div>                     
                 </div>
             </form>
         </div>
-        <div class="buttons flex align-items-center justify-content-center mb-8">
-            <button [disabled]="!newPostForm.valid || this.selectedFiles.length === 0" pButton pRipple type="submit" label="Post" class="p-button-large w-6 p-button-raised p-button-primary"></button>
+        <div class="buttons flex align-items-center justify-content-center mb-4">
+            <button [disabled]="!newPostForm.valid || this.selectedFiles.length === 0" pButton pRipple (click)="createPost()" label="Post" class="p-button-large w-6 mr-2 p-button-raised p-button-primary"></button>
+            <button [disabled]="!newPostForm.valid || this.selectedFiles.length === 0" pButton pRipple label="Preview" class="p-button-large w-2 p-button-raised p-button-secondary"></button>
         </div>
     </div>
 </div>
