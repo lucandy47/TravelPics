@@ -13,11 +13,16 @@ namespace TravelPics.Domains.DataAccess
         public DbSet<Document> Documents { get; set; }
         public DbSet<DocumentExtension> DocumentExtensions { get; set; }
         public DbSet<DocumentBlobContainer> DocumentBlobContainers { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
                 .HasKey(e => e.Id);
+
+            modelBuilder.Entity<User>()
+                .HasMany(x => x.Posts)
+                .WithOne(x => x.User);
 
             modelBuilder.Entity<Document>()
                 .HasKey(e => e.Id);
@@ -35,6 +40,26 @@ namespace TravelPics.Domains.DataAccess
 
             modelBuilder.Entity<DocumentBlobContainer>()
                 .HasKey(x => x.Id);
+
+            modelBuilder.Entity<Post>()
+                .HasKey(e => e.Id);
+
+            modelBuilder.Entity<Post>()
+                .HasMany(x => x.Photos)
+                .WithOne(x => x.Post);
+
+            modelBuilder.Entity<Post>()
+                .HasOne(x => x.Location)
+                .WithMany(x => x.Posts);
+
+            modelBuilder.Entity<Post>()
+                .HasOne(x => x.User)
+                .WithMany(x => x.Posts)
+                .HasForeignKey(e => e.CreatedById);
+
+            modelBuilder.Entity<Location>()
+                .HasKey(x => x.Id);
+
         }
     }
 }

@@ -12,6 +12,11 @@ using TravelPics.Documents.Configs;
 using TravelPics.Documents;
 using TravelPics.Documents.Repositories;
 using TravelPics.Documents.Abstraction;
+using TravelPics.Posts.Abstraction;
+using TravelPics.Posts;
+using TravelPics.Posts.Repository;
+using TravelPics.Locations.Abstraction;
+using TravelPics.Locations;
 
 namespace TravelPics.Dashboard.API
 {
@@ -42,6 +47,12 @@ namespace TravelPics.Dashboard.API
 
             services.AddScoped<IDocumentsRepository, DocumentsRepository>();
             services.AddScoped<IDocumentsService, DocumentsService>();
+
+            services.AddScoped<IPostsRepository, PostsRepository>();
+            services.AddScoped<IPostsService, PostsService>();
+
+            //services.AddScoped<ILocationRepository, LocationRepository>();
+            services.AddScoped<ILocationsService, LocationsService>();
 
             services.AddScoped<IAuthenticationService, AuthenticationService>();
 

@@ -13,5 +13,6 @@
         public int Size { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
         public bool IsDeleted { get; set; }
+        public virtual Post Post { get; set; }
     }
 }

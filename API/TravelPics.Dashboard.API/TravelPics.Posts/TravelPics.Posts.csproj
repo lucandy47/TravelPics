@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TravelPics.Documents.Abstraction\TravelPics.Documents.Abstraction.csproj" />
+    <ProjectReference Include="..\TravelPics.Domains\TravelPics.Domains.csproj" />
+    <ProjectReference Include="..\TravelPics.Posts.Abstraction\TravelPics.Posts.Abstraction.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+</Project>

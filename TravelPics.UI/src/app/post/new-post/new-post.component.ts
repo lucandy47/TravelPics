@@ -1,7 +1,9 @@
-import { DocumentService } from './../../services/api/document.service';
+import { PostService } from '../../services/api/post.service';
 import { Component, ViewChild, OnInit, NgZone, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
+import { Location } from 'src/app/services/api/dtos/location';
+import { Post } from 'src/app/services/api/dtos/post';
 
 @Component({
   selector: 'travelpics-new-post',
@@ -13,19 +15,16 @@ export class NewPostComponent implements OnInit {
   public searchElementRef!: ElementRef;
   
   constructor(
-    private _documentService:DocumentService,
+    private _postService:PostService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
   ) {}
   selectedFiles: any[] = [];
 
-  public file!: any;
-
   public newPostForm!: FormGroup;
 
-  public latitude!: number;
-  public longitude!: number;
   public address!: string | undefined;
+  public location!: Location;
   
   ngOnInit(): void {
     this.newPostForm = new FormGroup({
@@ -45,10 +44,13 @@ export class NewPostComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-
-          this.address = place.formatted_address;
-          // this.latitude = place.geometry.location!.lat();
-          // this.longitude = place.geometry.location!.lng();
+          console.log(place);
+          this.location = {
+            name: place.name,
+            address: place.formatted_address?.trim(),
+            latitude: place.geometry.location!.lat(),
+            longitude: place.geometry.location!.lng()
+          };
         });
       });
     });
@@ -70,20 +72,23 @@ export class NewPostComponent implements OnInit {
     }
   }
 
-  public createPost(): void{
-    // const formData = new FormData();
-    // formData.append('file', this.file);
+  public createPost(): void {
+    const formData = new FormData();
+    formData.append('Location', JSON.stringify(this.location));
+    formData.append('Description', this.newPostForm.get('description')!.value);
+    formData.append('CreatedById', '1');
+  
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      formData.append(`Photos[${i}]`, this.selectedFiles[i]);
+    }
 
-    // this._documentService.uploadPhoto(formData).subscribe({
-    //   next: (data: any)=>{
-    //     console.log('Photo uploaded successfully');
-    //   },
-    //   error: (error: any)=>{
-    //     console.error('Error uploading photo:', error);
-    //   }
-    // });
-    const formData = this.newPostForm.getRawValue();
-    console.log(formData);
-    console.log(this.selectedFiles);
+    this._postService.uploadPhoto(formData).subscribe({
+      next: (data: any) => {
+        console.log('Post successfully');
+      },
+      error: (error: any) => {
+        console.error('Error adding post:', error);
+      }
+    });
   }
 }
