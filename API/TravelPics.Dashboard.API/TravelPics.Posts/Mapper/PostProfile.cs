@@ -9,6 +9,7 @@ namespace TravelPics.Posts.Mapper
         public PostProfile()
         {
             CreateMap<PostDTO, Post>();
+            CreateMap<Post, PostDTO>();
         }
     }
 }

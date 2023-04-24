@@ -9,6 +9,7 @@ namespace TravelPics.Documents.Mapper
         public DocumentProfile()
         {
             CreateMap<Document, DocumentDTO>();
+            CreateMap<DocumentDTO, Document>();
         }
     }
 }

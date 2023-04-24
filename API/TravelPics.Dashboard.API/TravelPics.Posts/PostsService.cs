@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
+using Polly;
+using System.Reflection.Metadata;
+using System.Threading;
 using TravelPics.Documents.Abstraction;
+using TravelPics.Documents.Abstraction.DTO;
 using TravelPics.Domains.Entities;
 using TravelPics.Posts.Abstraction;
 using TravelPics.Posts.Abstraction.DTO;
@@ -20,9 +24,34 @@ namespace TravelPics.Posts
             _mapper = mapper;
         }
 
-        public async Task SavePost(PostDTO postDTO)
+        public async Task SavePost(PostDTO postDTO, CancellationToken cancellationToken)
         {
             var post = _mapper.Map<Post>(postDTO);
+
+            var documentBlobContainerDTO = new DocumentBlobContainerDTO()
+            {
+                Id = 3
+            };
+            if (post == null || !post.Photos.Any()) throw new Exception($"Could not get the post.");
+
+            post.Photos.Clear();
+
+            foreach (var photoDTO in postDTO.Photos)
+            {
+                var photo = await _documentsService.ComputeDocument(photoDTO, documentBlobContainerDTO, "test", cancellationToken);
+                post.Photos.Add(photo);
+            }
+
+            await _postsRepository.SavePost(post);
+
+            try
+            {
+                await _documentsService.UploadPhotos(post.Photos.ToList(), documentBlobContainerDTO, cancellationToken);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception($"Unable to upload photos to cloud.", ex);
+            }
         }
     }
 }

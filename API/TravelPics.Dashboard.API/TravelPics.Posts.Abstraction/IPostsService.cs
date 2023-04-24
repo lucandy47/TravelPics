@@ -4,6 +4,6 @@ namespace TravelPics.Posts.Abstraction
 {
     public interface IPostsService
     {
-        Task SavePost(PostDTO postDTO);
+        Task SavePost(PostDTO postDTO, CancellationToken cancellationToken);
     }
 }

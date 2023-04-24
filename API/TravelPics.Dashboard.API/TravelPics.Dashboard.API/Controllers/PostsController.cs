@@ -22,41 +22,30 @@ namespace TravelPics.Dashboard.API.Controllers
         {
             var postDTO = await ComputePostFromRequestForm(Request.Form);
 
-            // ...
             if (postDTO == null)
             {
-                return BadRequest("No file was uploaded.");
+                return BadRequest("Could not create post.");
             }
 
-            await _postsService.SavePost(postDTO);
-            return Ok();
-            //var file = Request.Form.Files[0];
+            if (!postDTO.Photos.Any())
+            {
+                return BadRequest("No photos attached to the post.");
+            }
 
-            //using var memoryStream = new MemoryStream();
-            //await file.CopyToAsync(memoryStream, cancellationToken);
-            //var content = memoryStream.ToArray();
+            if(postDTO.Location == null)
+            {
+                return BadRequest("No location attached to the post.");
+            }
 
-            //var document = new DocumentDTO
-            //{
-            //    Content = content,
-            //    FileName = file.FileName,
-            //    UploadedById = 1,
-            //    CreatedOn = DateTime.Now,
-            //    Size = content.Length
-            //};
-
-            //try
-            //{
-            //    await _documentsService.Save(document, new DocumentBlobContainerDTO()
-            //    {
-            //        Id = 3
-            //    }, "test", cancellationToken);
-            //    return Ok();
-            //}
-            //catch (Exception ex)
-            //{
-            //    return BadRequest(ex.Message);
-            //}
+            try
+            {
+                await _postsService.SavePost(postDTO, cancellationToken);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }            
         }
 
         private async Task<PostDTO> ComputePostFromRequestForm(IFormCollection formCollection)
@@ -89,7 +78,8 @@ namespace TravelPics.Dashboard.API.Controllers
                 Description = formFields["Description"],
                 Location = JsonConvert.DeserializeObject<LocationDTO>(formFields["Location"]) ?? new LocationDTO(),
                 CreatedById = int.Parse(formFields["CreatedById"]),
-                Photos = photoFiles
+                Photos = photoFiles,
+                PublishedOn = DateTime.Now,
             };
         }
     }

@@ -64,12 +64,12 @@ namespace TravelPics.Documents
             };
         }
 
-        public async Task Save(DocumentDTO document, DocumentBlobContainerDTO container, CancellationToken cancellationToken)
+        public async Task<Document> ComputeDocument(DocumentDTO document, DocumentBlobContainerDTO container, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await ComputeDocument(document, container, "", cancellationToken);
         }
 
-        public async Task Save(DocumentDTO document, DocumentBlobContainerDTO container, string containerBlobPath, CancellationToken cancellationToken)
+        public async Task<Document> ComputeDocument(DocumentDTO document, DocumentBlobContainerDTO container, string containerBlobPath, CancellationToken cancellationToken)
         {
             if (document.Content.Length == 0) throw new Exception($"The document content cannot be empty.");
 
@@ -97,34 +97,47 @@ namespace TravelPics.Documents
                 CreatedOn = DateTimeOffset.Now,
             };
 
+            return docEntity;
+        }
+
+        public async Task UploadPhotos(List<Document> photos, DocumentBlobContainerDTO container, CancellationToken cancellationToken)
+        {
+            if(!photos.Any()) throw new Exception($"No documents to be saved.");
+
+            var docBlobContainer = await _documentRepository.GetDocumentBlobContainer(container.Id);
+            if (docBlobContainer == null) throw new Exception($"Unsupported {nameof(DocumentBlobContainer)}: {container}");
+
             var blobContainerClient = await GetBlobContainerClient(docBlobContainer.ContainerName);
-            var blobClient = blobContainerClient.GetBlobClient(docEntity.BlobUri);
 
-            var saveDocumentTask = await _blobRetryPolicy.ExecuteAsync(async (cancellationToken) =>
+            foreach(var photo in photos)
             {
-                await blobClient.UploadAsync(new BinaryData(document.Content), cancellationToken);
-            }, cancellationToken)
-            .ContinueWith(async (continuation) =>
-            {
-                if (continuation.IsFaulted)
+                var blobClient = blobContainerClient.GetBlobClient(photo.BlobUri);
+                var saveDocumentTask = await _blobRetryPolicy.ExecuteAsync(async (cancellationToken) =>
                 {
-                    if (continuation.Exception != null)
+                    await blobClient.UploadAsync(new BinaryData(photo.Content), cancellationToken);
+                }, cancellationToken)
+                .ContinueWith(async (continuation) =>
+                {
+                    if (continuation.IsFaulted)
                     {
-                        throw new Exception($"Unable to save Document '{blobFileName}' to Blob Storage {docEntity.BlobUri}.", continuation.Exception);
+                        if (continuation.Exception != null)
+                        {
+                            throw new Exception($"Unable to save Document '{photo.BlobFileName}' to Blob Storage {photo.BlobUri}.", continuation.Exception);
+                        }
+                        throw new Exception($"Unable to save Document '{photo.BlobFileName}' to Blob Storage {photo.BlobUri}.");
                     }
-                    throw new Exception($"Unable to save Document '{blobFileName}' to Blob Storage {docEntity.BlobUri}.");
-                }
-            });
+                });
+            }
 
-            try
-            {
-                await _documentRepository.SaveDocument(docEntity);
-            }
-            catch (Exception ex)
-            {
-                var deleteBlobResponse = await blobClient.DeleteAsync();
-                throw new Exception($"Unable to save Document '{blobFileName}' to database.", ex);
-            }
+            //try
+            //{
+            //    await _documentRepository.SaveDocument(docEntity);
+            //}
+            //catch (Exception ex)
+            //{
+            //    var deleteBlobResponse = await blobClient.DeleteAsync();
+            //    throw new Exception($"Unable to save Document '{blobFileName}' to database.", ex);
+            //}
         }
     }
 }

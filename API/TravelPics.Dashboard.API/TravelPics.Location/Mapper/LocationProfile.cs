@@ -9,6 +9,7 @@ namespace TravelPics.Locations.Mapper
         public LocationProfile()
         {
             CreateMap<LocationDTO, Location>();
+            CreateMap<Location, LocationDTO>();
         }
     }
 }

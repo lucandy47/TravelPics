@@ -15,10 +15,16 @@ namespace TravelPics.Posts.Repository
 
         public async Task SavePost(Post post)
         {
-
             await _dbContext.Posts.AddAsync(post);
 
-            await _dbContext.SaveChangesAsync();
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Unable to save post to database.", ex);
+            }
         }
     }
 }

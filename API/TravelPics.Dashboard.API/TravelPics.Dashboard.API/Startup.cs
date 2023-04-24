@@ -17,6 +17,9 @@ using TravelPics.Posts;
 using TravelPics.Posts.Repository;
 using TravelPics.Locations.Abstraction;
 using TravelPics.Locations;
+using TravelPics.Posts.Mapper;
+using TravelPics.Locations.Mapper;
+using TravelPics.Documents.Mapper;
 
 namespace TravelPics.Dashboard.API
 {
@@ -66,6 +69,9 @@ namespace TravelPics.Dashboard.API
 
             services.AddAutoMapper(typeof(Startup));
             services.AddAutoMapper(typeof(UserProfile));
+            services.AddAutoMapper(typeof(PostProfile));
+            services.AddAutoMapper(typeof(LocationProfile));
+            services.AddAutoMapper(typeof(DocumentProfile));
 
             services.AddMvc();
         }

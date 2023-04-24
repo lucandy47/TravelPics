@@ -8,7 +8,7 @@
         public int CreatedById { get; set; }
         public virtual ICollection<Document> Photos { get; set; }
         public virtual User User { get; set; }
-        public DateTimeOffset? PublishedOn { get; set; }
+        public DateTimeOffset PublishedOn { get; set; }
         public bool IsDeleted { get; set; }
         public Post()
         {
