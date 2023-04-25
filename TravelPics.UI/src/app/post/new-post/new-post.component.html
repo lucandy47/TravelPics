@@ -7,7 +7,7 @@
         <div class="flex align-items-start justify-content-start ml-8 flex-column">
             <div class="flex inline-block mb-2">
                 <img src="../../../assets/images/avatar.png" alt="avatar" style="width:50px; border-radius:50%;">
-                <p class="ml-2 text-lg">Test username</p>
+                <p class="ml-2 text-lg">{{loggedInUser.name}}</p>
             </div>
             <form [formGroup]="newPostForm" (ngSubmit)="createPost()" class="form-section flex flex-column">
                 <div class="field">
@@ -36,7 +36,7 @@
         </div>
         <div class="buttons flex align-items-center justify-content-center mb-4">
             <button [disabled]="!newPostForm.valid || this.selectedFiles.length === 0" pButton pRipple (click)="createPost()" label="Post" class="p-button-large w-6 mr-2 p-button-raised p-button-primary"></button>
-            <button [disabled]="!newPostForm.valid || this.selectedFiles.length === 0" pButton pRipple label="Preview" class="p-button-large w-2 p-button-raised p-button-secondary"></button>
+            <button [disabled]="!newPostForm.valid || this.selectedFiles.length === 0" pButton pRipple (click)="previewPost()" label="Preview" class="p-button-large w-2 p-button-raised p-button-secondary"></button>
         </div>
     </div>
 </div>

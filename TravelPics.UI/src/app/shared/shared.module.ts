@@ -40,6 +40,7 @@ import { PasswordModule } from 'primeng/password';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FileUploadModule } from 'primeng/fileupload';
 import { AgmCoreModule } from '@agm/core';
+import { GalleriaModule } from 'primeng/galleria';
 
 const PrimeModules = [
   TableModule,
@@ -79,7 +80,8 @@ const PrimeModules = [
   TreeModule,
   ProgressBarModule,
   SidebarModule,
-  FileUploadModule
+  FileUploadModule,
+  GalleriaModule
 ]
 
 @NgModule({

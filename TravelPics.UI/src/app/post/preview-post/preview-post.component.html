@@ -1,0 +1,33 @@
+<div class="col-12 md:col-12">
+    <div class="flex flex-column">
+        <div class="flex align-items-start justify-content-start flex-column">
+            <div class="flex flex-wrap flex-row card-container">
+                <div class="flex align-items-center justify-content-center">
+                    <img src="../../../assets/images/avatar.png" alt="avatar" style="width:50px; border-radius:50%;">
+                </div>
+                <div class="flexalign-items-center justify-content-center">
+                    <div class="ml-2 text-lg">{{userName}}</div>
+                    <div class="ml-2 text-lg"><i class="pi pi-map-marker location-icon"></i>{{post.location.name}}</div>
+                </div>
+            </div>
+            <div class="col-12">
+                {{post.description}}
+            </div>
+            <div class="card">
+                <p-galleria [value]="images" [showItemNavigators]="true" [showThumbnails]="false" [showIndicators]="true" [responsiveOptions]="responsiveOptions" [showIndicatorsOnItem]="true" [containerStyle]="{ 'width': '100%' }">
+                    <ng-template pTemplate="item" let-item>
+                      <img [src]="item.itemImageSrc" style="width: 100%; display: block; height: 400px;" />
+                    </ng-template>
+                    <ng-template pTemplate="thumbnail" let-item>
+                      <div class="grid grid-nogutter justify-content-center">
+                        <img [src]="item.thumbnailImageSrc" style="display: block; width:50px;" />
+                      </div>
+                    </ng-template>
+                  </p-galleria>
+            </div>
+        </div>
+        <!-- <div class="flex align-items-center justify-content-center">
+
+        </div> -->
+    </div>
+</div>

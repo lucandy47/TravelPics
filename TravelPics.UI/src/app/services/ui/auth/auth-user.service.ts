@@ -61,9 +61,12 @@ export class AuthUserService {
       return;
     }
     let decodedToken = this.jwtHelper.decodeToken(authorization.accessToken);
+    console.log(decodedToken);
     this.userInfo = new UserInfo();
     this.userInfo.authorization = authorization;
     this.userInfo.name = decodedToken.fullName;
+    this.userInfo.userId = decodedToken.Id;
+    this.userInfo.email = decodedToken.email;
 
     this.loggedIn$.next(true);
   }
@@ -82,6 +85,10 @@ export class AuthUserService {
 
   get loggedUserName(): string {
     return !!this.userInfo ? this.userInfo.name : '';
+  }
+
+  get loggedInUser(): UserInfo{
+    return this.userInfo ?? new UserInfo();
   }
 
   public getAccessToken(): string | Promise<boolean> {
