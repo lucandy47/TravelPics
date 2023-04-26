@@ -39,7 +39,6 @@ export class PreviewPostComponent implements OnInit {
     this.post = this.config.data?.post;
     this.userName = this.config.data?.userName;
     this.images = this.config.data?.images;
-    console.log(this.images);
   }
 
 }

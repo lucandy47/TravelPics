@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AuthUserService } from './services/ui/auth/auth-user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,16 @@ import { Component } from '@angular/core';
   '../styles/primeng-overwrites/overlay.scss',
 ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'TravelPics.UI';
+
+  constructor(
+    private _authUserService: AuthUserService
+  ){}
+  ngOnDestroy(): void {
+  }
+
+  ngOnInit(): void {
+    this._authUserService.tryResoreUserSession();
+  }
 }

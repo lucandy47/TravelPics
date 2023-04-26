@@ -4,10 +4,13 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { HomeComponent } from './home/home.component';
 import { PostModule } from './post/post.module';
+import { AuthGuard } from './services/ui/auth/guards/auth.guard';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
     path: 'home',
+    canActivate: [AuthGuard],
     component: HomeComponent
   },
   {
@@ -21,6 +24,11 @@ const routes: Routes = [
   {
     path: 'posts',
     loadChildren: () => PostModule,
+  },
+  {
+    path:'404',
+    component: PageNotFoundComponent,
+    pathMatch:'full'
   },
 ];
 

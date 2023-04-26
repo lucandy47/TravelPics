@@ -56,7 +56,6 @@ export class RegisterComponent {
     };
     this.userService.registerUser(user).subscribe({
       next: (data: any)=>{
-        console.log(data);
         this.messageService.add({
           severity: 'success',
           summary: 'User',
@@ -65,8 +64,6 @@ export class RegisterComponent {
         this.router.navigate(['auth/login']);
       },
       error: (error: any)=>{
-        console.log(error);
-
         this.messageService.add({
           severity: 'error',
           summary: 'User',

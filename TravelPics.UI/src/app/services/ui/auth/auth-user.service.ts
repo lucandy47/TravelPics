@@ -61,7 +61,6 @@ export class AuthUserService {
       return;
     }
     let decodedToken = this.jwtHelper.decodeToken(authorization.accessToken);
-    console.log(decodedToken);
     this.userInfo = new UserInfo();
     this.userInfo.authorization = authorization;
     this.userInfo.name = decodedToken.fullName;
@@ -106,5 +105,19 @@ export class AuthUserService {
   private clearAuthFromLocalStorage(): void {
     window.localStorage.removeItem(ACCESS_TOKEN_KEY);
     window.localStorage.removeItem(EXPIRES_ON_KEY);
+  }
+
+  public tryResoreUserSession(): void | Promise<boolean>{
+    if(
+      !window.localStorage.getItem(ACCESS_TOKEN_KEY) || 
+      !window.localStorage.getItem(EXPIRES_ON_KEY)
+    ){
+      return;
+    }
+    const authorization = <UserToken>{
+      accessToken: window.localStorage.getItem(ACCESS_TOKEN_KEY),
+      expiresOn: moment.parseZone(window.localStorage.getItem(EXPIRES_ON_KEY)),
+    };
+    this.setUserSession(authorization);
   }
 }

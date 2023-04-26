@@ -13,7 +13,7 @@ export class PostService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public uploadPhoto(formData: FormData): Observable<string>{
+  public addNewPost(formData: FormData): Observable<string>{
     return this.httpClient.post<string>(`${this.apiUrl}`, formData);
   }
 }

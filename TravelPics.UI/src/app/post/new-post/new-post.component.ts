@@ -9,6 +9,8 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PreviewPostComponent } from '../preview-post/preview-post.component';
 import { Post } from 'src/app/services/api/dtos/post';
 import { PostImage } from 'src/app/services/api/dtos/post-image';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'travelpics-new-post',
@@ -27,7 +29,9 @@ export class NewPostComponent implements OnInit, OnDestroy {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private _authUserService: AuthUserService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private messageService: MessageService,
+    private router: Router,
   ) {}
 
   ngOnDestroy(): void {
@@ -102,12 +106,21 @@ export class NewPostComponent implements OnInit, OnDestroy {
       formData.append(`Photos[${i}]`, this.selectedFiles[i]);
     }
 
-    this._postService.uploadPhoto(formData).subscribe({
+    this._postService.addNewPost(formData).subscribe({
       next: (data: any) => {
-        console.log('Post successfully');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'New Post',
+          detail: 'Your post has been published!',
+        });
+        this.router.navigate(['home']);
       },
       error: (error: any) => {
-        console.error('Error adding post:', error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'New Post',
+          detail: 'Could not publish new post.',
+        });
       }
     });
   }

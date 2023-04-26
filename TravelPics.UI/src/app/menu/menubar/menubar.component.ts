@@ -31,7 +31,7 @@ export class MenubarComponent implements OnInit  {
           {
             label: "Home",
             visible: this.isUserLoggedIn,
-            routerLink: ''
+            routerLink: 'home'
           },
           {
             label: "Notifications",
