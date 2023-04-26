@@ -55,7 +55,7 @@ export class MenubarComponent implements OnInit  {
               },
               {
                 label: 'My Posts',
-                routerLink: '',
+                routerLink: 'posts/my',
               },
             ],
           }

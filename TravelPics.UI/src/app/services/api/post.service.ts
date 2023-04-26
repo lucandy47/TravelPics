@@ -16,4 +16,8 @@ export class PostService {
   public addNewPost(formData: FormData): Observable<string>{
     return this.httpClient.post<string>(`${this.apiUrl}`, formData);
   }
+
+  public getUserPosts(userId: number):Observable<Post[]>{
+    return this.httpClient.get<Post[]>(`${this.apiUrl}/user/${userId}`);
+  }
 }

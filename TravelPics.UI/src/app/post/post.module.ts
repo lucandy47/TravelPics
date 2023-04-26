@@ -5,12 +5,14 @@ import { PostRoutingModule } from './post-routing.module';
 import { NewPostComponent } from './new-post/new-post.component';
 import { SharedModule } from '../shared/shared.module';
 import { PreviewPostComponent } from './preview-post/preview-post.component';
+import { MyPostsComponent } from './my-posts/my-posts.component';
 
 
 @NgModule({
   declarations: [
     NewPostComponent,
-    PreviewPostComponent
+    PreviewPostComponent,
+    MyPostsComponent
   ],
   imports: [
     CommonModule,

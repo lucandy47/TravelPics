@@ -1,8 +1,9 @@
-import { Location } from "./location";
+import { PostDocument } from "./post-document";
 
 export interface Post{
     location: Location;
     description: string;
-    photos: File[];
+    photos: PostDocument[];
     createdById: number;
-  }
+    publishedOn: Date;
+}

@@ -1,0 +1,7 @@
+<div *ngIf="posts.length > 0">
+    <div *ngFor="let document of posts[2].photos">
+        <img [src]="getSanitizedBlobUrlFromBase64(document.content, document.fileName)" alt="{{document.fileName}}" />
+    </div>
+</div>
+
+  

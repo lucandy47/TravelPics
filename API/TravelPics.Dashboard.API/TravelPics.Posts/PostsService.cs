@@ -24,6 +24,17 @@ namespace TravelPics.Posts
             _mapper = mapper;
         }
 
+        public async Task<IEnumerable<PostDTO>> GetUserPosts(int userId)
+        {
+            var posts = await _postsRepository.GetUserPosts(userId);
+
+            var postsDTO = _mapper.Map<List<PostDTO>>(posts);
+
+            if (postsDTO == null) throw new Exception($"Could not get the posts for user: {userId}");
+
+            return postsDTO;
+        }
+
         public async Task SavePost(PostDTO postDTO, CancellationToken cancellationToken)
         {
             var post = _mapper.Map<Post>(postDTO);

@@ -41,6 +41,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FileUploadModule } from 'primeng/fileupload';
 import { AgmCoreModule } from '@agm/core';
 import { GalleriaModule } from 'primeng/galleria';
+import { TravelpicsLoaderComponent } from './travelpics-loader/travelpics-loader.component';
 
 const PrimeModules = [
   TableModule,
@@ -85,7 +86,9 @@ const PrimeModules = [
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    TravelpicsLoaderComponent
+  ],
   imports: [
     CommonModule,
     SharedRoutingModule,
@@ -100,6 +103,7 @@ const PrimeModules = [
     CommonModule,
     FontAwesomeModule,
     ...PrimeModules,
+    TravelpicsLoaderComponent
   ],
     providers: [
     ConfirmationService,

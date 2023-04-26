@@ -7,10 +7,10 @@ import { AuthUserService } from 'src/app/services/ui/auth/auth-user.service';
 import { UserInfo } from 'src/app/services/ui/auth/user-info';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PreviewPostComponent } from '../preview-post/preview-post.component';
-import { Post } from 'src/app/services/api/dtos/post';
 import { PostImage } from 'src/app/services/api/dtos/post-image';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { NewPost } from 'src/app/services/api/dtos/new-post';
 
 @Component({
   selector: 'travelpics-new-post',
@@ -127,7 +127,7 @@ export class NewPostComponent implements OnInit, OnDestroy {
 
   public async previewPost(): Promise<void>{
     const formData = this.newPostForm.getRawValue();
-    let post: Post = {
+    let post: NewPost = {
       description: formData.description,
       location: this.location,
       photos: this.selectedFiles,
@@ -149,7 +149,7 @@ export class NewPostComponent implements OnInit, OnDestroy {
     });
   }
   
-  private async loadImages(post: Post): Promise<PostImage[]> {
+  private async loadImages(post: NewPost): Promise<PostImage[]> {
     const images: PostImage[] = [];
     for (let i = 0; i < post.photos.length; i++) {
       const imageDataUrl = await this.readFileAsDataURL(post.photos[i]);

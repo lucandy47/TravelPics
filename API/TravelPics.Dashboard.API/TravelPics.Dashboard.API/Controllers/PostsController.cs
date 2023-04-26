@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Threading;
 using TravelPics.Documents.Abstraction.DTO;
 using TravelPics.Locations.Abstraction.DTO;
 using TravelPics.Posts.Abstraction;
@@ -15,6 +16,22 @@ namespace TravelPics.Dashboard.API.Controllers
         public PostsController(IPostsService postsService)
         {
             _postsService = postsService;
+        }
+
+        [HttpGet]
+        [Route("user/{userId:int}")]
+        public async Task<IActionResult> GetUserPosts([FromRoute] int userId)
+        {
+            try
+            {
+                var posts = await _postsService.GetUserPosts(userId);
+
+                return Ok(posts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost]

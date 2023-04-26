@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Post } from 'src/app/services/api/dtos/post';
+import { NewPost } from 'src/app/services/api/dtos/new-post';
 import { PostImage } from 'src/app/services/api/dtos/post-image';
 
 @Component({
@@ -30,7 +30,7 @@ export class PreviewPostComponent implements OnInit {
     public config: DynamicDialogConfig
   ){}
 
-  public post!:Post;
+  public post!:NewPost;
   public userName!: string;
   
   public images: PostImage[] = [];

@@ -1,4 +1,6 @@
-﻿using System.Reflection.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Polly;
+using System.Reflection.Metadata;
 using TravelPics.Domains.DataAccess;
 using TravelPics.Domains.Entities;
 
@@ -11,6 +13,18 @@ namespace TravelPics.Posts.Repository
         public PostsRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        public async Task<IEnumerable<Post>> GetUserPosts(int userId)
+        {
+            var posts = await _dbContext.Posts
+                .Include(p => p.User)
+                .Include(p => p.Location)
+                .Include(p => p.Photos)
+                .Where(p => p.CreatedById == userId && !p.IsDeleted)
+                .ToListAsync();
+
+            return posts;
         }
 
         public async Task SavePost(Post post)
