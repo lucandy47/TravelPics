@@ -9,13 +9,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     MenubarComponent,
-    HomeComponent
+    HomeComponent,
+    WelcomePageComponent
   ],
   imports: [
     BrowserModule,

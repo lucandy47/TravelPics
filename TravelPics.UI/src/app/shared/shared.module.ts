@@ -42,6 +42,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { AgmCoreModule } from '@agm/core';
 import { GalleriaModule } from 'primeng/galleria';
 import { TravelpicsLoaderComponent } from './travelpics-loader/travelpics-loader.component';
+import { CarouselModule } from 'primeng/carousel';
 
 const PrimeModules = [
   TableModule,
@@ -82,7 +83,8 @@ const PrimeModules = [
   ProgressBarModule,
   SidebarModule,
   FileUploadModule,
-  GalleriaModule
+  GalleriaModule,
+  CarouselModule
 ]
 
 @NgModule({

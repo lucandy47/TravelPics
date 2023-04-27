@@ -6,8 +6,13 @@ import { HomeComponent } from './home/home.component';
 import { PostModule } from './post/post.module';
 import { AuthGuard } from './services/ui/auth/guards/auth.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 const routes: Routes = [
+  {
+    path:'',
+    component:WelcomePageComponent
+  },
   {
     path: 'home',
     canActivate: [AuthGuard],

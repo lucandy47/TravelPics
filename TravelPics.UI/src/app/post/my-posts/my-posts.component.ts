@@ -7,6 +7,7 @@ import { PostService } from 'src/app/services/api/post.service';
 import { AuthUserService } from 'src/app/services/ui/auth/auth-user.service';
 import { UserInfo } from 'src/app/services/ui/auth/user-info';
 import { DocumentHelper } from 'src/app/shared/helpers/documentHelper';
+import { GaleriaResponsiveOptions } from 'src/app/shared/utils/galeria-options';
 
 @Component({
   selector: 'travelpics-my-posts',
@@ -26,9 +27,13 @@ export class MyPostsComponent implements OnInit{
   public posts: Post[] = [];
   public loggedInUser!: UserInfo;
 
+  public responsiveOptions: any[] = [];
+
   ngOnInit(): void {
     this.loggedInUser = this.authUserService.loggedInUser;
     this.getUserPosts(this.loggedInUser.userId);
+    
+    this.responsiveOptions = GaleriaResponsiveOptions.responsiveOptions;
   }
 
   private getUserPosts(userId: number): void{

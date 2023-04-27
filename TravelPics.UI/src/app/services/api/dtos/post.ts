@@ -1,3 +1,4 @@
+import { Location } from "./location";
 import { PostDocument } from "./post-document";
 
 export interface Post{
