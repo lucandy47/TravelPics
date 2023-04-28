@@ -13,10 +13,13 @@
             <div class="col-12">
                 {{post.description}}
             </div>
-            <div class="card">
-                <p-galleria [value]="images" [showItemNavigators]="true" [showThumbnails]="false" [showIndicators]="true" [responsiveOptions]="responsiveOptions" [showIndicatorsOnItem]="true" [containerStyle]="{ 'width': '100%' }">
+            <div class="card w-12" style="background:black;">
+                <div style="padding:15px;">
+                <p-galleria [value]="images" [showItemNavigators]="images.length > 1 ? true : false" [showThumbnails]="false" [showIndicators]="images.length > 1 ? true : false" 
+                    [responsiveOptions]="responsiveOptions" [showIndicatorsOnItem]="images.length > 1 ? true : false" 
+                    [containerStyle]="{'max-height': '300px' }">
                     <ng-template pTemplate="item" let-item>
-                      <img [src]="item.itemImageSrc" style="width: 100%; display: block; height: 400px;" />
+                      <img [src]="item.itemImageSrc" style=" max-height:300px; display: block;" />
                     </ng-template>
                     <ng-template pTemplate="thumbnail" let-item>
                       <div class="grid grid-nogutter justify-content-center">
@@ -24,6 +27,7 @@
                       </div>
                     </ng-template>
                   </p-galleria>
+                </div>
             </div>
         </div>
         <!-- <div class="flex align-items-center justify-content-center">

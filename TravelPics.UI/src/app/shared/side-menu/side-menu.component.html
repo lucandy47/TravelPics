@@ -1,0 +1,29 @@
+<ul class="travelpics-side-menu">
+    <ng-container *ngFor="let item of menuItems">
+
+    
+    <li class="travelpics-side-menu-item">
+        <span *ngIf="item.routerLink == null">
+            <i [class]="item.icon+' menu-icon'"></i><span>{{item.label}}</span>
+        </span>
+        <a *ngIf="item.routerLink != null" [routerLink]='item.routerLink' routerLinkActive="active-item">
+            <i [class]="item.icon+' menu-icon'"></i><span>{{item.label}}</span>
+        </a>
+        <ul class="travelpics-side-menu nested-menu" >
+            <ng-container *ngFor="let child of item.children">
+                <li (click)="child.onClick()" class="travelpics-side-menu-item">
+                    <span *ngIf="child.routerLink == null ">
+                        <i [class]="child.icon+' menu-icon'"></i><span>{{child.label}}</span>
+                    </span>
+                    <a *ngIf="child.routerLink != null" [routerLink]='child.routerLink' routerLinkActive="active-item">
+                        <i [class]="child.icon+' menu-icon'"></i><span>{{child.label}}</span>
+                    </a>
+                </li>
+            </ng-container>
+            
+        </ul>
+    </li>
+</ng-container>
+</ul>
+
+

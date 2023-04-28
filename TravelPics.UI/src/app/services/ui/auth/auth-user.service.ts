@@ -79,7 +79,7 @@ export class AuthUserService {
   }
 
   public handleLoggedInUser(): void {
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('navigation/home');
   }
 
   get loggedUserName(): string {

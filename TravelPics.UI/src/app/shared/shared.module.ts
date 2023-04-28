@@ -43,6 +43,8 @@ import { AgmCoreModule } from '@agm/core';
 import { GalleriaModule } from 'primeng/galleria';
 import { TravelpicsLoaderComponent } from './travelpics-loader/travelpics-loader.component';
 import { CarouselModule } from 'primeng/carousel';
+import { SideMenuComponent } from './side-menu/side-menu.component';
+import { LongDatetimePipe, ShortDatetimePipe } from './pipes/datetime.pipe';
 
 const PrimeModules = [
   TableModule,
@@ -84,12 +86,19 @@ const PrimeModules = [
   SidebarModule,
   FileUploadModule,
   GalleriaModule,
-  CarouselModule
+  CarouselModule,
+  DividerModule
 ]
 
+const Pipes = [
+  LongDatetimePipe,
+  ShortDatetimePipe
+]
 @NgModule({
   declarations: [
-    TravelpicsLoaderComponent
+    TravelpicsLoaderComponent,
+    SideMenuComponent,
+    ...Pipes
   ],
   imports: [
     CommonModule,
@@ -105,7 +114,9 @@ const PrimeModules = [
     CommonModule,
     FontAwesomeModule,
     ...PrimeModules,
-    TravelpicsLoaderComponent
+    TravelpicsLoaderComponent,
+    SideMenuComponent,
+    ...Pipes
   ],
     providers: [
     ConfirmationService,

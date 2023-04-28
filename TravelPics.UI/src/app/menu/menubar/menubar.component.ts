@@ -29,11 +29,6 @@ export class MenubarComponent implements OnInit  {
         this.isUserLoggedIn = isLoggedIn;
         this.items = [
           {
-            label: "Home",
-            visible: this.isUserLoggedIn,
-            routerLink: 'home'
-          },
-          {
             label: "Notifications",
             icon: 'pi pi-bell',
             visible: this.isUserLoggedIn,
@@ -44,21 +39,6 @@ export class MenubarComponent implements OnInit  {
             icon: 'pi pi-map',
             routerLink: ''
           },
-          {
-            label: 'Posts',
-            icon:'pi pi-fw pi-user',
-            visible: this.isUserLoggedIn,
-            items: [
-              {
-                label: 'New Post',
-                routerLink: 'posts/new',
-              },
-              {
-                label: 'My Posts',
-                routerLink: 'posts/my',
-              },
-            ],
-          }
         ];
       },
       error: ()=>{

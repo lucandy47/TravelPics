@@ -1,0 +1,25 @@
+.navigation-menu-content{
+    height: 100%;
+    margin:0 auto;
+    p{
+        padding:20px;
+        margin:0;
+        font-size:1.1rem;
+        color:var(--text-color-secondary);
+    }
+    ::ng-deep .p-divider.p-divider-horizontal{
+        margin:0;
+    }
+
+    .menu-area{
+        margin:0 auto;
+        background-color: var(--surface-100);
+        padding:0;
+        z-index: 0;
+    }
+    .content-area{
+        //         background-image: url('../../../assets/images/background.jpg?v=1');
+        // background-size: cover;
+        // background-position: center;
+    }
+}

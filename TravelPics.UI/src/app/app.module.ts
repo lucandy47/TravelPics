@@ -8,7 +8,7 @@ import { MenubarComponent } from './menu/menubar/menubar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './navigation/home/home.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 @NgModule({

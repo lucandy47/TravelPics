@@ -143,8 +143,8 @@ export class NewPostComponent implements OnInit, OnDestroy {
         images: images
       },
       header: "Preview Post",
-      width: '460px',
-      height: '620px',
+      width: '660px',
+      height: '550px',
       baseZIndex: 10000
     });
   }
