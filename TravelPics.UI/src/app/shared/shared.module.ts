@@ -45,6 +45,7 @@ import { TravelpicsLoaderComponent } from './travelpics-loader/travelpics-loader
 import { CarouselModule } from 'primeng/carousel';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { LongDatetimePipe, ShortDatetimePipe } from './pipes/datetime.pipe';
+import { PostItemComponent } from './post-item/post-item.component';
 
 const PrimeModules = [
   TableModule,
@@ -98,7 +99,8 @@ const Pipes = [
   declarations: [
     TravelpicsLoaderComponent,
     SideMenuComponent,
-    ...Pipes
+    ...Pipes,
+    PostItemComponent
   ],
   imports: [
     CommonModule,
@@ -116,6 +118,7 @@ const Pipes = [
     ...PrimeModules,
     TravelpicsLoaderComponent,
     SideMenuComponent,
+    PostItemComponent,
     ...Pipes
   ],
     providers: [

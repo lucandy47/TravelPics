@@ -22,6 +22,7 @@ namespace TravelPics.Posts.Repository
                 .Include(p => p.Location)
                 .Include(p => p.Photos)
                 .Where(p => p.CreatedById == userId && !p.IsDeleted)
+                .OrderByDescending(p => p.PublishedOn)
                 .ToListAsync();
 
             return posts;
