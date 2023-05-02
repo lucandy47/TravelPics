@@ -1,5 +1,6 @@
 import { Location } from "./location";
 import { PostDocument } from "./post-document";
+import { User } from "./user";
 
 export interface Post{
     location: Location;
@@ -7,4 +8,5 @@ export interface Post{
     photos: PostDocument[];
     createdById: number;
     publishedOn: Date;
+    user: User;
 }

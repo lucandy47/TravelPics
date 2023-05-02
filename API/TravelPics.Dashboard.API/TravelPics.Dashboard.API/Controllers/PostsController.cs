@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Threading;
 using TravelPics.Documents.Abstraction.DTO;
 using TravelPics.Locations.Abstraction.DTO;
 using TravelPics.Posts.Abstraction;
@@ -16,6 +15,21 @@ namespace TravelPics.Dashboard.API.Controllers
         public PostsController(IPostsService postsService)
         {
             _postsService = postsService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetLatestPosts()
+        {
+            try
+            {
+                var posts = await _postsService.GetLatestPosts();
+
+                return Ok(posts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet]

@@ -1,6 +1,7 @@
 .navigation-menu-content{
     height: 100%;
     margin:0 auto;
+    
     p{
         padding:20px;
         margin:0;
@@ -12,10 +13,12 @@
     }
 
     .menu-area{
-        margin:0 auto;
+        position: fixed;
+        margin: 0 auto;
         background-color: var(--surface-100);
-        padding:0;
+        padding: 0;
         z-index: 0;
+        height:100%;
     }
     .content-area{
         //         background-image: url('../../../assets/images/background.jpg?v=1');

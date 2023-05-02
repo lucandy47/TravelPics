@@ -24,13 +24,24 @@ namespace TravelPics.Posts
             _mapper = mapper;
         }
 
+        public async Task<IEnumerable<PostDTO>> GetLatestPosts()
+        {
+            var posts = await _postsRepository.GetLatestPosts();
+
+            var postsDTO = _mapper.Map<List<PostDTO>>(posts);
+
+            if (postsDTO == null) throw new Exception($"Could not get latest posts.");
+
+            return postsDTO;
+        }
+
         public async Task<IEnumerable<PostDTO>> GetUserPosts(int userId)
         {
             var posts = await _postsRepository.GetUserPosts(userId);
 
             var postsDTO = _mapper.Map<List<PostDTO>>(posts);
 
-            if (postsDTO == null) throw new Exception($"Could not get the posts for user: {userId}");
+            if (postsDTO == null) throw new Exception($"Could not get the posts for user: {userId}.");
 
             return postsDTO;
         }

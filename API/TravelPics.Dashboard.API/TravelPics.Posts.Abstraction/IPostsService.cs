@@ -9,5 +9,8 @@ namespace TravelPics.Posts.Abstraction
 
         Task<IEnumerable<PostDTO>> GetUserPosts(int userId);
 
+        Task<IEnumerable<PostDTO>> GetLatestPosts();
+
+
     }
 }

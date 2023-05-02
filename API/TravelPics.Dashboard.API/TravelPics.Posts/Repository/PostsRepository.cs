@@ -15,6 +15,22 @@ namespace TravelPics.Posts.Repository
             _dbContext = dbContext;
         }
 
+        public async Task<IEnumerable<Post>> GetLatestPosts()
+        {
+            var currentDay = DateTimeOffset.UtcNow.Date;
+
+            var posts = await _dbContext.Posts
+                .Include(p => p.User)
+                .Include(p => p.Location)
+                .Include(p => p.Photos)
+                .Where(p => p.PublishedOn >= currentDay.AddDays(-7))
+                .OrderByDescending(p => p.PublishedOn)
+                .ToListAsync();
+
+            return posts;
+
+        }
+
         public async Task<IEnumerable<Post>> GetUserPosts(int userId)
         {
             var posts = await _dbContext.Posts

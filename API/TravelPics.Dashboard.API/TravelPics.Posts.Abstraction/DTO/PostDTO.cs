@@ -1,5 +1,6 @@
 ﻿using TravelPics.Documents.Abstraction.DTO;
 using TravelPics.Locations.Abstraction.DTO;
+using TravelPics.Users.Abstraction.DTO;
 
 namespace TravelPics.Posts.Abstraction.DTO
 {
@@ -11,6 +12,6 @@ namespace TravelPics.Posts.Abstraction.DTO
         public List<DocumentDTO> Photos { get; set; }
         public LocationDTO Location { get; set; }
         public DateTimeOffset PublishedOn { get; set; }
-
+        public UserDTO User { get; set; }
     }
 }

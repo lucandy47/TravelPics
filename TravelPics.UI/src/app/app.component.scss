@@ -7,6 +7,9 @@
         height: 70px;
         box-shadow: 0px 5px 6px #CED4DA;
         z-index: 10;
+        position: fixed;
+        left:0;
+        right:0;
         .travelpics-menubar-panel {
             display: flex;
             flex-direction: row;
@@ -14,6 +17,7 @@
     }
     .travelpics-content {
         height: calc(100% - 70px);
+        margin-top:70px;
         .content-page {
             display: flex;
             flex-direction: column;

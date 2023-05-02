@@ -66,7 +66,6 @@ export class NewPostComponent implements OnInit, OnDestroy {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-          console.log(place);
           this.location = {
             name: place.name,
             address: place.formatted_address?.trim(),
@@ -113,7 +112,7 @@ export class NewPostComponent implements OnInit, OnDestroy {
           summary: 'New Post',
           detail: 'Your post has been published!',
         });
-        this.router.navigate(['home']);
+        this.router.navigate(['/navigation/home']);
       },
       error: (error: any) => {
         this.messageService.add({
