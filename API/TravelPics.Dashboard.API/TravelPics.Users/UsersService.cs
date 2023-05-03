@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using TravelPics.Users.Abstraction;
-using TravelPics.Users.Abstraction.DTO;
+using TravelPics.Abstractions.DTOs.Users;
+using TravelPics.Abstractions.Interfaces;
 using TravelPics.Users.Models;
 using TravelPics.Users.Repository;
 
@@ -31,6 +31,9 @@ public class UsersService : IUsersService
         var user = await _usersRepository.GetUserById(id);
 
         var userDTO =  _mapper.Map<UserDTO>(user);
+
+        userDTO.PasswordHash = string.Empty;
+        userDTO.PasswordSalt = string.Empty;
 
         return userDTO;
     }

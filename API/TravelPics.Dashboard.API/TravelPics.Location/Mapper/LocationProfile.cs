@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using TravelPics.Abstractions.DTOs.Locations;
 using TravelPics.Domains.Entities;
-using TravelPics.Locations.Abstraction.DTO;
 
 namespace TravelPics.Locations.Mapper
 {

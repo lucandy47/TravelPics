@@ -7,9 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TravelPics.Documents.Abstraction\TravelPics.Documents.Abstraction.csproj" />
+    <ProjectReference Include="..\TravelPics.Abstractions\TravelPics.Abstractions.csproj" />
     <ProjectReference Include="..\TravelPics.Domains\TravelPics.Domains.csproj" />
-    <ProjectReference Include="..\TravelPics.Posts.Abstraction\TravelPics.Posts.Abstraction.csproj" />
   </ItemGroup>
 
   <ItemGroup>

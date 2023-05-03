@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { StringValidators } from 'src/app/shared/validators/string.validators';
-import { User } from 'src/app/services/api/dtos/user';
+import { UserCreate } from 'src/app/services/api/dtos/user-create';
 import { UserService } from 'src/app/services/api/user.service';
 import { MessageService } from 'primeng/api';
 
@@ -46,14 +46,12 @@ export class RegisterComponent {
 
   register(): void{
     const formData = this.registerForm.getRawValue();
-    const user = <User>{
-      userId: formData.userId,
+    const user: UserCreate = {
       email: formData.email?.trim(),
       password: formData.password?.trim(),
       firstName: formData.firstName?.trim(),
       lastName: formData.lastName?.trim(),
       phone: formData.phone === '' ? null : formData.phone?.trim(),
-      postsCount: null
     };
     this.userService.registerUser(user).subscribe({
       next: (data: any)=>{

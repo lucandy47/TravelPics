@@ -1,4 +1,4 @@
-﻿using TravelPics.Locations.Abstraction;
+﻿using TravelPics.Abstractions.Interfaces;
 
 namespace TravelPics.Locations
 {

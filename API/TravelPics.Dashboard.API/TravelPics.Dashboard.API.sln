@@ -9,21 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Domains", "Trave
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Users", "TravelPics.Users\TravelPics.Users.csproj", "{9D47BC10-F3BC-478F-8F4C-A55AC732033B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Users.Abstraction", "TravelPics.Users.Abstraction\TravelPics.Users.Abstraction.csproj", "{2199E249-E013-41D6-9BAB-99EC56E3BA79}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Security", "TravelPics.Security\TravelPics.Security.csproj", "{D3C98780-F383-46EB-ACBA-1FAA4328D34D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Documents", "TravelPics.Documents\TravelPics.Documents.csproj", "{44589EE7-4786-41E5-879F-91453EDF21BA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Documents.Abstraction", "TravelPics.Documents.Abstraction\TravelPics.Documents.Abstraction.csproj", "{08CF2B42-4CE7-42A2-951C-8ABB4E3916ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Posts", "TravelPics.Posts\TravelPics.Posts.csproj", "{E7B52201-977E-4399-A776-D94020A91661}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelPics.Posts", "TravelPics.Posts\TravelPics.Posts.csproj", "{E7B52201-977E-4399-A776-D94020A91661}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelPics.Locations", "TravelPics.Location\TravelPics.Locations.csproj", "{B3563B9C-4021-4DC3-8729-F0438AF59049}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelPics.Posts.Abstraction", "TravelPics.Posts.Abstraction\TravelPics.Posts.Abstraction.csproj", "{3ECBC3A4-7821-40F8-950B-89211E66B2B6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelPics.Locations", "TravelPics.Location\TravelPics.Locations.csproj", "{B3563B9C-4021-4DC3-8729-F0438AF59049}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelPics.Locations.Abstraction", "TravelPics.Location.Abstraction\TravelPics.Locations.Abstraction.csproj", "{6A74CD03-6D33-4DAB-8262-5037734F4587}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelPics.Abstractions", "TravelPics.Abstractions\TravelPics.Abstractions.csproj", "{A6433E06-5170-4D55-9B17-B34D70C53F69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +37,6 @@ Global
 		{9D47BC10-F3BC-478F-8F4C-A55AC732033B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D47BC10-F3BC-478F-8F4C-A55AC732033B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D47BC10-F3BC-478F-8F4C-A55AC732033B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2199E249-E013-41D6-9BAB-99EC56E3BA79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2199E249-E013-41D6-9BAB-99EC56E3BA79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2199E249-E013-41D6-9BAB-99EC56E3BA79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2199E249-E013-41D6-9BAB-99EC56E3BA79}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D3C98780-F383-46EB-ACBA-1FAA4328D34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D3C98780-F383-46EB-ACBA-1FAA4328D34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3C98780-F383-46EB-ACBA-1FAA4328D34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,26 +45,18 @@ Global
 		{44589EE7-4786-41E5-879F-91453EDF21BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44589EE7-4786-41E5-879F-91453EDF21BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44589EE7-4786-41E5-879F-91453EDF21BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08CF2B42-4CE7-42A2-951C-8ABB4E3916ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08CF2B42-4CE7-42A2-951C-8ABB4E3916ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08CF2B42-4CE7-42A2-951C-8ABB4E3916ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08CF2B42-4CE7-42A2-951C-8ABB4E3916ED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E7B52201-977E-4399-A776-D94020A91661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E7B52201-977E-4399-A776-D94020A91661}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7B52201-977E-4399-A776-D94020A91661}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7B52201-977E-4399-A776-D94020A91661}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3ECBC3A4-7821-40F8-950B-89211E66B2B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3ECBC3A4-7821-40F8-950B-89211E66B2B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3ECBC3A4-7821-40F8-950B-89211E66B2B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3ECBC3A4-7821-40F8-950B-89211E66B2B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B3563B9C-4021-4DC3-8729-F0438AF59049}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B3563B9C-4021-4DC3-8729-F0438AF59049}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3563B9C-4021-4DC3-8729-F0438AF59049}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3563B9C-4021-4DC3-8729-F0438AF59049}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A74CD03-6D33-4DAB-8262-5037734F4587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A74CD03-6D33-4DAB-8262-5037734F4587}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A74CD03-6D33-4DAB-8262-5037734F4587}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A74CD03-6D33-4DAB-8262-5037734F4587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6433E06-5170-4D55-9B17-B34D70C53F69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6433E06-5170-4D55-9B17-B34D70C53F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6433E06-5170-4D55-9B17-B34D70C53F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6433E06-5170-4D55-9B17-B34D70C53F69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using TravelPics.Documents.Abstraction.DTO;
-using TravelPics.Locations.Abstraction.DTO;
-using TravelPics.Posts.Abstraction;
-using TravelPics.Posts.Abstraction.DTO;
+using TravelPics.Abstractions.DTOs.Documents;
+using TravelPics.Abstractions.DTOs.Locations;
+using TravelPics.Abstractions.DTOs.Posts;
+using TravelPics.Abstractions.Interfaces;
 
 namespace TravelPics.Dashboard.API.Controllers
 {

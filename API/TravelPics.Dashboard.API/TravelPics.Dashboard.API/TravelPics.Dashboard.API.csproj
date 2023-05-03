@@ -25,11 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TravelPics.Documents.Abstraction\TravelPics.Documents.Abstraction.csproj" />
     <ProjectReference Include="..\TravelPics.Documents\TravelPics.Documents.csproj" />
     <ProjectReference Include="..\TravelPics.Domains\TravelPics.Domains.csproj" />
     <ProjectReference Include="..\TravelPics.Location\TravelPics.Locations.csproj" />
-    <ProjectReference Include="..\TravelPics.Posts.Abstraction\TravelPics.Posts.Abstraction.csproj" />
     <ProjectReference Include="..\TravelPics.Posts\TravelPics.Posts.csproj" />
     <ProjectReference Include="..\TravelPics.Security\TravelPics.Security.csproj" />
     <ProjectReference Include="..\TravelPics.Users\TravelPics.Users.csproj" />

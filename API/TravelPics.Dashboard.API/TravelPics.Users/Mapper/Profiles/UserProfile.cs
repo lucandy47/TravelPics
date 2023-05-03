@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using TravelPics.Abstractions.DTOs.Users;
 using TravelPics.Domains.Entities;
-using TravelPics.Users.Abstraction.DTO;
 using TravelPics.Users.Models;
 
 namespace TravelPics.Users.Profiles;
@@ -10,8 +10,8 @@ public class UserProfile: Profile
     public UserProfile()
     {
         CreateMap<UserDTO, User>();
-        CreateMap<User, UserDTO>()
-            .ForMember(dest => dest.PostsCount, opt => opt.MapFrom(src => src.Posts.Count));
+        CreateMap<User, UserDTO>();
+        CreateMap<User, UserPostInfoDTO>();
 
         CreateMap<UserCreateDTO, UserCreate>();
         CreateMap<UserCreate, UserCreateDTO>();

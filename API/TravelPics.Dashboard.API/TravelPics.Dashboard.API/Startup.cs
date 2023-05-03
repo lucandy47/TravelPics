@@ -1,8 +1,6 @@
 ﻿using TravelPics.Domains.DataAccess;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using TravelPics.Users;
-using TravelPics.Users.Abstraction;
 using TravelPics.Users.Repository;
 using TravelPics.Users.Profiles;
 using TravelPics.Security;
@@ -11,15 +9,13 @@ using Microsoft.AspNetCore.Authentication.Certificate;
 using TravelPics.Documents.Configs;
 using TravelPics.Documents;
 using TravelPics.Documents.Repositories;
-using TravelPics.Documents.Abstraction;
-using TravelPics.Posts.Abstraction;
 using TravelPics.Posts;
 using TravelPics.Posts.Repository;
-using TravelPics.Locations.Abstraction;
 using TravelPics.Locations;
 using TravelPics.Posts.Mapper;
 using TravelPics.Locations.Mapper;
 using TravelPics.Documents.Mapper;
+using TravelPics.Abstractions.Interfaces;
 
 namespace TravelPics.Dashboard.API
 {

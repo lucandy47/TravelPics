@@ -1,8 +1,13 @@
+import { CurrentUserPost } from "./current-user-post";
+
 export interface User{
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  phone: string | null;
-  postsCount: number | null;
-}
+    id:number;
+    email: string;
+    passwordSalt: string;
+    passwordHash: string;
+    firstName: string;
+    lastName: string;
+    phone: string | null;
+    posts: CurrentUserPost[];
+  }
+  

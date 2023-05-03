@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TravelPics.Abstractions\TravelPics.Abstractions.csproj" />
     <ProjectReference Include="..\TravelPics.Domains\TravelPics.Domains.csproj" />
-    <ProjectReference Include="..\TravelPics.Users.Abstraction\TravelPics.Users.Abstraction.csproj" />
   </ItemGroup>
 
 </Project>

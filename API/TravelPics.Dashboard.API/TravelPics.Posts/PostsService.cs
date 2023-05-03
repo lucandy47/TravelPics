@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
-using Polly;
-using System.Reflection.Metadata;
-using System.Threading;
-using TravelPics.Documents.Abstraction;
-using TravelPics.Documents.Abstraction.DTO;
+using TravelPics.Abstractions.DTOs.Documents;
+using TravelPics.Abstractions.DTOs.Posts;
+using TravelPics.Abstractions.Interfaces;
 using TravelPics.Domains.Entities;
-using TravelPics.Posts.Abstraction;
-using TravelPics.Posts.Abstraction.DTO;
 using TravelPics.Posts.Repository;
 
 namespace TravelPics.Posts

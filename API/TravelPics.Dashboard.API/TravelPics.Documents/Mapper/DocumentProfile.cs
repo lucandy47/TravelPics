@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TravelPics.Documents.Abstraction.DTO;
+using TravelPics.Abstractions.DTOs.Documents;
 using TravelPics.Domains.Entities;
 
 namespace TravelPics.Documents.Mapper

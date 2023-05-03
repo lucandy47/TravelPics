@@ -37,6 +37,7 @@ export class MyProfileComponent implements OnInit{
           this.user = user;
         },
         error: (error) =>{
+          console.log(error);
           this.messageService.add({
             severity: 'error',
             summary: 'User',

@@ -2,9 +2,9 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using TravelPics.Abstractions.DTOs.Users;
+using TravelPics.Abstractions.Interfaces;
 using TravelPics.Security.Models;
-using TravelPics.Users.Abstraction;
-using TravelPics.Users.Abstraction.DTO;
 
 namespace TravelPics.Security;
 

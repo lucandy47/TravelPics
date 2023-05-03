@@ -13,7 +13,6 @@
   <ItemGroup>
     <ProjectReference Include="..\TravelPics.Documents.Abstraction\TravelPics.Documents.Abstraction.csproj" />
     <ProjectReference Include="..\TravelPics.Location.Abstraction\TravelPics.Locations.Abstraction.csproj" />
-    <ProjectReference Include="..\TravelPics.Users.Abstraction\TravelPics.Users.Abstraction.csproj" />
   </ItemGroup>
 
 </Project>

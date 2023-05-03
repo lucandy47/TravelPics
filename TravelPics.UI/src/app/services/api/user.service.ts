@@ -1,8 +1,9 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { User } from './dtos/user';
+import { UserCreate } from './dtos/user-create';
 import { HttpClient } from '@angular/common/http';
+import { User } from './dtos/user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public registerUser(user: User): Observable<string> {
+  public registerUser(user: UserCreate): Observable<string> {
     return this.httpClient.post<string>(`${this.apiUrl}`, user);
   }
 

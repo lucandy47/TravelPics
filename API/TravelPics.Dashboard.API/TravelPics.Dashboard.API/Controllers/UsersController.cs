@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using TravelPics.Users.Abstraction;
-using TravelPics.Users.Abstraction.DTO;
+﻿using Microsoft.AspNetCore.Mvc;
+using TravelPics.Abstractions.DTOs.Users;
+using TravelPics.Abstractions.Interfaces;
 
 namespace TravelPics.Dashboard.API.Controllers
 {

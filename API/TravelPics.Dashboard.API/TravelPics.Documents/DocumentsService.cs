@@ -2,8 +2,8 @@
 using Azure.Storage.Blobs;
 using Microsoft.Extensions.Options;
 using Polly;
-using TravelPics.Documents.Abstraction;
-using TravelPics.Documents.Abstraction.DTO;
+using TravelPics.Abstractions.DTOs.Documents;
+using TravelPics.Abstractions.Interfaces;
 using TravelPics.Documents.Configs;
 using TravelPics.Documents.Repositories;
 using TravelPics.Domains.Entities;
