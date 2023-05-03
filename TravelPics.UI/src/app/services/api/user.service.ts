@@ -16,4 +16,9 @@ export class UserService {
   public registerUser(user: User): Observable<string> {
     return this.httpClient.post<string>(`${this.apiUrl}`, user);
   }
+
+  public getUserInfo(userId: number): Observable<User>{
+    return this.httpClient.get<User>(`${this.apiUrl}/${userId}`);
+  }
+
 }

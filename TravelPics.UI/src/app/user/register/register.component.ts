@@ -52,7 +52,8 @@ export class RegisterComponent {
       password: formData.password?.trim(),
       firstName: formData.firstName?.trim(),
       lastName: formData.lastName?.trim(),
-      phone: formData.phone === '' ? null : formData.phone?.trim()
+      phone: formData.phone === '' ? null : formData.phone?.trim(),
+      postsCount: null
     };
     this.userService.registerUser(user).subscribe({
       next: (data: any)=>{

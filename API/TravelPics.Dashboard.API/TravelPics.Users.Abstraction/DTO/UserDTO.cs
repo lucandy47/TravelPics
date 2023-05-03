@@ -9,4 +9,5 @@ public class UserDTO
     public string PasswordSalt { get; set; }
     public string PasswordHash { get; set; }
     public string? Phone { get; set; }
+    public int? PostsCount { get; set; }
 }
