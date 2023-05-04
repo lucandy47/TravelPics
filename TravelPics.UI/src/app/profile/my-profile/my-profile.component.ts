@@ -30,7 +30,7 @@ export class MyProfileComponent implements OnInit{
   public user!:User;
 
   public userForm!: FormGroup;
-  public selectedFile!: any;
+  public selectedFiles: any[] = [];
 
   public profileImage!: PostImage;
 
@@ -93,37 +93,39 @@ export class MyProfileComponent implements OnInit{
     formData.append('LastName', this.userForm.controls['lastName']!.value);
     formData.append('Phone', this.userForm.controls['phone']!.value);
   
-    formData.append(`ProfileImage`, this.selectedFile);
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      formData.append(`ProfileImage[${i}]`, this.selectedFiles[i]);
+    }
 
-    // this._userService.updateUser(formData).subscribe({
-    //   next: (data: any) => {
-    //     this.messageService.add({
-    //       severity: 'success',
-    //       summary: 'Update User',
-    //       detail: 'Your information have been successfully saved!',
-    //     });
-    //     this.router.navigate(['/navigation/home']);
-    //   },
-    //   error: (error: any) => {
-    //     this.messageService.add({
-    //       severity: 'error',
-    //       summary: 'Update User',
-    //       detail: 'Could not save new information.',
-    //     });
-    //   }
-    // });
+    this._userService.updateUser(formData).subscribe({
+      next: (data: any) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Update User',
+          detail: 'Your information have been successfully saved!',
+        });
+        this.router.navigate(['/navigation/home']);
+      },
+      error: (error: any) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Update User',
+          detail: 'Could not save new information.',
+        });
+      }
+    });
     console.log(formData);
   }
 
   public async selectFiles(event: any): Promise<void> {
     if(event.currentFiles.length > 0){
-      this.selectedFile = event.currentFiles;
+      this.selectedFiles = event.currentFiles;
       await this.previewProfileImage();
     }
   }
 
   private async previewProfileImage(): Promise<void>{
-    let images = await ImageHelper.loadImages(this.selectedFile);
+    let images = await ImageHelper.loadImages(this.selectedFiles);
     this.profileImage = images[0];
   }
 }
