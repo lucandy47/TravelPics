@@ -11,5 +11,6 @@ public class UserDTO
     public string PasswordSalt { get; set; }
     public string PasswordHash { get; set; }
     public string? Phone { get; set; }
+    public DateTimeOffset CreatedOn { get; set; }
     public List<PostDTO>? Posts { get; set; }
 }

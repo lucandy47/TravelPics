@@ -60,7 +60,7 @@ export class SideMenuComponent implements OnInit {
         listOrder: 3,
         routerLink: 'profile',
         icon:'pi pi-fw pi-user',
-        onClick: () => console.log('profile'),
+        onClick: () => {},
         children: [],
       },
     ];

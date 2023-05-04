@@ -26,7 +26,8 @@ public class UsersRepository : IUsersRepository
             Phone = user.Phone,
             Email = user.Email,
             PasswordSalt = salt,
-            PasswordHash = hash
+            PasswordHash = hash,
+            CreatedOn = DateTimeOffset.UtcNow,
         });
         await _dbContext.SaveChangesAsync();
     }

@@ -1,0 +1,24 @@
+.profile-menu-content {
+    margin:0;
+    padding:8% 10% 0 10%;
+    .profile{
+        border-right: 3px solid rgba(0, 0, 0, 0.082);
+    }
+    .user-info-content{
+        .form-section {
+    
+            .field {
+                margin-right: 150px;
+                margin-left: 150px;
+            }
+            .buttons {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                padding: 10px 0;
+                justify-content: center;
+                border-top: 1px solid var(--surface-border);
+            }
+        }
+    }
+}

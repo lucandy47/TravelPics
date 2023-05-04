@@ -60,6 +60,13 @@ namespace TravelPics.Domains.DataAccess
             modelBuilder.Entity<Location>()
                 .HasKey(x => x.Id);
 
+            modelBuilder.Entity<Location>()
+                .Property(l => l.Latitude)
+                .HasPrecision(12, 6);
+
+            modelBuilder.Entity<Location>()
+                .Property(l => l.Longitude)
+                .HasPrecision(12, 6);
         }
     }
 }

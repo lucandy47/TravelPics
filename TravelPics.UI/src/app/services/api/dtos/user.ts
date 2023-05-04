@@ -9,5 +9,6 @@ export interface User{
     lastName: string;
     phone: string | null;
     posts: CurrentUserPost[];
+    createdOn:Date;
   }
   

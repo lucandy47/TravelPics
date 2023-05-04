@@ -10,7 +10,7 @@
         public string PasswordHash { get; set; }
         public string? Phone { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
-
+        public DateTimeOffset CreatedOn { get; set; }
         public User()
         {
             Posts = new List<Post>();
