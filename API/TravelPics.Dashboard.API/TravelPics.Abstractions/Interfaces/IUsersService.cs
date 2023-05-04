@@ -7,5 +7,6 @@ namespace TravelPics.Abstractions.Interfaces
         Task<UserDTO?> GetUserById(int id);
         Task<UserDTO?> GetUserByEmail(string email);
         Task RegisterUser(UserCreateDTO user);
+        Task<int> UpdateUser(UserUpdateDTO user);
     }
 }

@@ -96,7 +96,7 @@ namespace TravelPics.Dashboard.API.Controllers
                     {
                         Content = content,
                         FileName = file.FileName,
-                        UploadedById = 1,
+                        UploadedById = int.Parse(formFields["CreatedById"]),
                         CreatedOn = DateTime.Now,
                         Size = content.Length
                     };

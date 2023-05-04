@@ -1,11 +1,20 @@
 <travelpics-loader class="mt-12" [isLoading]="isLoading" [loadingMessage]="'Loading Profile'"></travelpics-loader>
 <div *ngIf="!isLoading" class="profile-menu-content grid ml-4">
     <div class="flex flex-column col-3 md:col-3 profile">
-        <div class="flex align-items-center justify-content-center mb-2">
-            <img class="border-circle" src="../../../assets/images/avatar.png" alt="avatar" style="width:150px;">
+        <div class="image-profile flex align-items-center justify-content-center mb-2">
+            <img *ngIf="!!profileImage" class="border-radius-xl" [src]="profileImage.itemImageSrc" alt="Profile image" style="width:150px;">
+
+            <img *ngIf="profileImage == undefined || profileImage == null" class="border-radius-xl" src="../../../assets/images/avatar.png" alt="avatar" style="width:150px;">
         </div>
         <div class="flex align-items-center justify-content-center mb-2">
-            Edit profile image 
+            <!-- <p-fileUpload class="col-12 md:col-12" mode="basic" (onSelect)="selectFiles($event)"  accept="image/*" [maxFileSize]="1000000" 
+            [chooseLabel]="'Change profile image'" [chooseIcon]="'pi-image'" [disabled]="false" [showUploadButton]="false">
+            </p-fileUpload> -->
+            <p-fileUpload class="change-image-btn col-12 md:col-12" [previewWidth]="50" (onSelect)="selectFiles($event)" 
+                [multiple]="false" accept="image/*" [maxFileSize]="1000000" 
+                [showUploadButton]="false" [showCancelButton]="false"
+                [chooseLabel]="'Change profile image'" [chooseIcon]="'pi pi-image'">
+            </p-fileUpload>
          </div>  
         <div class="flex align-items-start justify-content-start">
             <div class="flex flex-column flex-wrap">             

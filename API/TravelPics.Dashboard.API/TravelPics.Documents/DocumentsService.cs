@@ -64,12 +64,12 @@ namespace TravelPics.Documents
             };
         }
 
-        public async Task<Document> ComputeDocument(DocumentDTO document, DocumentBlobContainerDTO container, CancellationToken cancellationToken)
+        public async Task<Document> ComputeDocument(DocumentDTO document, DocumentBlobContainerDTO container, bool isProfileImage, CancellationToken cancellationToken)
         {
-            return await ComputeDocument(document, container, "", cancellationToken);
+            return await ComputeDocument(document, container, "", isProfileImage, cancellationToken);
         }
 
-        public async Task<Document> ComputeDocument(DocumentDTO document, DocumentBlobContainerDTO container, string containerBlobPath, CancellationToken cancellationToken)
+        public async Task<Document> ComputeDocument(DocumentDTO document, DocumentBlobContainerDTO container, string containerBlobPath, bool isProfileImage, CancellationToken cancellationToken)
         {
             if (document.Content.Length == 0) throw new Exception($"The document content cannot be empty.");
 
@@ -95,6 +95,7 @@ namespace TravelPics.Documents
                 FileName = document.FileName,
                 UploadedById = document.UploadedById,
                 CreatedOn = DateTimeOffset.Now,
+                IsProfileImage = isProfileImage,
             };
 
             return docEntity;

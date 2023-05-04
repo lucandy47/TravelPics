@@ -56,7 +56,7 @@ namespace TravelPics.Posts
 
             foreach (var photoDTO in postDTO.Photos)
             {
-                var photo = await _documentsService.ComputeDocument(photoDTO, documentBlobContainerDTO, "test", cancellationToken);
+                var photo = await _documentsService.ComputeDocument(photoDTO, documentBlobContainerDTO, "test", false, cancellationToken);
                 post.Photos.Add(photo);
             }
 

@@ -11,6 +11,7 @@ import { PostImage } from 'src/app/services/api/dtos/post-image';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { NewPost } from 'src/app/services/api/dtos/new-post';
+import { ImageHelper } from 'src/app/shared/helpers/imageHelper';
 
 @Component({
   selector: 'travelpics-new-post',
@@ -133,7 +134,7 @@ export class NewPostComponent implements OnInit, OnDestroy {
       createdById: this.loggedInUser.userId
     }
 
-    let images = await this.loadImages(post);
+    let images = await ImageHelper.loadImages(post.photos);
 
     this.ref = this.dialogService.open(PreviewPostComponent,{
       data: {
@@ -145,31 +146,6 @@ export class NewPostComponent implements OnInit, OnDestroy {
       width: '660px',
       height: '550px',
       baseZIndex: 10000
-    });
-  }
-  
-  private async loadImages(post: NewPost): Promise<PostImage[]> {
-    const images: PostImage[] = [];
-    for (let i = 0; i < post.photos.length; i++) {
-      const imageDataUrl = await this.readFileAsDataURL(post.photos[i]);
-      images.push({
-        itemImageSrc: imageDataUrl,
-        thumbnailImageSrc: imageDataUrl
-      });
-    }
-    return images;
-  }
-  
-  private readFileAsDataURL(file: File): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        resolve(reader.result as string);
-      };
-      reader.onerror = () => {
-        reject(reader.error);
-      };
-      reader.readAsDataURL(file);
     });
   }
   

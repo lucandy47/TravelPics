@@ -22,4 +22,7 @@ export class UserService {
     return this.httpClient.get<User>(`${this.apiUrl}/${userId}`);
   }
 
+  public updateUser(formData: FormData): Observable<number>{
+    return this.httpClient.put<number>(`${this.apiUrl}`, formData);
+  }
 }

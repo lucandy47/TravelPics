@@ -11,6 +11,7 @@
         public string? Phone { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
+        public Document? ProfileImage { get; set; }
         public User()
         {
             Posts = new List<Post>();

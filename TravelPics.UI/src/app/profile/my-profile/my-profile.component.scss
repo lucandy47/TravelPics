@@ -1,8 +1,33 @@
 .profile-menu-content {
     margin:0;
     padding:8% 10% 0 10%;
+    
     .profile{
-        border-right: 3px solid rgba(0, 0, 0, 0.082);
+        border-right: 3px solid var(--green-50);
+        background-color: var(--green-50);
+        .image-profile{
+            height:200px;
+            border: 1px solid;
+            border-color: var(--surface-border);
+        }
+        .change-image-btn::ng-deep .p-fileupload{
+            .p-fileupload-buttonbar{
+                padding: 0px !important;
+                border:0 !important;
+                background: none !important;
+                .p-button 
+                {
+                    margin:0;
+                    .p-button-icon-left{
+                        margin-right:2px;
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+             .p-fileupload-content{
+                display:none !important;
+            }
+        }
     }
     .user-info-content{
         .form-section {

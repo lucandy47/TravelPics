@@ -51,4 +51,22 @@ public class UsersRepository : IUsersRepository
 
         return user;
     }
+
+    public async Task<int> UpdateUser(UserUpdate user)
+    {
+        var userEntity = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == user.Id);
+
+        if (userEntity != null)
+        {
+
+            userEntity.FirstName = user.FirstName;
+            userEntity.LastName = user.LastName;
+            userEntity.Phone = user.Phone;
+            userEntity.ProfileImage = user.ProfileImage;
+
+            await _dbContext.SaveChangesAsync();
+        }
+
+        return user.Id;
+    }
 }
