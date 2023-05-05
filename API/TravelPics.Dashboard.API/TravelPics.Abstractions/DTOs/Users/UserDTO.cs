@@ -1,4 +1,5 @@
-﻿using TravelPics.Abstractions.DTOs.Posts;
+﻿using TravelPics.Abstractions.DTOs.Documents;
+using TravelPics.Abstractions.DTOs.Posts;
 
 namespace TravelPics.Abstractions.DTOs.Users;
 
@@ -13,4 +14,5 @@ public class UserDTO
     public string? Phone { get; set; }
     public DateTimeOffset CreatedOn { get; set; }
     public List<PostDTO>? Posts { get; set; }
+    public DocumentDTO? ProfileImage { get; set; }
 }

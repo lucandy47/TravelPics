@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelPics.Domains.DataAccess;
 
@@ -11,9 +12,11 @@ using TravelPics.Domains.DataAccess;
 namespace TravelPics.Domains.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230505083545_add-new-blob-container-profile-pics")]
+    partial class addnewblobcontainerprofilepics
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,7 +64,7 @@ namespace TravelPics.Domains.Migrations
                     b.Property<bool?>("IsProfileImage")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("PostId")
+                    b.Property<int>("PostId")
                         .HasColumnType("int");
 
                     b.Property<int>("Size")
@@ -251,7 +254,9 @@ namespace TravelPics.Domains.Migrations
 
                     b.HasOne("TravelPics.Domains.Entities.Post", "Post")
                         .WithMany("Photos")
-                        .HasForeignKey("PostId");
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("DocumentBlobContainer");
 

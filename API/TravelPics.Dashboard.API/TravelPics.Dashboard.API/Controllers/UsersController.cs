@@ -89,6 +89,7 @@ namespace TravelPics.Dashboard.API.Controllers
                 Id = int.Parse(formFields["Id"]),
                 FirstName = formFields["FirstName"],
                 LastName = formFields["LastName"],
+                Email = formFields["Email"],
                 Phone = formFields["Phone"],
                 ProfileImage = document,
             };

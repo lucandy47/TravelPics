@@ -1,11 +1,11 @@
 import { Location } from "./location";
-import { PostDocument } from "./post-document";
+import { Image } from "./image";
 import { User } from "./user";
 
 export interface Post{
     location: Location;
     description: string;
-    photos: PostDocument[];
+    photos: Image[];
     createdById: number;
     publishedOn: Date;
     user: User;

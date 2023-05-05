@@ -82,7 +82,7 @@ namespace TravelPics.Documents
 
             var docExt = await _documentRepository.GetDocumentExtension(fileExtension.Replace(".", ""));
             if (docExt == null) throw new Exception($"Unsupported document extension: '{fileExtension}'");
-            var blobFileName = $"{Guid.NewGuid()}.{docExt.Extension.ToLower()}";
+            var blobFileName = $"{document.FileName.Split(".")[0]}.{docExt.Extension.ToLower()}";
 
             var docEntity = new Document
             {

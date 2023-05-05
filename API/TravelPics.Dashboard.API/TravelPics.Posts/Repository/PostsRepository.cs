@@ -21,6 +21,7 @@ namespace TravelPics.Posts.Repository
 
             var posts = await _dbContext.Posts
                 .Include(p => p.User)
+                    .ThenInclude(u => u.ProfileImage)
                 .Include(p => p.Location)
                 .Include(p => p.Photos)
                 .Where(p => p.PublishedOn >= currentDay.AddDays(-7))
@@ -35,6 +36,7 @@ namespace TravelPics.Posts.Repository
         {
             var posts = await _dbContext.Posts
                 .Include(p => p.User)
+                    .ThenInclude(u => u.ProfileImage)
                 .Include(p => p.Location)
                 .Include(p => p.Photos)
                 .Where(p => p.CreatedById == userId && !p.IsDeleted)

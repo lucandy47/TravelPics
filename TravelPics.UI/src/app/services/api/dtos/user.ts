@@ -1,4 +1,5 @@
 import { CurrentUserPost } from "./current-user-post";
+import { Image } from "./image";
 
 export interface User{
     id:number;
@@ -10,5 +11,6 @@ export interface User{
     phone: string | null;
     posts: CurrentUserPost[];
     createdOn:Date;
+    profileImage: Image;
   }
   

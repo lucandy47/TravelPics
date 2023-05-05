@@ -1,10 +1,10 @@
-import { PostDocument } from "./post-document";
+import { Image } from "./image";
 import { UserPostInfo } from "./user-post-info";
 
 export interface CurrentUserPost{
     location: Location;
     description: string;
-    photos: PostDocument[];
+    photos: Image[];
     createdById: number;
     publishedOn: Date;
     user:UserPostInfo;

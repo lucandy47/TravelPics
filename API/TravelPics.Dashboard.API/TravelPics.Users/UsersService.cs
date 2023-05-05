@@ -64,7 +64,11 @@ public class UsersService : IUsersService
 
         if (user.ProfileImage == null || userEntity.ProfileImage == null) return user.Id;
 
-        var photo = await _documentsService.ComputeDocument(user.ProfileImage, documentBlobContainerDTO, "profile-images", true, cancellationToken);
+        var userProfileImagePath = $"{user.Id}_{user.Email}_{user.FirstName}-{user.LastName}";
+
+        var photo = await _documentsService.ComputeDocument(user.ProfileImage, documentBlobContainerDTO, userProfileImagePath, true, cancellationToken);
+
+        userEntity.ProfileImage = photo;
 
         await _usersRepository.UpdateUser(userEntity);
 

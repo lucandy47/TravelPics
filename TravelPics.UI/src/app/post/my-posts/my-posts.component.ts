@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MessageService } from 'primeng/api';
 import { Post } from 'src/app/services/api/dtos/post';
-import { PostDocument } from 'src/app/services/api/dtos/post-document';
+import { Image } from 'src/app/services/api/dtos/image';
 import { PostService } from 'src/app/services/api/post.service';
 import { AuthUserService } from 'src/app/services/ui/auth/auth-user.service';
 import { UserInfo } from 'src/app/services/ui/auth/user-info';

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { PostImage } from 'src/app/services/api/dtos/post-image';
@@ -7,6 +8,7 @@ import { User } from 'src/app/services/api/dtos/user';
 import { UserService } from 'src/app/services/api/user.service';
 import { AuthUserService } from 'src/app/services/ui/auth/auth-user.service';
 import { UserInfo } from 'src/app/services/ui/auth/user-info';
+import { DocumentHelper } from 'src/app/shared/helpers/documentHelper';
 import { ImageHelper } from 'src/app/shared/helpers/imageHelper';
 import { StringValidators } from 'src/app/shared/validators/string.validators';
 
@@ -21,7 +23,8 @@ export class MyProfileComponent implements OnInit{
     private _authUserService:AuthUserService,
     private _userService:UserService,
     private messageService: MessageService,
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer
   ){}
 
   public loggedInUser!: UserInfo;
@@ -63,7 +66,6 @@ export class MyProfileComponent implements OnInit{
       this._userService.getUserInfo(userId).subscribe({
         next: (user: User) =>{
           this.user = user;
-          this.isLoading = false;
           this.userForm.patchValue({
             userId: this.user.id,
             firstName: this.user.firstName,
@@ -71,8 +73,14 @@ export class MyProfileComponent implements OnInit{
             phone: this.user.phone,
             email: this.user.email
           });
-
+          if(!!this.user.profileImage){
+            this.profileImage = {
+              itemImageSrc: this.getSanitizedBlobUrlFromBase64(this.user.profileImage.content,this.user.profileImage.fileName),
+              thumbnailImageSrc: this.getSanitizedBlobUrlFromBase64(this.user.profileImage.content,this.user.profileImage.fileName)
+            }
+          }
           this.userForm.controls['email'].disable();
+          this.isLoading = false;
         },
         error: (error) =>{
           console.log(error);
@@ -89,6 +97,7 @@ export class MyProfileComponent implements OnInit{
   public updateUser(): void{
     const formData = new FormData();
     formData.append('Id', this.userForm.controls['id']!.value.toString());
+    formData.append('Email', this.userForm.controls['email']!.value);
     formData.append('FirstName', this.userForm.controls['firstName']!.value);
     formData.append('LastName', this.userForm.controls['lastName']!.value);
     formData.append('Phone', this.userForm.controls['phone']!.value);
@@ -98,7 +107,7 @@ export class MyProfileComponent implements OnInit{
     }
 
     this._userService.updateUser(formData).subscribe({
-      next: (data: any) => {
+      next: (userId: number) => {
         this.messageService.add({
           severity: 'success',
           summary: 'Update User',
@@ -114,7 +123,6 @@ export class MyProfileComponent implements OnInit{
         });
       }
     });
-    console.log(formData);
   }
 
   public async selectFiles(event: any): Promise<void> {
@@ -128,4 +136,19 @@ export class MyProfileComponent implements OnInit{
     let images = await ImageHelper.loadImages(this.selectedFiles);
     this.profileImage = images[0];
   }
+
+  public getSanitizedBlobUrlFromBase64(base64: string, fileName: string): any {
+    let contentType: string = `image/${DocumentHelper.getDocumentExtension(fileName)}`;
+    const byteCharacters = atob(base64);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: contentType });
+    const blobUrl = URL.createObjectURL(blob);
+    const sanitizedUrl = this.sanitizer.bypassSecurityTrustUrl(blobUrl);
+    return sanitizedUrl;
+  }
+  
 }
