@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
 import { LoginModel } from '../../auth/login-model';
 import { UserToken } from '../../auth/token';
 import * as moment from 'moment';
+import { UserService } from '../../api/user.service';
+import { User } from '../../api/dtos/user';
+import { DocumentHelper } from 'src/app/shared/helpers/documentHelper';
+import { DomSanitizer } from '@angular/platform-browser';
 
 const ACCESS_TOKEN_KEY: string = 'TRAVELPICS-ACCESS-TOKEN';
 const EXPIRES_ON_KEY: string = 'TRAVELPICS-EXPIRES-ON';

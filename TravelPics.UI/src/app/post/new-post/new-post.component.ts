@@ -7,11 +7,15 @@ import { AuthUserService } from 'src/app/services/ui/auth/auth-user.service';
 import { UserInfo } from 'src/app/services/ui/auth/user-info';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PreviewPostComponent } from '../preview-post/preview-post.component';
-import { PostImage } from 'src/app/services/api/dtos/post-image';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { NewPost } from 'src/app/services/api/dtos/new-post';
 import { ImageHelper } from 'src/app/shared/helpers/imageHelper';
+import { DocumentHelper } from 'src/app/shared/helpers/documentHelper';
+import { DomSanitizer } from '@angular/platform-browser';
+import { UserService } from 'src/app/services/api/user.service';
+import { User } from 'src/app/services/api/dtos/user';
+import { ImageService } from 'src/app/services/ui/helpers/image.service';
 
 @Component({
   selector: 'travelpics-new-post',
@@ -24,6 +28,7 @@ export class NewPostComponent implements OnInit, OnDestroy {
   public searchElementRef!: ElementRef;
   
   ref!: DynamicDialogRef;
+  public isLoading: boolean = true;
 
   constructor(
     private _postService:PostService,
@@ -33,6 +38,8 @@ export class NewPostComponent implements OnInit, OnDestroy {
     public dialogService: DialogService,
     private messageService: MessageService,
     private router: Router,
+    private userService: UserService,
+    private imageHelperService: ImageService
   ) {}
 
   ngOnDestroy(): void {
@@ -76,8 +83,26 @@ export class NewPostComponent implements OnInit, OnDestroy {
         });
       });
     });
-
     this.loggedInUser = this._authUserService.loggedInUser;
+    this.isLoading = true;
+     
+    if(!!this.loggedInUser && !!this.loggedInUser.userId){
+      this.userService.getUserInfo(this.loggedInUser.userId).subscribe({
+        next: (user: User) =>{
+          if(!!user.profileImage){
+            this.loggedInUser!.profileImageSrc = this.imageHelperService.getSanitizedBlobUrlFromBase64(user.profileImage.content, user.profileImage.fileName);
+          }
+          this.isLoading = false;
+        },
+        error: (error: any)=>{
+          this.messageService.add({
+            severity: 'error',
+            summary: 'New Post',
+            detail: 'No user found.',
+          });
+        }
+      });
+    }
   }
 
   public selectFiles(event: any): void {
@@ -139,7 +164,7 @@ export class NewPostComponent implements OnInit, OnDestroy {
     this.ref = this.dialogService.open(PreviewPostComponent,{
       data: {
         post: post,
-        userName: this.loggedInUser.name,
+        loggedInUser: this.loggedInUser,
         images: images
       },
       header: "Preview Post",
@@ -148,5 +173,5 @@ export class NewPostComponent implements OnInit, OnDestroy {
       baseZIndex: 10000
     });
   }
-  
+     
 }

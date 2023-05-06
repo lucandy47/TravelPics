@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Post } from 'src/app/services/api/dtos/post';
 import { UserInfo } from 'src/app/services/ui/auth/user-info';
+import { ImageService } from 'src/app/services/ui/helpers/image.service';
 
 @Component({
   selector: 'travelpics-post-item',
@@ -16,7 +17,7 @@ export class PostItemComponent {
   @Input() getImageUrl!: (content:string, fileName:string) => string;
 
   constructor(    
-    private sanitizer: DomSanitizer
+    public imageHelperService:ImageService
     ){
   }
 }

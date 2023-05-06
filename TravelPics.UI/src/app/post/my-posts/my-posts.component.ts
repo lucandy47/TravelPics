@@ -8,6 +8,7 @@ import { AuthUserService } from 'src/app/services/ui/auth/auth-user.service';
 import { UserInfo } from 'src/app/services/ui/auth/user-info';
 import { DocumentHelper } from 'src/app/shared/helpers/documentHelper';
 import { GaleriaResponsiveOptions } from 'src/app/shared/utils/galeria-options';
+import { ImageService } from 'src/app/services/ui/helpers/image.service';
 
 @Component({
   selector: 'travelpics-my-posts',
@@ -20,7 +21,7 @@ export class MyPostsComponent implements OnInit{
     private authUserService: AuthUserService,
     private postService: PostService,
     private messageService: MessageService,
-    private sanitizer: DomSanitizer
+    public imageHelperService: ImageService
   ){}
 
   public isLoading: boolean = true;
@@ -53,18 +54,8 @@ export class MyPostsComponent implements OnInit{
     });
   }
 
-  public getSanitizedBlobUrlFromBase64(base64: string, fileName: string): any {
-    let contentType: string = `image/${DocumentHelper.getDocumentExtension(fileName)}`;
-    const byteCharacters = atob(base64);
-    const byteNumbers = new Array(byteCharacters.length);
-    for (let i = 0; i < byteCharacters.length; i++) {
-      byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-    const byteArray = new Uint8Array(byteNumbers);
-    const blob = new Blob([byteArray], { type: contentType });
-    const blobUrl = URL.createObjectURL(blob);
-    const sanitizedUrl = this.sanitizer.bypassSecurityTrustUrl(blobUrl);
-    return sanitizedUrl;
-}
+  public getImageUrl(base64: string, fileName: string): any {
+    return this.imageHelperService.getSanitizedBlobUrlFromBase64(base64,fileName);
+  }
   
 }

@@ -5,4 +5,5 @@ export class UserInfo {
   public authorization: UserToken | undefined | null;
   public userId!: number;
   public email: string = '';
+  public profileImageSrc = '';
 }
