@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using TravelPics.Abstractions.DTOs.Documents;
+using TravelPics.Abstractions.DTOs.Likes;
 using TravelPics.Abstractions.DTOs.Posts;
 using TravelPics.Abstractions.Interfaces;
 using TravelPics.Domains.Entities;
@@ -40,6 +41,11 @@ namespace TravelPics.Posts
             if (postsDTO == null) throw new Exception($"Could not get the posts for user: {userId}.");
 
             return postsDTO;
+        }
+
+        public async Task LikePost(LikeModel like)
+        {
+            await _postsRepository.LikePost(like.UserId, like.PostId);
         }
 
         public async Task SavePost(PostDTO postDTO, CancellationToken cancellationToken)

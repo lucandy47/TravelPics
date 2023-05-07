@@ -1,4 +1,5 @@
 ﻿using TravelPics.Abstractions.DTOs.Documents;
+using TravelPics.Abstractions.DTOs.Likes;
 using TravelPics.Abstractions.DTOs.Locations;
 using TravelPics.Abstractions.DTOs.Users;
 
@@ -13,5 +14,13 @@ namespace TravelPics.Abstractions.DTOs.Posts
         public LocationDTO Location { get; set; }
         public DateTimeOffset PublishedOn { get; set; }
         public UserPostInfoDTO User { get; set; }
+        public List<LikeDTO> Likes { get; set; }
+
+        public PostDTO()
+        {
+            Likes = new List<LikeDTO>();
+
+            Photos = new List<DocumentDTO>();
+        }
     }
 }

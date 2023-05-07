@@ -14,6 +14,8 @@ namespace TravelPics.Domains.DataAccess
         public DbSet<DocumentExtension> DocumentExtensions { get; set; }
         public DbSet<DocumentBlobContainer> DocumentBlobContainers { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Like> Likes { get; set; }
+        public DbSet<Location> Locations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,6 +24,10 @@ namespace TravelPics.Domains.DataAccess
 
             modelBuilder.Entity<User>()
                 .HasMany(x => x.Posts)
+                .WithOne(x => x.User);
+
+            modelBuilder.Entity<User>()
+                .HasMany(x => x.Likes)
                 .WithOne(x => x.User);
 
             modelBuilder.Entity<Document>()
@@ -57,6 +63,10 @@ namespace TravelPics.Domains.DataAccess
                 .WithMany(x => x.Posts)
                 .HasForeignKey(e => e.CreatedById);
 
+            modelBuilder.Entity<Post>()
+                .HasMany(x => x.Likes)
+                .WithOne(x => x.Post);
+
             modelBuilder.Entity<Location>()
                 .HasKey(x => x.Id);
 
@@ -67,6 +77,15 @@ namespace TravelPics.Domains.DataAccess
             modelBuilder.Entity<Location>()
                 .Property(l => l.Longitude)
                 .HasPrecision(12, 6);
+
+            modelBuilder.Entity<Like>()
+                .HasKey(x => x.Id);
+
+            modelBuilder.Entity<Like>()
+                .Property(l => l.IsDeleted)
+                .HasDefaultValue(false);
+
+
         }
     }
 }

@@ -48,6 +48,7 @@ public class UsersRepository : IUsersRepository
             .Include(u => u.Posts)
                 .ThenInclude(p => p.Photos)
             .Include(u => u.ProfileImage)
+            .Include(p => p.Likes)
             .FirstOrDefaultAsync(u => u.Id == id);
 
         return user;

@@ -1,4 +1,5 @@
-﻿using TravelPics.Abstractions.DTOs.Posts;
+﻿using TravelPics.Abstractions.DTOs.Likes;
+using TravelPics.Abstractions.DTOs.Posts;
 
 namespace TravelPics.Abstractions.Interfaces
 {
@@ -10,6 +11,6 @@ namespace TravelPics.Abstractions.Interfaces
 
         Task<IEnumerable<PostDTO>> GetLatestPosts();
 
-
+        Task LikePost(LikeModel like);
     }
 }

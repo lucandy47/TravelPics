@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using TravelPics.Abstractions.DTOs.Documents;
+using TravelPics.Abstractions.DTOs.Likes;
 using TravelPics.Abstractions.DTOs.Locations;
 using TravelPics.Abstractions.DTOs.Posts;
 using TravelPics.Abstractions.Interfaces;
@@ -17,6 +18,20 @@ namespace TravelPics.Dashboard.API.Controllers
             _postsService = postsService;
         }
 
+        [HttpPost]
+        [Route("like")]
+        public async Task<IActionResult> LikePost([FromBody] LikeModel like)
+        {
+            try
+            {
+                await _postsService.LikePost(like);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpGet]
         public async Task<IActionResult> GetLatestPosts()
         {

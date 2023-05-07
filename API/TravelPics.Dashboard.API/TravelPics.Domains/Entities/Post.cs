@@ -10,9 +10,11 @@
         public virtual User User { get; set; }
         public DateTimeOffset PublishedOn { get; set; }
         public bool IsDeleted { get; set; }
+        public virtual ICollection<Like> Likes { get; set; }
         public Post()
         {
             Photos = new List<Document>();
+            Likes = new List<Like>();
         }
     }
 }

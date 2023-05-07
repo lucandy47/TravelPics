@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Post } from './dtos/post';
+import { LikeModel } from './dtos/like-model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,9 @@ export class PostService {
 
   public getLatestPosts():Observable<Post[]>{
     return this.httpClient.get<Post[]>(`${this.apiUrl}`);
+  }
+  
+  public likePost(likeModel: LikeModel): Observable<string>{
+    return this.httpClient.post<string>(`${this.apiUrl}/like`, likeModel);
   }
 }

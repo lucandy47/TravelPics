@@ -24,6 +24,7 @@ namespace TravelPics.Posts.Repository
                     .ThenInclude(u => u.ProfileImage)
                 .Include(p => p.Location)
                 .Include(p => p.Photos)
+                .Include(p => p.Likes)
                 .Where(p => p.PublishedOn >= currentDay.AddDays(-7))
                 .OrderByDescending(p => p.PublishedOn)
                 .ToListAsync();
@@ -39,11 +40,42 @@ namespace TravelPics.Posts.Repository
                     .ThenInclude(u => u.ProfileImage)
                 .Include(p => p.Location)
                 .Include(p => p.Photos)
+                .Include(p => p.Likes)
                 .Where(p => p.CreatedById == userId && !p.IsDeleted)
                 .OrderByDescending(p => p.PublishedOn)
                 .ToListAsync();
 
             return posts;
+        }
+
+        public async Task LikePost(int userId, int postId)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            var post = await _dbContext.Posts.FirstOrDefaultAsync(p => p.Id == postId);
+
+            if (user == null || post == null)
+            {
+                throw new Exception($"User with {userId} could not like post with id {postId}");
+            }
+
+            var like = new Like()
+            {
+                User = user,
+                Post = post,
+                LikedOn = DateTimeOffset.Now
+            };
+
+            await _dbContext.Likes.AddAsync(like);
+
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Unable to save new like to database.", ex);
+            }
         }
 
         public async Task SavePost(Post post)
@@ -59,5 +91,7 @@ namespace TravelPics.Posts.Repository
                 throw new Exception($"Unable to save post to database.", ex);
             }
         }
+
+        
     }
 }
