@@ -15,16 +15,47 @@ namespace TravelPics.Posts.Repository
             _dbContext = dbContext;
         }
 
+        public async Task DislikePost(int userId, int postId)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            var post = await _dbContext.Posts.FirstOrDefaultAsync(p => p.Id == postId);
+
+            if (user == null || post == null)
+            {
+                throw new Exception($"User with {userId} could not like post with id {postId}");
+            }
+
+            var existingLike = await _dbContext.Likes.FirstOrDefaultAsync(l => l.User.Id == userId && l.Post.Id == postId && !l.IsDeleted);
+
+            if (existingLike == null)
+            {
+                throw new Exception($"No 'like' relation between user: {userId} and post with id {postId} was found");
+            }
+
+            existingLike.IsDeleted = true;
+            existingLike.DislikedOn = DateTimeOffset.Now;
+
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Unable to update dislike in database.", ex);
+            }
+        }
+
         public async Task<IEnumerable<Post>> GetLatestPosts()
         {
-            var currentDay = DateTimeOffset.UtcNow.Date;
+            var currentDay = DateTimeOffset.Now.Date;
 
             var posts = await _dbContext.Posts
                 .Include(p => p.User)
                     .ThenInclude(u => u.ProfileImage)
                 .Include(p => p.Location)
                 .Include(p => p.Photos)
-                .Include(p => p.Likes)
+                .Include(p => p.Likes.Where(l => !l.IsDeleted))
                 .Where(p => p.PublishedOn >= currentDay.AddDays(-7))
                 .OrderByDescending(p => p.PublishedOn)
                 .ToListAsync();
@@ -40,7 +71,7 @@ namespace TravelPics.Posts.Repository
                     .ThenInclude(u => u.ProfileImage)
                 .Include(p => p.Location)
                 .Include(p => p.Photos)
-                .Include(p => p.Likes)
+                .Include(p => p.Likes.Where(l => !l.IsDeleted))
                 .Where(p => p.CreatedById == userId && !p.IsDeleted)
                 .OrderByDescending(p => p.PublishedOn)
                 .ToListAsync();
@@ -59,14 +90,24 @@ namespace TravelPics.Posts.Repository
                 throw new Exception($"User with {userId} could not like post with id {postId}");
             }
 
-            var like = new Like()
-            {
-                User = user,
-                Post = post,
-                LikedOn = DateTimeOffset.Now
-            };
+            var existingLike = await _dbContext.Likes.FirstOrDefaultAsync(l => l.User.Id == userId && l.Post.Id == postId && l.IsDeleted);
 
-            await _dbContext.Likes.AddAsync(like);
+            if(existingLike == null)
+            {
+                var like = new Like()
+                {
+                    User = user,
+                    Post = post,
+                    LikedOn = DateTimeOffset.Now
+                };
+
+                await _dbContext.Likes.AddAsync(like);
+            }
+            else
+            {
+                existingLike.LikedOn = DateTimeOffset.Now;
+                existingLike.IsDeleted = false;
+            }
 
             try
             {

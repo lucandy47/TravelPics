@@ -7,5 +7,6 @@
         public virtual Post Post { get; set; }
         public DateTimeOffset LikedOn { get; set; }
         public bool IsDeleted { get; set; }
+        public DateTimeOffset? DislikedOn { get; set; }
     }
 }

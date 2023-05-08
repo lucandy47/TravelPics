@@ -45,31 +45,31 @@
         </div>
         <div class="col-12 md:col-12 mt-2 mb-2 border-500 surface-overlay border-3 border-round flex align-items-center justify-content-center">
             <div *ngIf="!isLiked">
-                <a (click)="likePost()" pTooltip="Like post" tooltipPosition="top" (mouseover)="isHovered = true" (mouseleave)="isHovered = false">
-                    <i *ngIf="isHovered" class="pi pi-heart-fill post-liked">
+                <a (click)="likePost()" (mouseover)="isHovered = true" (mouseleave)="isHovered = false">
+                    <i *ngIf="isHovered" class="pi pi-heart-fill post-liked" pTooltip="Like post" tooltipPosition="top">
                     </i>
-                    <i *ngIf="!isHovered"class="pi pi-heart post-not-liked">
+                    <i *ngIf="!isHovered"class="pi pi-heart post-not-liked" pTooltip="Like post" tooltipPosition="top">
                     </i>
                 </a>
-                <span *ngIf="post.likes.length == 0">
+                <span *ngIf="post.likes.length + likesCount == 0">
                     Be the first person who likes this post.
                 </span>
-                <span *ngIf="post.likes.length > 0">
-                    {{post.likes.length}} people liked this post.
+                <span *ngIf="post.likes.length + likesCount > 0">
+                    {{post.likes.length + likesCount}} people liked this post.
                 </span>
             </div>
             <div *ngIf="isLiked">
-                <a (click)="dislikePost()" pTooltip="Dislike post"  tooltipPosition="top" (mouseover)="isHovered = true" (mouseleave)="isHovered = false">
-                    <i *ngIf="!isHovered" class="pi pi-heart-fill post-liked">
+                <a (click)="dislikePost()" (mouseover)="isHovered = true" (mouseleave)="isHovered = false">
+                    <i *ngIf="!isHovered" pTooltip="Dislike post"  tooltipPosition="top" class="pi pi-heart-fill post-liked">
                     </i>
-                    <i *ngIf="isHovered"class="pi pi-heart post-not-liked">
+                    <i *ngIf="isHovered" pTooltip="Dislike post"  tooltipPosition="top" class="pi pi-heart post-not-liked">
                     </i>
                 </a>
-                <span *ngIf="post.likes.length - 1 == 0">
+                <span *ngIf="post.likes.length - 1 + likesCount == 0">
                     Only you liked this post.
                 </span>
-                <span *ngIf="post.likes.length - 1 > 0">
-                    You and {{post.likes.length - 1}} liked this post.
+                <span *ngIf="post.likes.length - 1 + likesCount> 0">
+                    You and {{post.likes.length - 1 + likesCount}} other(s) liked this post.
                 </span>
             </div>
         </div>

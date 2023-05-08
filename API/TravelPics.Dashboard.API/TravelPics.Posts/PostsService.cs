@@ -21,6 +21,11 @@ namespace TravelPics.Posts
             _mapper = mapper;
         }
 
+        public async Task DislikePost(LikeModel like)
+        {
+            await _postsRepository.DislikePost(like.UserId, like.PostId);
+        }
+
         public async Task<IEnumerable<PostDTO>> GetLatestPosts()
         {
             var posts = await _postsRepository.GetLatestPosts();

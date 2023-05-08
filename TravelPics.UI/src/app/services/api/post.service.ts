@@ -29,4 +29,8 @@ export class PostService {
   public likePost(likeModel: LikeModel): Observable<string>{
     return this.httpClient.post<string>(`${this.apiUrl}/like`, likeModel);
   }
+
+  public dislikePost(likeModel: LikeModel): Observable<string>{
+    return this.httpClient.post<string>(`${this.apiUrl}/dislike`, likeModel);
+  }
 }

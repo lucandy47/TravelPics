@@ -32,6 +32,22 @@ namespace TravelPics.Dashboard.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost]
+        [Route("dislike")]
+        public async Task<IActionResult> DislikePost([FromBody] LikeModel like)
+        {
+            try
+            {
+                await _postsService.DislikePost(like);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetLatestPosts()
         {

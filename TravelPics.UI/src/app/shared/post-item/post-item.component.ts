@@ -28,6 +28,7 @@ export class PostItemComponent implements OnInit {
 
   public isLiked: boolean = false;
   public isHovered: boolean = false;
+  public likesCount: number = 0;
 
   ngOnInit(): void {
     if(this.post.likes.length > 0 && this.post.likes.some(l => l.userId == this.loggedInUser.userId)){
@@ -44,6 +45,8 @@ export class PostItemComponent implements OnInit {
     }
     this._postService.likePost(like).subscribe({
       next: (data:any)=>{
+        this.isLiked = true;
+        this.likesCount = this.likesCount + 1;
       },
       error: (error:any)=>{
         this.messageService.add({
@@ -52,10 +55,27 @@ export class PostItemComponent implements OnInit {
           detail: 'Could not like post.',
         });
       }
-    })
+    });
   }
 
   public dislikePost(): void{
-    
+    let like: LikeModel = {
+      id: 0,
+      userId: this.loggedInUser.userId,
+      postId: this.post.id
+    }
+    this._postService.dislikePost(like).subscribe({
+      next: (data:any)=>{
+        this.isLiked = false;
+        this.likesCount = this.likesCount - 1;
+      },
+      error: (error:any)=>{
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Dislike Post',
+          detail: 'Could not dislike post.',
+        });
+      }
+    });
   }
 }

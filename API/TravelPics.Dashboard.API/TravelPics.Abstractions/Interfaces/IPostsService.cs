@@ -12,5 +12,7 @@ namespace TravelPics.Abstractions.Interfaces
         Task<IEnumerable<PostDTO>> GetLatestPosts();
 
         Task LikePost(LikeModel like);
+        Task DislikePost(LikeModel like);
+
     }
 }
