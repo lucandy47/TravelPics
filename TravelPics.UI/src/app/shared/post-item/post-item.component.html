@@ -27,7 +27,7 @@
         <div class="col-12 md:col-12 mt-2 mb-2">
             {{post.description}}
         </div>
-        <div class="card w-12" style="background:black;">
+        <div class="card w-12 border-round-xl"  style="background:black;">
             <div style="padding:15px;">
                 <p-galleria [value]="post.photos" [showItemNavigators]="post.photos.length > 1 ? true : false" [showThumbnails]="false" [showIndicators]="post.photos.length > 1 ? true : false" 
                     [responsiveOptions]="responsiveOptions" [showIndicatorsOnItem]="post.photos.length > 1 ? true : false" 
@@ -43,34 +43,42 @@
                 </p-galleria>
             </div>
         </div>
-        <div class="col-12 md:col-12 mt-2 mb-2 border-500 surface-overlay border-3 border-round flex align-items-center justify-content-center">
-            <div *ngIf="!isLiked">
-                <a (click)="likePost()" (mouseover)="isHovered = true" (mouseleave)="isHovered = false">
-                    <i *ngIf="isHovered" class="pi pi-heart-fill post-liked" pTooltip="Like post" tooltipPosition="top">
-                    </i>
-                    <i *ngIf="!isHovered"class="pi pi-heart post-not-liked" pTooltip="Like post" tooltipPosition="top">
-                    </i>
-                </a>
-                <span *ngIf="post.likes.length + likesCount == 0">
-                    Be the first person who likes this post.
-                </span>
-                <span *ngIf="post.likes.length + likesCount > 0">
-                    {{post.likes.length + likesCount}} people liked this post.
-                </span>
+        <div class="col-12 md:col-12 mt-1 mb-1 flex align-items-center justify-content-center">
+            <div *ngIf="!isLiked" class="flex flex-column">
+                <div class="flex align-items-center justify-content-center">
+                    <a (click)="likePost()" (mouseover)="isHovered = true" (mouseleave)="isHovered = false">
+                        <i *ngIf="isHovered" class="pi pi-heart-fill post-liked" pTooltip="Like" tooltipPosition="top">
+                        </i>
+                        <i *ngIf="!isHovered"class="pi pi-heart post-not-liked" pTooltip="Like" tooltipPosition="top">
+                        </i>
+                    </a>
+                </div>
+                <div class="flex align-items-center justify-content-center mt-1" style="margin-bottom: 0px;">
+                    <span *ngIf="post.likes.length + likesCount == 0">
+                        Be the first person who likes this post.
+                    </span>
+                    <span *ngIf="post.likes.length + likesCount > 0">
+                        {{post.likes.length + likesCount}} people liked this post.
+                    </span>
+                </div>
             </div>
-            <div *ngIf="isLiked">
-                <a (click)="dislikePost()" (mouseover)="isHovered = true" (mouseleave)="isHovered = false">
-                    <i *ngIf="!isHovered" pTooltip="Dislike post"  tooltipPosition="top" class="pi pi-heart-fill post-liked">
-                    </i>
-                    <i *ngIf="isHovered" pTooltip="Dislike post"  tooltipPosition="top" class="pi pi-heart post-not-liked">
-                    </i>
-                </a>
-                <span *ngIf="post.likes.length - 1 + likesCount == 0">
-                    Only you liked this post.
-                </span>
-                <span *ngIf="post.likes.length - 1 + likesCount> 0">
-                    You and {{post.likes.length - 1 + likesCount}} other(s) liked this post.
-                </span>
+            <div *ngIf="isLiked" class="flex flex-column">
+                <div class="flex align-items-center justify-content-center">
+                    <a (click)="dislikePost()" (mouseover)="isHovered = true" (mouseleave)="isHovered = false">
+                        <i *ngIf="!isHovered" pTooltip="Dislike"  tooltipPosition="top" class="pi pi-heart-fill post-liked">
+                        </i>
+                        <i *ngIf="isHovered" pTooltip="Dislike"  tooltipPosition="top" class="pi pi-heart post-not-liked">
+                        </i>
+                    </a>
+                </div>
+                <div class="flex align-items-center justify-content-center mt-1" style="margin-bottom: 0px;">
+                    <span *ngIf="post.likes.length - 1 + likesCount == 0">
+                        Only you liked this post.
+                    </span>
+                    <span *ngIf="post.likes.length - 1 + likesCount> 0">
+                        You and {{post.likes.length - 1 + likesCount}} other(s) liked this post.
+                    </span>
+                </div>
             </div>
         </div>
     </div>
