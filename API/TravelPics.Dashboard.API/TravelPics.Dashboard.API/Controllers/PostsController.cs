@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using TravelPics.Abstractions.DTOs.Documents;
 using TravelPics.Abstractions.DTOs.Likes;
 using TravelPics.Abstractions.DTOs.Locations;
+using TravelPics.Abstractions.DTOs.Notifications;
 using TravelPics.Abstractions.DTOs.Posts;
 using TravelPics.Abstractions.Interfaces;
 
@@ -13,9 +15,11 @@ namespace TravelPics.Dashboard.API.Controllers
     public class PostsController : ControllerBase
     {
         private readonly IPostsService _postsService;
-        public PostsController(IPostsService postsService)
+        private readonly INotificationsService _notificationsService;
+        public PostsController(IPostsService postsService, INotificationsService notificationsService)
         {
             _postsService = postsService;
+            _notificationsService = notificationsService;
         }
 
         [HttpPost]
@@ -25,12 +29,29 @@ namespace TravelPics.Dashboard.API.Controllers
             try
             {
                 await _postsService.LikePost(like);
+                var notification = await CreateNotification(like.PostId);
+                await _notificationsService.SaveInAppNotification(notification);
                 return Ok();
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        private async Task<InAppNotificationDTO> CreateNotification(int postId)
+        {
+            var postDto = await _postsService.GetPostById(postId);
+
+            var notification = new InAppNotificationDTO()
+            {
+                GeneratedOn = DateTimeOffset.Now,
+                Status = Domains.Enums.NotificationStatusEnum.Created,
+                Subject = "Test Subject",
+                Receiver = postDto.User
+            };
+
+            return notification;
         }
 
         [HttpPost]

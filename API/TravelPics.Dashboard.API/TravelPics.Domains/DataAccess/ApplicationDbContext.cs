@@ -16,6 +16,8 @@ namespace TravelPics.Domains.DataAccess
         public DbSet<Post> Posts { get; set; }
         public DbSet<Like> Likes { get; set; }
         public DbSet<Location> Locations { get; set; }
+        public DbSet<InAppNotification> InAppNotifications { get; set; }
+        public DbSet<NotificationStatus> NotificationStatuses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +31,10 @@ namespace TravelPics.Domains.DataAccess
             modelBuilder.Entity<User>()
                 .HasMany(x => x.Likes)
                 .WithOne(x => x.User);
+
+            modelBuilder.Entity<User>()
+                .HasMany(x => x.InAppNotifications)
+                .WithOne(x => x.Receiver);
 
             modelBuilder.Entity<Document>()
                 .HasKey(e => e.Id);
@@ -85,6 +91,15 @@ namespace TravelPics.Domains.DataAccess
                 .Property(l => l.IsDeleted)
                 .HasDefaultValue(false);
 
+            modelBuilder.Entity<InAppNotification>()
+                .HasKey(n => n.Id);
+
+            modelBuilder.Entity<InAppNotification>()
+                .HasOne(n => n.Status)
+                .WithMany(s => s.InAppNotifications);
+
+            modelBuilder.Entity<NotificationStatus>()
+                .HasKey(s => s.Id);
 
         }
     }

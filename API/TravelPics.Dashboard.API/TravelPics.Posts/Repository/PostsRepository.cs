@@ -64,6 +64,20 @@ namespace TravelPics.Posts.Repository
 
         }
 
+        public async Task<Post> GetPostById(int postId)
+        {
+            var post = await _dbContext.Posts
+                .Include(p => p.User)
+                    .ThenInclude(u => u.ProfileImage)
+                .Include(p => p.Location)
+                .Include(p => p.Photos)
+                .Include(p => p.Likes.Where(l => !l.IsDeleted))
+                .FirstOrDefaultAsync(p => p.Id == postId);
+
+            if (post == null) throw new Exception($"No post found with id: {postId}");
+            return post;
+        }
+
         public async Task<IEnumerable<Post>> GetUserPosts(int userId)
         {
             var posts = await _dbContext.Posts

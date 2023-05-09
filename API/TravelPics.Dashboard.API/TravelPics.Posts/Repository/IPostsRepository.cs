@@ -9,5 +9,6 @@ namespace TravelPics.Posts.Repository
         Task<IEnumerable<Post>> GetLatestPosts();
         Task LikePost(int userId, int postId);
         Task DislikePost(int userId, int postId);
+        Task<Post> GetPostById(int postId);
     }
 }

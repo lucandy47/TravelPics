@@ -16,6 +16,9 @@ using TravelPics.Posts.Mapper;
 using TravelPics.Locations.Mapper;
 using TravelPics.Documents.Mapper;
 using TravelPics.Abstractions.Interfaces;
+using TravelPics.Notifications.Core.Repository;
+using TravelPics.Notifications.Core;
+using TravelPics.Notifications.Core.Mapper.Profiles;
 
 namespace TravelPics.Dashboard.API
 {
@@ -50,6 +53,9 @@ namespace TravelPics.Dashboard.API
             services.AddScoped<IPostsRepository, PostsRepository>();
             services.AddScoped<IPostsService, PostsService>();
 
+            services.AddScoped<INotificationsRepository, NotificationsRepository>();
+            services.AddScoped<INotificationsService, NotificationsService>();
+
             //services.AddScoped<ILocationRepository, LocationRepository>();
             services.AddScoped<ILocationsService, LocationsService>();
 
@@ -68,6 +74,7 @@ namespace TravelPics.Dashboard.API
             services.AddAutoMapper(typeof(PostProfile));
             services.AddAutoMapper(typeof(LocationProfile));
             services.AddAutoMapper(typeof(DocumentProfile));
+            services.AddAutoMapper(typeof(NotificationsProfile));
 
             services.AddMvc();
         }

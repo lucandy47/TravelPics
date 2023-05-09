@@ -37,6 +37,17 @@ namespace TravelPics.Posts
             return postsDTO;
         }
 
+        public async Task<PostDTO> GetPostById(int postId)
+        {
+            var post = await _postsRepository.GetPostById(postId);
+
+            var postDTO = _mapper.Map<PostDTO>(post);
+
+            if (postDTO == null) throw new Exception($"Could not map the post.");
+
+            return postDTO;
+        }
+
         public async Task<IEnumerable<PostDTO>> GetUserPosts(int userId)
         {
             var posts = await _postsRepository.GetUserPosts(userId);

@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using System.Threading;
 using TravelPics.Abstractions.DTOs.Documents;
-using TravelPics.Abstractions.DTOs.Posts;
 using TravelPics.Abstractions.DTOs.Users;
 using TravelPics.Abstractions.Interfaces;
 using TravelPics.Domains.Entities;

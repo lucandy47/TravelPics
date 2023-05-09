@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelPics.Domains.DataAccess;
 
@@ -11,13 +12,15 @@ using TravelPics.Domains.DataAccess;
 namespace TravelPics.Domains.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230509110959_add-inappnotification-entity-ok")]
+    partial class addinappnotificationentityok
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("ProductVersion", "7.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -146,7 +149,7 @@ namespace TravelPics.Domains.Migrations
                     b.Property<int>("ReceiverId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StatusId")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("Subject")
@@ -156,8 +159,6 @@ namespace TravelPics.Domains.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ReceiverId");
-
-                    b.HasIndex("StatusId");
 
                     b.ToTable("InAppNotifications");
                 });
@@ -221,23 +222,6 @@ namespace TravelPics.Domains.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
-                });
-
-            modelBuilder.Entity("TravelPics.Domains.Entities.NotificationStatus", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("NotificationStatuses");
                 });
 
             modelBuilder.Entity("TravelPics.Domains.Entities.Post", b =>
@@ -349,15 +333,7 @@ namespace TravelPics.Domains.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TravelPics.Domains.Entities.NotificationStatus", "Status")
-                        .WithMany("InAppNotifications")
-                        .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Receiver");
-
-                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("TravelPics.Domains.Entities.Like", b =>
@@ -420,11 +396,6 @@ namespace TravelPics.Domains.Migrations
             modelBuilder.Entity("TravelPics.Domains.Entities.Location", b =>
                 {
                     b.Navigation("Posts");
-                });
-
-            modelBuilder.Entity("TravelPics.Domains.Entities.NotificationStatus", b =>
-                {
-                    b.Navigation("InAppNotifications");
                 });
 
             modelBuilder.Entity("TravelPics.Domains.Entities.Post", b =>

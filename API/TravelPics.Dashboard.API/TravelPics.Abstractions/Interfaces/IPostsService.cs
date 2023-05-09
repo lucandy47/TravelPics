@@ -1,5 +1,6 @@
 ﻿using TravelPics.Abstractions.DTOs.Likes;
 using TravelPics.Abstractions.DTOs.Posts;
+using TravelPics.Domains.Entities;
 
 namespace TravelPics.Abstractions.Interfaces
 {
@@ -13,6 +14,8 @@ namespace TravelPics.Abstractions.Interfaces
 
         Task LikePost(LikeModel like);
         Task DislikePost(LikeModel like);
+
+        Task<PostDTO> GetPostById(int postId);
 
     }
 }
