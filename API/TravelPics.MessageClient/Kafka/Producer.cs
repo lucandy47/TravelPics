@@ -1,19 +1,18 @@
 ﻿using Confluent.Kafka;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using System.Text.Json.Serialization;
 using TravelPics.MessageClient.Configs;
-using ILogger = Serilog.ILogger;
 
 namespace TravelPics.MessageClient.Kafka
 {
     public class Producer : IProducer
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<Producer> _logger;
         private ProducerConfig _kafkaProducerConfig;
         private readonly ProducerConfiguration _producerConfiguration;
 
-        public Producer(ILogger logger, IOptions<ProducerConfiguration> producerConfigurationOptions)
+        public Producer(ILogger<Producer> logger, IOptions<ProducerConfiguration> producerConfigurationOptions)
         {
             _logger= logger;
             _producerConfiguration = producerConfigurationOptions.Value;
@@ -27,24 +26,32 @@ namespace TravelPics.MessageClient.Kafka
 
             var messageSerialized = JsonConvert.SerializeObject(message);
 
-            var deliveryResult = await producer.ProduceAsync(topic, new Message<Null, string>
+            try
             {
-                Value = messageSerialized
-            });
+                var deliveryResult = await producer.ProduceAsync(topic, new Message<Null, string>
+                {
+                    Value = messageSerialized
+                });
 
-            if(deliveryResult != null)
-            {
-                LogDeliveryStatus(deliveryResult);
+                if (deliveryResult != null)
+                {
+                    LogDeliveryStatus(deliveryResult);
+                }
+                else
+                {
+                    _logger.LogError("Could not send the message!");
+                }
             }
-            else
+            catch(Exception ex)
             {
-                _logger.Error("Could not send the message!");
+                _logger.LogError(ex, "Could not send the message!");
             }
+            
         }
 
         private void LogDeliveryStatus(DeliveryResult<Null, String> deliveryResult)
         {
-            _logger.Information(
+            _logger.LogInformation(
                 $@"Message sent:
                     Value: {deliveryResult.Value},
                     Topic: {deliveryResult.Topic},

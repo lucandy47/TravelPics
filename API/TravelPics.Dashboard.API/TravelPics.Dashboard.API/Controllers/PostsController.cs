@@ -1,5 +1,5 @@
-﻿using Azure;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using TravelPics.Abstractions.DTOs.Documents;
 using TravelPics.Abstractions.DTOs.Likes;
@@ -7,6 +7,8 @@ using TravelPics.Abstractions.DTOs.Locations;
 using TravelPics.Abstractions.DTOs.Notifications;
 using TravelPics.Abstractions.DTOs.Posts;
 using TravelPics.Abstractions.Interfaces;
+using TravelPics.MessageClient;
+using TravelPics.Notifications.Configs;
 
 namespace TravelPics.Dashboard.API.Controllers
 {
@@ -16,21 +18,40 @@ namespace TravelPics.Dashboard.API.Controllers
     {
         private readonly IPostsService _postsService;
         private readonly INotificationsService _notificationsService;
-        public PostsController(IPostsService postsService, INotificationsService notificationsService)
+        private readonly EventHubConfig _eventHubConfig;
+        private readonly IProducer _producer;
+
+        public PostsController(IPostsService postsService, INotificationsService notificationsService,
+            IOptions<EventHubConfig> eventHubConfigOptions,
+            IProducer producer)
         {
             _postsService = postsService;
             _notificationsService = notificationsService;
+            _eventHubConfig = eventHubConfigOptions.Value;
+            _producer = producer;
         }
 
         [HttpPost]
         [Route("like")]
         public async Task<IActionResult> LikePost([FromBody] LikeModel like)
         {
+            if (string.IsNullOrWhiteSpace(_eventHubConfig.NotificationsTopic)) return BadRequest($"The topic cannot be null.");
+
             try
             {
                 await _postsService.LikePost(like);
                 var notification = await CreateNotification(like.PostId);
-                await _notificationsService.SaveInAppNotification(notification);
+
+                try
+                {
+                    await _producer.ProduceMessage<NotificationLogDTO>(_eventHubConfig.NotificationsTopic, notification);
+                }
+                catch(Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+
+                await _notificationsService.SaveNotificationLog(notification);
                 return Ok();
             }
             catch (Exception ex)
@@ -39,15 +60,16 @@ namespace TravelPics.Dashboard.API.Controllers
             }
         }
 
-        private async Task<InAppNotificationDTO> CreateNotification(int postId)
+        private async Task<NotificationLogDTO> CreateNotification(int postId)
         {
             var postDto = await _postsService.GetPostById(postId);
 
-            var notification = new InAppNotificationDTO()
+            var notification = new NotificationLogDTO()
             {
-                GeneratedOn = DateTimeOffset.Now,
+                CreatedOn = DateTimeOffset.Now,
                 Status = Domains.Enums.NotificationStatusEnum.Created,
-                Subject = "Test Subject",
+                Payload = "Test Subject",
+                NotificationType = Domains.Enums.NotificationTypeEnum.InAppNotification,
                 Receiver = postDto.User
             };
 

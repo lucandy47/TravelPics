@@ -28,7 +28,7 @@ namespace TravelPics.MessageClient.Configs
                 SaslUsername = "$ConnectionString",
                 SaslPassword = configuration.Password,
                 AutoOffsetReset = AutoOffsetReset.Earliest,
-                GroupId = configuration.ResourceGroupId,
+                GroupId = "$Default",
                 IsolationLevel = IsolationLevel.ReadUncommitted,
                 EnableAutoCommit = false,
                 PartitionAssignmentStrategy = PartitionAssignmentStrategy.RoundRobin,

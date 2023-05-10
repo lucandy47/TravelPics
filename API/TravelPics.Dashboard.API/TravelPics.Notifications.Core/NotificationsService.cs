@@ -16,20 +16,49 @@ namespace TravelPics.Notifications.Core
             _mapper = mapper;
             _notificationsRepository = notificationsRepository;
         }
+
+        public async Task<IEnumerable<InAppNotificationDTO>>? GetUserInAppNotifications(int userId)
+        {
+            var notifications = await _notificationsRepository.GetUserInAppNotifications(userId);
+
+            var inAppNotificationsDTO = _mapper.Map<List<InAppNotificationDTO>>(notifications);
+
+            return inAppNotificationsDTO;
+        }
+
         public async Task SaveInAppNotification(InAppNotificationDTO notification)
         {
-            var notificationStatus = await _notificationsRepository.GetNotificationStatus(notification.Status);
+            var notificationLog = await _notificationsRepository.GetNotificationLogById(notification.NotificationLog.Id);
+
+            if (notificationLog == null) throw new Exception($"Could not find the notification log attached to In App Notification");
+
+            var inAppNotification = _mapper.Map<InAppNotification>(notification);
+
+            if (inAppNotification == null) throw new Exception($"Unable to map In App Notification");
+            inAppNotification.NotificationLog = notificationLog;
+
+            await _notificationsRepository.SaveInAppNotification(inAppNotification);
+
+        }
+
+        public async Task SaveNotificationLog(NotificationLogDTO notificationLog)
+        {
+            var notificationStatus = await _notificationsRepository.GetNotificationStatus(notificationLog.Status);
 
             if (notificationStatus == null) throw new Exception($"No status found for current notification.");
 
-            var notificationEntity = _mapper.Map<InAppNotification>(notification);
+            var notificationType = await _notificationsRepository.GetNotificationType(notificationLog.NotificationType);
 
-            if (notificationEntity == null) throw new Exception($"Could not map In App Notification from DTO to entity.");
+            if (notificationType == null) throw new Exception($"No type found for current notification.");
 
-            notificationEntity.Status = notificationStatus;
+            var notificationLogEntity = _mapper.Map<NotificationLog>(notificationLog);
 
-            await _notificationsRepository.SaveInAppNotification(notificationEntity);
+            if (notificationLogEntity == null) throw new Exception($"Could not map Notification Log from DTO to entity.");
 
+            notificationLogEntity.Status = notificationStatus;
+            notificationLogEntity.NotificationType = notificationType;
+
+            await _notificationsRepository.SaveNotificationLog(notificationLogEntity);
         }
     }
 }

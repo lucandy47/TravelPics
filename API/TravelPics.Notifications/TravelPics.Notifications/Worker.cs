@@ -1,30 +1,35 @@
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using System.Text.Json.Serialization;
+using TravelPics.Abstractions.DTOs.Notifications;
 using TravelPics.MessageClient;
-using TravelPics.MessageClient.Models;
 using TravelPics.Notifications.Configs;
-using ILogger = Serilog.ILogger;
+using TravelPics.Notifications.Processors.Processors;
 
 namespace TravelPics.Notifications
 {
     public class Worker : BackgroundService
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<Worker> _logger;
         private readonly IConsumer _consumer;
         private readonly EventHubConfig _eventHubConfig;
-        public Worker(ILogger logger, IConsumer consumer, IOptions<EventHubConfig> eventHubOptions)
+        private readonly IEnumerable<INotificationProcessor> _notificationProcessors;
+
+        public Worker(ILogger<Worker> logger, 
+            IConsumer consumer, 
+            IOptions<EventHubConfig> eventHubOptions,
+            IEnumerable<INotificationProcessor> notificationProcessors)
         {
             _logger = logger;
             _consumer = consumer;
             _eventHubConfig = eventHubOptions.Value;
+            _notificationProcessors = notificationProcessors;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.Information($"Worker running at: { DateTimeOffset.Now}" +
+                _logger.LogInformation($"Worker running at: { DateTimeOffset.Now}" +
                     $"for topic : {_eventHubConfig.NotificationsTopic}");
                 try
                 {
@@ -33,27 +38,37 @@ namespace TravelPics.Notifications
                 }
                 catch(Exception ex)
                 {
-                    _logger.Error(ex, $"Unable to process Notifications");
+                    _logger.LogError(ex, $"Unable to process Notifications");
                 }
             }
         }
 
         private async Task<bool> ProcessMessage(string message, string topic)
         {
-            var workflowMessageResult = JsonConvert.DeserializeObject<WorkflowMessage>(message);
+            var notificationLogDTO = JsonConvert.DeserializeObject<NotificationLogDTO>(message);
 
-            if (workflowMessageResult == null) return true;
+            if (notificationLogDTO == null) return true;
+    
+            if(string.IsNullOrWhiteSpace(notificationLogDTO.Payload)) throw new ArgumentNullException($"Payload cannot be null");
 
-            if (!workflowMessageResult.Type.Equals("Notification"))
-            {
-                return false;
-            }
+            var processor = _notificationProcessors.FirstOrDefault(p => p.NotificationTypeName == notificationLogDTO.NotificationType);
 
-            if(!long.TryParse(workflowMessageResult.PayLoad, out long notificationLogMessageId)) throw new InvalidCastException($"Invalid notification log id -> {workflowMessageResult.PayLoad}");
+            if(processor == null) throw new Exception($"Invalid notification type ID: {(int)notificationLogDTO.NotificationType}.");
 
+            var result = await processor.Run(notificationLogDTO);
 
-            //to be continued
-            return true;
+            return result;
+        }
+
+        public override Task StartAsync(CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("Notifications Worker has started.");
+            return base.StartAsync(cancellationToken);
+        }
+        public override Task StopAsync(CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("Notifications Worker has stopped.");
+            return base.StopAsync(cancellationToken);
         }
     }
 }

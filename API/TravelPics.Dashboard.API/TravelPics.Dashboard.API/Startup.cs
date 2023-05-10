@@ -19,6 +19,10 @@ using TravelPics.Abstractions.Interfaces;
 using TravelPics.Notifications.Core.Repository;
 using TravelPics.Notifications.Core;
 using TravelPics.Notifications.Core.Mapper.Profiles;
+using TravelPics.MessageClient;
+using TravelPics.MessageClient.Kafka;
+using TravelPics.MessageClient.Configs;
+using TravelPics.Notifications.Configs;
 
 namespace TravelPics.Dashboard.API
 {
@@ -61,6 +65,8 @@ namespace TravelPics.Dashboard.API
 
             services.AddScoped<IAuthenticationService, AuthenticationService>();
 
+            services.AddTransient<IProducer, Producer>();
+
             services.AddAzureAppConfiguration();
 
             services.AddOptions<BlobContainerConfig>()
@@ -68,6 +74,18 @@ namespace TravelPics.Dashboard.API
                 {
                     options.StorageConnectionString = Configuration.GetValue<string>("ConnectionStrings:BlobStorage");
                 }).ValidateDataAnnotations();
+
+            services.AddOptions<ProducerConfiguration>()
+                .Configure(options =>
+                {
+                    options.BrokerList = Configuration.GetValue<string>("EventHub:Endpoint");
+                    options.Password = Configuration.GetValue<string>("EventHub:ConnectionString");
+                }).ValidateDataAnnotations();
+
+            services.AddOptions<EventHubConfig>().Configure(options =>
+            {
+                Configuration.GetSection(EventHubConfig.SectionName).Bind(options);
+            }).ValidateDataAnnotations();
 
             services.AddAutoMapper(typeof(Startup));
             services.AddAutoMapper(typeof(UserProfile));

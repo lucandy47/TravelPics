@@ -13,12 +13,12 @@
         public DateTimeOffset CreatedOn { get; set; }
         public Document? ProfileImage { get; set; }
         public virtual ICollection<Like> Likes { get; set; }
-        public virtual ICollection<InAppNotification> InAppNotifications { get; set; }
+        public virtual ICollection<NotificationLog> NotificationLogs { get; set; }
         public User()
         {
             Posts = new List<Post>();
             Likes = new List<Like>();
-            InAppNotifications = new List<InAppNotification>();
+            NotificationLogs = new List<NotificationLog>();
         }
     }
 }

@@ -8,11 +8,16 @@ namespace TravelPics.Notifications.Core.Mapper.Profiles
     {
         public NotificationsProfile()
         {
-            CreateMap<InAppNotification, InAppNotificationDTO>()
-                .ForMember(dest => dest.Status, opt => opt.Ignore());
-            CreateMap<InAppNotificationDTO, InAppNotification>()
-                .ForMember(dest => dest.Status, opt => opt.Ignore());
+            CreateMap<InAppNotification, InAppNotificationDTO>();
+            CreateMap<InAppNotificationDTO, InAppNotification>();
 
+            CreateMap<NotificationLog, NotificationLogDTO>()
+                .ForMember(dest => dest.Status, opt => opt.Ignore())
+                .ForMember(dest => dest.NotificationType, opt => opt.Ignore());
+
+            CreateMap<NotificationLogDTO, NotificationLog>()
+                .ForMember(dest => dest.Status, opt => opt.Ignore())
+                .ForMember(dest => dest.NotificationType, opt => opt.Ignore());
         }
     }
 }

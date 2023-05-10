@@ -9,7 +9,6 @@ namespace TravelPics.Abstractions.DTOs.Notifications
         public long Id { get; set; }
         public string Subject { get; set; }
         public DateTimeOffset GeneratedOn { get; set; }
-        public NotificationStatusEnum Status { get; set; }
-        public UserPostInfoDTO Receiver { get; set; }
+        public NotificationLogDTO NotificationLog { get; set; }
     }
 }

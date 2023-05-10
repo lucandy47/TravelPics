@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\TravelPics.MessageClient\TravelPics.MessageClient.csproj" />
     <ProjectReference Include="..\TravelPics.Documents\TravelPics.Documents.csproj" />
     <ProjectReference Include="..\TravelPics.Domains\TravelPics.Domains.csproj" />
     <ProjectReference Include="..\TravelPics.Location\TravelPics.Locations.csproj" />

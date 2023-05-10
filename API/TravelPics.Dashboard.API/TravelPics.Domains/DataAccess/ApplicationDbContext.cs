@@ -17,7 +17,9 @@ namespace TravelPics.Domains.DataAccess
         public DbSet<Like> Likes { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<InAppNotification> InAppNotifications { get; set; }
+        public DbSet<NotificationLog> NotificationLogs { get; set; }
         public DbSet<NotificationStatus> NotificationStatuses { get; set; }
+        public DbSet<NotificationType> NotificationTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,7 +35,7 @@ namespace TravelPics.Domains.DataAccess
                 .WithOne(x => x.User);
 
             modelBuilder.Entity<User>()
-                .HasMany(x => x.InAppNotifications)
+                .HasMany(x => x.NotificationLogs)
                 .WithOne(x => x.Receiver);
 
             modelBuilder.Entity<Document>()
@@ -91,14 +93,28 @@ namespace TravelPics.Domains.DataAccess
                 .Property(l => l.IsDeleted)
                 .HasDefaultValue(false);
 
+            modelBuilder.Entity<NotificationLog>()
+                .HasKey(n => n.Id);
+
+            modelBuilder.Entity<NotificationLog>()
+                .HasOne(n => n.NotificationType)
+                .WithMany(n => n.NotificationLogs);
+
+            modelBuilder.Entity<NotificationLog>()
+                .HasOne(n => n.Status)
+                .WithMany(n => n.NotificationLogs);
+
             modelBuilder.Entity<InAppNotification>()
                 .HasKey(n => n.Id);
 
             modelBuilder.Entity<InAppNotification>()
-                .HasOne(n => n.Status)
-                .WithMany(s => s.InAppNotifications);
+                .HasOne(ian => ian.NotificationLog)
+                .WithMany(n => n.InAppNotifications);
 
             modelBuilder.Entity<NotificationStatus>()
+                .HasKey(s => s.Id);
+
+            modelBuilder.Entity<NotificationType>()
                 .HasKey(s => s.Id);
 
         }
