@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using TravelPics.Abstractions.DTOs.Notifications;
+using TravelPics.Abstractions.Interfaces;
 using TravelPics.MessageClient;
 using TravelPics.Notifications.Configs;
 using TravelPics.Notifications.Processors.Processors;
@@ -13,16 +14,19 @@ namespace TravelPics.Notifications
         private readonly IConsumer _consumer;
         private readonly EventHubConfig _eventHubConfig;
         private readonly IEnumerable<INotificationProcessor> _notificationProcessors;
+        private readonly INotificationsService _notificationsService;
 
         public Worker(ILogger<Worker> logger, 
             IConsumer consumer, 
             IOptions<EventHubConfig> eventHubOptions,
-            IEnumerable<INotificationProcessor> notificationProcessors)
+            IEnumerable<INotificationProcessor> notificationProcessors,
+            INotificationsService notificationsService)
         {
             _logger = logger;
             _consumer = consumer;
             _eventHubConfig = eventHubOptions.Value;
             _notificationProcessors = notificationProcessors;
+            _notificationsService = notificationsService;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -48,16 +52,32 @@ namespace TravelPics.Notifications
             var notificationLogDTO = JsonConvert.DeserializeObject<NotificationLogDTO>(message);
 
             if (notificationLogDTO == null) return true;
-    
-            if(string.IsNullOrWhiteSpace(notificationLogDTO.Payload)) throw new ArgumentNullException($"Payload cannot be null");
 
-            var processor = _notificationProcessors.FirstOrDefault(p => p.NotificationTypeName == notificationLogDTO.NotificationType);
+            if (string.IsNullOrWhiteSpace(notificationLogDTO.Payload)) throw new ArgumentNullException($"Payload cannot be null");
 
-            if(processor == null) throw new Exception($"Invalid notification type ID: {(int)notificationLogDTO.NotificationType}.");
+            try
+            {
+                await _notificationsService.UpdateNotificationStatus(notificationLogDTO.Id, Domains.Enums.NotificationStatusEnum.InProgress);
 
-            var result = await processor.Run(notificationLogDTO);
+                var processor = _notificationProcessors.FirstOrDefault(p => p.NotificationTypeName == notificationLogDTO.NotificationType);
 
-            return result;
+                if (processor == null) throw new Exception($"Invalid notification type ID: {(int)notificationLogDTO.NotificationType}.");
+
+                var result = await processor.Run(notificationLogDTO);
+
+                await _notificationsService.UpdateNotificationStatus(notificationLogDTO.Id, Domains.Enums.NotificationStatusEnum.Received);
+
+                return result;
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"Failed to process NotificationLogId: {notificationLogDTO.Id}", ex);
+                if (notificationLogDTO != null)
+                {
+                    await _notificationsService.UpdateNotificationStatus(notificationLogDTO.Id, Domains.Enums.NotificationStatusEnum.Failed);
+                }
+                return true;
+            }
         }
 
         public override Task StartAsync(CancellationToken cancellationToken)

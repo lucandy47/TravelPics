@@ -14,40 +14,22 @@ namespace TravelPics.Notifications.Core.Repository
             _dbContext = dbContext;
         }
 
-        public async Task SaveInAppNotification(InAppNotification notification)
-        {
-            try
-            {
-                if (notification.NotificationLog == null) throw new Exception($"No Notification log found for new in app notification.");
-
-                var notificationLog = await _dbContext.NotificationLogs.FirstOrDefaultAsync(u => u.Id == notification.NotificationLog.Id);
-
-                if (notificationLog == null) throw new Exception($"No notificationLog found with id: {notification.NotificationLog.Id}");
-
-                notification.NotificationLog = notificationLog;
-                await _dbContext.InAppNotifications.AddAsync(notification);
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Could not save new In App notification, reason: {ex.Message}");
-            }
-
-        }
-
-        public async Task SaveNotificationLog(NotificationLog notificationLog)
+        public async Task<long> SaveNotificationLog(NotificationLog notificationLog)
         {
             try
             {
                 if (notificationLog.Receiver == null) throw new Exception($"No Receiver found for new notification.");
 
-                var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == notificationLog.Receiver.Id);
+                var receiver = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == notificationLog.Receiver.Id);
 
-                if (user == null) throw new Exception($"No user found with id: {notificationLog.Receiver.Id}");
+                if (receiver == null) throw new Exception($"No user found with id: {notificationLog.Receiver.Id}");
 
-                notificationLog.Receiver = user;
+                notificationLog.Receiver = receiver;
+
                 await _dbContext.NotificationLogs.AddAsync(notificationLog);
                 await _dbContext.SaveChangesAsync();
+
+                return notificationLog.Id;
             }
             catch (Exception ex)
             {
@@ -82,10 +64,49 @@ namespace TravelPics.Notifications.Core.Repository
         {
             var inAppNotifications = await _dbContext.InAppNotifications
                 .Include(ian => ian.NotificationLog)
+                    .ThenInclude(nl => nl.Receiver)
                 .Where(ian => ian.NotificationLog.Receiver.Id == userId)
                 .ToListAsync();
 
             return inAppNotifications;
+        }
+
+        public async Task UpdateNotificationStatus(long notificationLogId, NotificationStatusEnum notificationStatusEnum)
+        {
+            var notificationLog = await GetNotificationLogById(notificationLogId);
+
+            var notificationStatus = await GetNotificationStatus(notificationStatusEnum);
+
+            if (notificationStatus == null) throw new Exception($"Unable to find notification status: {notificationStatusEnum}");
+
+            notificationLog.Status = notificationStatus;
+
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception($"Could not update notification status, reason: {ex.Message}");
+            }
+        }
+
+        public async Task SaveInAppNotification(InAppNotification notification, long notificationLogId)
+        {
+            try
+            {
+                var notificationLog = await _dbContext.NotificationLogs.FirstOrDefaultAsync(nl => nl.Id == notificationLogId);
+
+                if (notificationLog == null) throw new Exception($"No notification log found with id: {notification.NotificationLog.Id}");
+
+                notification.NotificationLog = notificationLog;
+                await _dbContext.InAppNotifications.AddAsync(notification);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Could not save new In App notification, reason: {ex.Message}");
+            }
         }
     }
 }

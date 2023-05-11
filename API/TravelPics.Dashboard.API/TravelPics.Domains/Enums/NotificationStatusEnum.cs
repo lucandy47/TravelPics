@@ -3,7 +3,7 @@
     public enum NotificationStatusEnum
     {
         Created = 1,
-        Sent = 2,
+        InProgress = 2,
         Received = 3,
         Read = 4,
         Failed = 5

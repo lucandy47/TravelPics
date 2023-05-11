@@ -20,15 +20,19 @@ namespace TravelPics.Dashboard.API.Controllers
         private readonly INotificationsService _notificationsService;
         private readonly EventHubConfig _eventHubConfig;
         private readonly IProducer _producer;
+        private readonly IUsersService _usersService;
+
 
         public PostsController(IPostsService postsService, INotificationsService notificationsService,
             IOptions<EventHubConfig> eventHubConfigOptions,
-            IProducer producer)
+            IProducer producer,
+            IUsersService usersService)
         {
             _postsService = postsService;
             _notificationsService = notificationsService;
             _eventHubConfig = eventHubConfigOptions.Value;
             _producer = producer;
+            _usersService = usersService;
         }
 
         [HttpPost]
@@ -40,37 +44,50 @@ namespace TravelPics.Dashboard.API.Controllers
             try
             {
                 await _postsService.LikePost(like);
-                var notification = await CreateNotification(like.PostId);
-
+                var notification = await CreateNotification(like.PostId,like.UserId);
                 try
                 {
-                    await _producer.ProduceMessage<NotificationLogDTO>(_eventHubConfig.NotificationsTopic, notification);
+                    var notificationLogId = await _notificationsService.SaveNotificationLog(notification);
+                    notification.Id = notificationLogId;
+
+                    if(notificationLogId > 0)
+                    {
+                        await _producer.ProduceMessage<NotificationLogDTO>(_eventHubConfig.NotificationsTopic, notification);
+                    }
                 }
                 catch(Exception ex)
                 {
-                    return BadRequest(ex.Message);
+                    return BadRequest($"Could not create notification, reason: {ex.Message}");
                 }
-
-                await _notificationsService.SaveNotificationLog(notification);
                 return Ok();
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest($"Could not like post, reason: {ex.Message}");
             }
         }
 
-        private async Task<NotificationLogDTO> CreateNotification(int postId)
+        private async Task<NotificationLogDTO> CreateNotification(int postId, int userId)
         {
             var postDto = await _postsService.GetPostById(postId);
+
+            var sender = await _usersService.GetUserById(userId);
+
+            postDto.User.ProfileImage = null;
 
             var notification = new NotificationLogDTO()
             {
                 CreatedOn = DateTimeOffset.Now,
                 Status = Domains.Enums.NotificationStatusEnum.Created,
-                Payload = "Test Subject",
+                Payload = "Like",
                 NotificationType = Domains.Enums.NotificationTypeEnum.InAppNotification,
-                Receiver = postDto.User
+                Receiver = postDto.User,
+                Sender = new Abstractions.DTOs.Users.BasicUserInfoDTO()
+                {
+                    FirstName = sender.FirstName,
+                    LastName = sender.LastName,
+                    Id = userId
+                }
             };
 
             return notification;

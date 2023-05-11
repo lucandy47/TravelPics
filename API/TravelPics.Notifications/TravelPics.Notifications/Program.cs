@@ -33,14 +33,14 @@ IHost host = Host.CreateDefaultBuilder(args)
         var configRoute = context.Configuration;
 
         var connectionString = configRoute.GetConnectionString("TravelPicsDB");
-        services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Scoped);
+        services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Singleton);
 
         services.AddTransient<IConsumer, Consumer>();
 
         services.AddTransient<INotificationProcessor, InAppNotificationProcessor>();
 
-        services.AddScoped<INotificationsRepository, NotificationsRepository>();
-        services.AddScoped<INotificationsService, NotificationsService>();
+        services.AddTransient<INotificationsRepository, NotificationsRepository>();
+        services.AddTransient<INotificationsService, NotificationsService>();
 
         services.AddOptions<BlobContainerConfig>()
         .Configure(options =>

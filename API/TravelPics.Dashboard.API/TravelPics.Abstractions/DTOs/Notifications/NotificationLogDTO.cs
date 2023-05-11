@@ -10,6 +10,7 @@ namespace TravelPics.Abstractions.DTOs.Notifications
         public NotificationTypeEnum NotificationType { get; set; }
         public NotificationStatusEnum Status { get; set; }
         public UserPostInfoDTO Receiver { get; set; }
+        public BasicUserInfoDTO Sender { get; set; }
         public string? Payload { get; set; }
     }
 }

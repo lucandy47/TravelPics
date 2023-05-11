@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelPics.Domains.DataAccess;
 
@@ -11,9 +12,11 @@ using TravelPics.Domains.DataAccess;
 namespace TravelPics.Domains.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230511123206_update-notification-status")]
+    partial class updatenotificationstatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,9 +241,6 @@ namespace TravelPics.Domains.Migrations
                     b.Property<int>("ReceiverId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SenderId")
-                        .HasColumnType("int");
-
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
 
@@ -249,8 +249,6 @@ namespace TravelPics.Domains.Migrations
                     b.HasIndex("NotificationTypeId");
 
                     b.HasIndex("ReceiverId");
-
-                    b.HasIndex("SenderId");
 
                     b.HasIndex("StatusId");
 
@@ -436,12 +434,6 @@ namespace TravelPics.Domains.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TravelPics.Domains.Entities.User", "Sender")
-                        .WithMany()
-                        .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("TravelPics.Domains.Entities.NotificationStatus", "Status")
                         .WithMany("NotificationLogs")
                         .HasForeignKey("StatusId")
@@ -451,8 +443,6 @@ namespace TravelPics.Domains.Migrations
                     b.Navigation("NotificationType");
 
                     b.Navigation("Receiver");
-
-                    b.Navigation("Sender");
 
                     b.Navigation("Status");
                 });
