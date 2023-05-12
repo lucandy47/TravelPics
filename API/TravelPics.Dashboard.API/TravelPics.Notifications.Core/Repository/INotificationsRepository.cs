@@ -12,5 +12,7 @@ namespace TravelPics.Notifications.Core.Repository
         Task<NotificationLog> GetNotificationLogById(long notificationLogId);
         Task<IEnumerable<InAppNotification>> GetUserInAppNotifications(int userId);
         Task UpdateNotificationStatus(long notificationLogId, NotificationStatusEnum notificationStatusEnum);
+        Task MarkAsReadNotifications(int userId);
+
     }
 }

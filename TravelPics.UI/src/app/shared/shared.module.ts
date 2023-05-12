@@ -88,7 +88,8 @@ const PrimeModules = [
   FileUploadModule,
   GalleriaModule,
   CarouselModule,
-  DividerModule
+  DividerModule,
+  OverlayPanelModule
 ]
 
 const Pipes = [

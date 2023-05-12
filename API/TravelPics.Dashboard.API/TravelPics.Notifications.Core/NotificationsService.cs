@@ -22,9 +22,14 @@ namespace TravelPics.Notifications.Core
         {
             var notifications = await _notificationsRepository.GetUserInAppNotifications(userId);
 
-            var inAppNotificationsDTO = _mapper.Map<List<InAppNotificationDTO>>(notifications);
+            var inAppNotificationsDTO = _mapper.Map<List<InAppNotificationDTO>>(notifications.ToList());
 
             return inAppNotificationsDTO;
+        }
+
+        public async Task MarkAsReadNotifications(int userId)
+        {
+            await _notificationsRepository.MarkAsReadNotifications(userId);
         }
 
         public async Task SaveInAppNotification(InAppNotificationDTO notification, long notificationLogId)

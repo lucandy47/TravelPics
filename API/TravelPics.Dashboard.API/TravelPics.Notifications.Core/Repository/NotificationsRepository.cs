@@ -65,6 +65,8 @@ namespace TravelPics.Notifications.Core.Repository
             var inAppNotifications = await _dbContext.InAppNotifications
                 .Include(ian => ian.NotificationLog)
                     .ThenInclude(nl => nl.Receiver)
+                .Include(ian => ian.NotificationLog)
+                    .ThenInclude(nl => nl.Status)
                 .Where(ian => ian.NotificationLog.Receiver.Id == userId)
                 .ToListAsync();
 
@@ -106,6 +108,35 @@ namespace TravelPics.Notifications.Core.Repository
             catch (Exception ex)
             {
                 throw new Exception($"Could not save new In App notification, reason: {ex.Message}");
+            }
+        }
+
+        public async Task MarkAsReadNotifications(int userId)
+        {
+            var notificationLogs = await _dbContext.NotificationLogs
+                .Include(n => n.Status)
+                .Include(n => n.NotificationType)
+                .Include(n => n.Receiver)
+                .Where(n => n.Receiver.Id == userId && n.Status.Id == (int)NotificationStatusEnum.Received)
+                .ToListAsync();
+
+            if (!notificationLogs.Any()) return;
+
+            var readStatus = await GetNotificationStatus(NotificationStatusEnum.Read);
+
+            if(readStatus == null) throw new Exception($"No status found for 'Read'.");
+
+            foreach (var notif in notificationLogs)
+            {
+                notif.Status = readStatus;
+            }
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Could not mark as read notification, reason: {ex.Message}");
             }
         }
     }

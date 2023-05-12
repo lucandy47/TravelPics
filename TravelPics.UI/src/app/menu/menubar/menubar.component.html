@@ -18,3 +18,12 @@
         </div>
     </ng-template>
 </p-menubar>
+
+<p-overlayPanel #notificationPanel [showCloseIcon]="true" (onShow)="readNotifications()">
+    <ng-template pTemplate="content">
+        <div class="w-12"*ngFor="let notif of newNotifications" style="border-bottom: 1px solid black;">
+            <p>{{notif.subject}}</p>
+        </div>
+    </ng-template>
+</p-overlayPanel>
+  

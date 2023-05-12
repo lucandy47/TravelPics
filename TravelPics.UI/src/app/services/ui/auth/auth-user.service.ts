@@ -11,6 +11,7 @@ import { UserService } from '../../api/user.service';
 import { User } from '../../api/dtos/user';
 import { DocumentHelper } from 'src/app/shared/helpers/documentHelper';
 import { DomSanitizer } from '@angular/platform-browser';
+import { InAppNotificationsService } from '../notifications/in-app-notifications.service';
 
 const ACCESS_TOKEN_KEY: string = 'TRAVELPICS-ACCESS-TOKEN';
 const EXPIRES_ON_KEY: string = 'TRAVELPICS-EXPIRES-ON';
@@ -27,9 +28,12 @@ export class AuthUserService {
   public loggedIn = this.loggedIn$.asObservable();
   private jwtHelper = new JwtHelperService();
 
+  private intervalTimer: any;
+
   constructor(
     private authService: AuthService,
     private router: Router,
+    private inAppNotificationService: InAppNotificationsService
   ) { }
 
   logout(): void{
@@ -37,6 +41,7 @@ export class AuthUserService {
     this.loggedIn$.next(false);
     this.clearAuthFromLocalStorage();
     this.router.navigate(['auth/login']);
+    this.inAppNotificationService.stopNotificationTimer();
   }
 
   public login(loginModel: LoginModel): Observable<boolean> {
@@ -72,6 +77,8 @@ export class AuthUserService {
     this.userInfo.email = decodedToken.email;
 
     this.loggedIn$.next(true);
+
+    this.inAppNotificationService.startNotificationTimer(this.userInfo.userId);
   }
 
   private setAuthToLocalStorage(authorization: UserToken): void {

@@ -10,6 +10,6 @@ namespace TravelPics.Abstractions.Interfaces
         Task SaveInAppNotification(InAppNotificationDTO notification, long notificationLogId);
         Task<IEnumerable<InAppNotificationDTO>>? GetUserInAppNotifications(int userId);
         Task UpdateNotificationStatus(long notificationLogId, NotificationStatusEnum notificationStatusEnum);
-
+        Task MarkAsReadNotifications(int userId);
     }
 }

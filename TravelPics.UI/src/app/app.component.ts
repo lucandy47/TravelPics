@@ -15,8 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'TravelPics.UI';
 
   constructor(
-    private _authUserService: AuthUserService
-  ){}
+    private _authUserService: AuthUserService  ){}
   ngOnDestroy(): void {
   }
 
