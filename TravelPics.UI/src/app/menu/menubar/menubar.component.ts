@@ -4,9 +4,10 @@ import { AuthUserService } from 'src/app/services/ui/auth/auth-user.service';
 import { Router } from '@angular/router';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { InAppNotificationsService } from 'src/app/services/ui/notifications/in-app-notifications.service';
-import { InAppNotification } from 'src/app/services/api/dtos/notification';
+import { InAppNotification, NotificationStatusEnum } from 'src/app/services/api/dtos/notification';
 import { UserInfo } from 'src/app/services/ui/auth/user-info';
 import { NotificationService } from 'src/app/services/api/notification.service';
+import { ImageService } from 'src/app/services/ui/helpers/image.service';
 
 @Component({
   selector: 'travelpics-menubar',
@@ -25,12 +26,15 @@ export class MenubarComponent implements OnInit  {
     private _authUserService: AuthUserService,
     private router: Router,
     private _inAppNotificationService: InAppNotificationsService,
-    private _notificationService: NotificationService
+    private _notificationService: NotificationService,
+    public imageHelperService: ImageService
   ){}
 
   public newNotifications: InAppNotification[] = [];
   public loggedInUser!: UserInfo;
   public message: string = "";
+
+  public notificationVisible: boolean = false;
 
   ngOnInit(): void {
     this.getLoggedInUser();
@@ -40,10 +44,9 @@ export class MenubarComponent implements OnInit  {
   private getNewNotifications(): void{
     this._inAppNotificationService.notifications.subscribe({
       next: (notifs: InAppNotification[]) =>{
-        console.log(notifs);
         this.newNotifications = notifs;
       }
-    })
+    });
   }
 
   private getLoggedInUser(): void{
@@ -88,8 +91,7 @@ export class MenubarComponent implements OnInit  {
   }
 
   public readNotifications(): void{
-    console.log("read");
-    if(!!this.loggedInUser &&  this.loggedInUser.userId > 0){
+    if(!!this.loggedInUser &&  this.loggedInUser.userId > 0 && this.isReadRequired()){
       this._notificationService.readNotifications(this.loggedInUser.userId).subscribe({
         next: (data: string)=>{
           this.message = data;
@@ -100,5 +102,22 @@ export class MenubarComponent implements OnInit  {
       })
 
     }
+  }
+
+  private isReadRequired(): boolean{
+    for(let notif of this.newNotifications){
+      if(notif.notificationLog.status != NotificationStatusEnum.Read){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public isNotificationRead(notification: InAppNotification): boolean{
+    return notification.notificationLog.status === NotificationStatusEnum.Read;
+  }
+
+  public getImageUrl(base64: string, fileName: string): any {
+    return this.imageHelperService.getSanitizedBlobUrlFromBase64(base64,fileName);
   }
 }

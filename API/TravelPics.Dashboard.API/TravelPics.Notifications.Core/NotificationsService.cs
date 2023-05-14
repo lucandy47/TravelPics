@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using TravelPics.Abstractions.DTOs.Notifications;
 using TravelPics.Abstractions.Interfaces;
 using TravelPics.Domains.Entities;
@@ -11,11 +12,13 @@ namespace TravelPics.Notifications.Core
     {
         private readonly IMapper _mapper;
         private readonly INotificationsRepository _notificationsRepository;
+        private readonly IUsersService _usersService;
 
-        public NotificationsService(IMapper mapper, INotificationsRepository notificationsRepository)
+        public NotificationsService(IMapper mapper, INotificationsRepository notificationsRepository, IUsersService usersService)
         {
             _mapper = mapper;
             _notificationsRepository = notificationsRepository;
+            _usersService = usersService;
         }
 
         public async Task<IEnumerable<InAppNotificationDTO>>? GetUserInAppNotifications(int userId)
@@ -23,6 +26,24 @@ namespace TravelPics.Notifications.Core
             var notifications = await _notificationsRepository.GetUserInAppNotifications(userId);
 
             var inAppNotificationsDTO = _mapper.Map<List<InAppNotificationDTO>>(notifications.ToList());
+
+            foreach (var inAppNotif in inAppNotificationsDTO)
+            {
+                var notif = notifications.FirstOrDefault(n => n.Id == inAppNotif.Id);
+
+                if (!notif.NotificationLog.SenderId.HasValue) continue;
+
+                var sender = await _usersService.GetUserById(notif.NotificationLog.SenderId.Value);
+
+                inAppNotif.NotificationLog.Sender = new Abstractions.DTOs.Users.UserPostInfoDTO()
+                {
+                    FirstName = sender.FirstName,
+                    LastName = sender.LastName,
+                    ProfileImage = sender.ProfileImage,
+                    Id = sender.Id,
+                    CreatedOn = sender.CreatedOn,
+                };
+            }
 
             return inAppNotificationsDTO;
         }

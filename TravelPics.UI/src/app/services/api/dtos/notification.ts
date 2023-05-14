@@ -1,3 +1,4 @@
+import { UserFullInfo } from "./user-full-info";
 import { UserPostInfo } from "./user-post-info";
 export enum NotificationStatusEnum{
     Created = 1,
@@ -11,7 +12,7 @@ export interface NotificationLog{
     id: number;
     createdOn: Date;
     receiver: UserPostInfo;
-    sender: UserPostInfo;
+    sender: UserFullInfo;
     status: NotificationStatusEnum;
 }
 

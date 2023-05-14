@@ -1,7 +1,9 @@
 ::ng-deep .p-overlaypanel {
     .p-overlaypanel-content {
-        width: 500px;
-        max-height: 300px;
+        width: 350px;
+        max-height: 400px;
         overflow-y: auto;
+        padding-left: 0px;
+        padding-right:0px;
     }
 }

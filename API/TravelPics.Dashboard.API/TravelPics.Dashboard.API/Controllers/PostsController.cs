@@ -82,12 +82,15 @@ namespace TravelPics.Dashboard.API.Controllers
                 Payload = "Like",
                 NotificationType = Domains.Enums.NotificationTypeEnum.InAppNotification,
                 Receiver = postDto.User,
-                Sender = new Abstractions.DTOs.Users.BasicUserInfoDTO()
+                Sender = new Abstractions.DTOs.Users.UserPostInfoDTO()
                 {
                     FirstName = sender.FirstName,
                     LastName = sender.LastName,
-                    Id = userId
-                }
+                    Id = userId,
+                    ProfileImage = sender.ProfileImage,
+                    CreatedOn = sender.CreatedOn
+                },
+                PostDescription = postDto.Description,
             };
 
             return notification;

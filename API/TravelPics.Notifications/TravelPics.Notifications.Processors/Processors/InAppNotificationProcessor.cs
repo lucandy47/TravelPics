@@ -42,10 +42,10 @@ namespace TravelPics.Notifications.Processors.Processors
             switch (notificationLog.Payload)
             {
                 case NotificationPayloadType.Like:
-                    subject = $"{notificationLog.Sender.FirstName} {notificationLog.Sender.LastName} liked your post.";
+                    subject = $"{notificationLog.Sender.FirstName} {notificationLog.Sender.LastName} liked your post - \"{notificationLog.PostDescription}\".";
                     break;
                 case NotificationPayloadType.Comment:
-                    subject = $"{notificationLog.Sender.FirstName} {notificationLog.Sender.LastName} commented your post.";
+                    subject = $"{notificationLog.Sender.FirstName} {notificationLog.Sender.LastName} commented your post - \"{notificationLog.PostDescription}\".";
                     break;
                 default:
                     break;

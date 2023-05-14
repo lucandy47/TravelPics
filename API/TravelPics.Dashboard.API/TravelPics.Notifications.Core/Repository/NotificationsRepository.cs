@@ -68,7 +68,9 @@ namespace TravelPics.Notifications.Core.Repository
                 .Include(ian => ian.NotificationLog)
                     .ThenInclude(nl => nl.Status)
                 .Where(ian => ian.NotificationLog.Receiver.Id == userId)
+                .OrderByDescending(ian => ian.GeneratedOn)
                 .ToListAsync();
+
 
             return inAppNotifications;
         }

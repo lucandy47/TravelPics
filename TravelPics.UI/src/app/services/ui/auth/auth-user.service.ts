@@ -12,6 +12,7 @@ import { User } from '../../api/dtos/user';
 import { DocumentHelper } from 'src/app/shared/helpers/documentHelper';
 import { DomSanitizer } from '@angular/platform-browser';
 import { InAppNotificationsService } from '../notifications/in-app-notifications.service';
+import { InAppNotification } from '../../api/dtos/notification';
 
 const ACCESS_TOKEN_KEY: string = 'TRAVELPICS-ACCESS-TOKEN';
 const EXPIRES_ON_KEY: string = 'TRAVELPICS-EXPIRES-ON';
@@ -27,8 +28,6 @@ export class AuthUserService {
   );
   public loggedIn = this.loggedIn$.asObservable();
   private jwtHelper = new JwtHelperService();
-
-  private intervalTimer: any;
 
   constructor(
     private authService: AuthService,
@@ -78,7 +77,9 @@ export class AuthUserService {
 
     this.loggedIn$.next(true);
 
-    this.inAppNotificationService.startNotificationTimer(this.userInfo.userId);
+    if(this.userInfo.userId > 0){
+      this.inAppNotificationService.startNotificationTimer(this.userInfo.userId);
+    }
   }
 
   private setAuthToLocalStorage(authorization: UserToken): void {

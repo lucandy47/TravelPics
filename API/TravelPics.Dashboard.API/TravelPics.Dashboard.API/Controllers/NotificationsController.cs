@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TravelPics.Abstractions.Interfaces;
+using TravelPics.Domains.Entities;
 
 namespace TravelPics.Dashboard.API.Controllers
 {
@@ -8,9 +9,12 @@ namespace TravelPics.Dashboard.API.Controllers
     public class NotificationsController : ControllerBase
     {
         private readonly INotificationsService _notificationsService;
-        public NotificationsController(INotificationsService notificationsService)
+        private readonly IUsersService _usersService;
+
+        public NotificationsController(INotificationsService notificationsService, IUsersService usersService)
         {
             _notificationsService = notificationsService;
+            _usersService = usersService;
         }
 
         [HttpGet]

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AuthUserService } from '../auth/auth-user.service';
-import { UserInfo } from '../auth/user-info';
 import { NotificationService } from '../../api/notification.service';
 import { InAppNotification } from '../../api/dtos/notification';
 import { BehaviorSubject } from 'rxjs';
@@ -38,7 +37,7 @@ export class InAppNotificationsService {
     this.getLoggedInUserNotifications(loggedInUserId);
     this.intervalTimer = setInterval(() => {
       this.getLoggedInUserNotifications(loggedInUserId);
-    }, 30000); 
+    }, 10000); 
   }
 
   public stopNotificationTimer(): void {
