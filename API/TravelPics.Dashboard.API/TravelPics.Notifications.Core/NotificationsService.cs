@@ -31,9 +31,11 @@ namespace TravelPics.Notifications.Core
             {
                 var notif = notifications.FirstOrDefault(n => n.Id == inAppNotif.Id);
 
-                if (!notif.NotificationLog.SenderId.HasValue) continue;
+                if (notif == null || !notif.NotificationLog.SenderId.HasValue) continue;
 
                 var sender = await _usersService.GetUserById(notif.NotificationLog.SenderId.Value);
+
+                if (sender == null) continue;
 
                 inAppNotif.NotificationLog.Sender = new Abstractions.DTOs.Users.UserPostInfoDTO()
                 {

@@ -1,5 +1,5 @@
-<travelpics-loader class="mt-12" [isLoading]="isLoading" [loadingMessage]="'Loading'"></travelpics-loader>
-<div class="col-12 md:col-12 mb-4">
+<travelpics-loader class="mt-12" [isLoading]="isLoading" [loadingMessage]="'Please wait...'"></travelpics-loader>
+<div class="col-12 md:col-12 mb-4" [ngClass]="isLoading ? 'hidden' : ''">
     <div class="new-post flex flex-column">
         <div class="post-header flex align-items-center justify-content-center">
             Create a New Post
@@ -13,7 +13,7 @@
             </div>
             <form [formGroup]="newPostForm" (ngSubmit)="createPost()" class="form-section flex flex-column">
                 <div class="field">
-                    <textarea class="inputfield w-12 h-2rem description-area" placeholder="Describe your experience..." pInputTextarea formControlName="description"></textarea>
+                    <textarea class="inputfield w-12 h-3rem description-area" placeholder="Describe your experience..." pInputTextarea formControlName="description"></textarea>
                 </div>
                 <div [ngClass]="selectedFiles.length === 0 ? 'field w-10' : 'field w-12'">
                     <p-fileUpload class="col-12 md:col-12" [previewWidth]="50" (onSelect)="selectFiles($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000" [showUploadButton]="false" [showCancelButton]="true" (onRemove)="removeSelectedFile($event)" (onClear)="removeAllFiles()" [cancelLabel]="'Clear'"

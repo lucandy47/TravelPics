@@ -83,12 +83,12 @@ export class NewPostComponent implements OnInit, OnDestroy {
         });
       });
     });
-    this.loggedInUser = this._authUserService.loggedInUser;
-    this.isLoading = true;
-     
+    
+    this.loggedInUser = this._authUserService.loggedInUser;     
     if(!!this.loggedInUser && !!this.loggedInUser.userId){
       this.userService.getUserInfo(this.loggedInUser.userId).subscribe({
         next: (user: User) =>{
+          console.log(user);
           if(!!user.profileImage){
             this.loggedInUser!.profileImageSrc = this.imageHelperService.getSanitizedBlobUrlFromBase64(user.profileImage.content, user.profileImage.fileName);
           }
