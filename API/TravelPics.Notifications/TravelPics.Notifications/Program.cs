@@ -11,6 +11,12 @@ using Microsoft.EntityFrameworkCore;
 using TravelPics.Domains.DataAccess;
 using Microsoft.AspNetCore.Hosting;
 using TravelPics.Notifications.Core.Mapper.Profiles;
+using TravelPics.Users.Repository;
+using TravelPics.Users;
+using TravelPics.Documents.Repositories;
+using TravelPics.Documents;
+using Microsoft.Extensions.Configuration;
+using TravelPics.Documents.Configs;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration((builder) =>
@@ -42,11 +48,17 @@ IHost host = Host.CreateDefaultBuilder(args)
         services.AddTransient<INotificationsRepository, NotificationsRepository>();
         services.AddTransient<INotificationsService, NotificationsService>();
 
+        services.AddTransient<IUsersRepository, UsersRepository>();
+        services.AddTransient<IUsersService, UsersService>();
+
+        services.AddTransient<IDocumentsRepository, DocumentsRepository>();
+        services.AddTransient<IDocumentsService, DocumentsService>();
+
         services.AddOptions<BlobContainerConfig>()
-        .Configure(options =>
-        {
-            options.StorageConnectionString = configRoute.GetValue<string>("ConnectionStrings:BlobStorage");
-        }).ValidateDataAnnotations();
+            .Configure(options =>
+            {
+                options.StorageConnectionString = configRoute.GetValue<string>("ConnectionStrings:BlobStorage");
+            }).ValidateDataAnnotations();
 
         services.AddOptions<ConsumerConfiguration>()
             .Configure((options) =>

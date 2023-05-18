@@ -19,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\TravelPics.Dashboard.API\TravelPics.Documents\TravelPics.Documents.csproj" />
     <ProjectReference Include="..\..\TravelPics.Dashboard.API\TravelPics.Notifications.Core\TravelPics.Notifications.Core.csproj" />
+    <ProjectReference Include="..\..\TravelPics.Dashboard.API\TravelPics.Users\TravelPics.Users.csproj" />
     <ProjectReference Include="..\..\TravelPics.MessageClient\TravelPics.MessageClient.csproj" />
     <ProjectReference Include="..\TravelPics.Notifications.Processors\TravelPics.Notifications.Processors.csproj" />
   </ItemGroup>

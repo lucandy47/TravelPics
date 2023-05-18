@@ -56,6 +56,7 @@ namespace TravelPics.Posts.Repository
                 .Include(p => p.Location)
                 .Include(p => p.Photos)
                 .Include(p => p.Likes.Where(l => !l.IsDeleted))
+                    .ThenInclude(l => l.User)
                 .Where(p => p.PublishedOn >= currentDay.AddDays(-7))
                 .OrderByDescending(p => p.PublishedOn)
                 .ToListAsync();
@@ -72,6 +73,7 @@ namespace TravelPics.Posts.Repository
                 .Include(p => p.Location)
                 .Include(p => p.Photos)
                 .Include(p => p.Likes.Where(l => !l.IsDeleted))
+                    .ThenInclude(l => l.User)
                 .FirstOrDefaultAsync(p => p.Id == postId);
 
             if (post == null) throw new Exception($"No post found with id: {postId}");
@@ -86,6 +88,7 @@ namespace TravelPics.Posts.Repository
                 .Include(p => p.Location)
                 .Include(p => p.Photos)
                 .Include(p => p.Likes.Where(l => !l.IsDeleted))
+                    .ThenInclude(l => l.User)
                 .Where(p => p.CreatedById == userId && !p.IsDeleted)
                 .OrderByDescending(p => p.PublishedOn)
                 .ToListAsync();

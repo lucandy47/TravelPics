@@ -1,11 +1,8 @@
-<p-menubar [model]="items" class="main-menu">
+<p-menubar [model]="items" class="main-menu" >
     <ng-template pTemplate="start" style="height:70px;">
         <img src="../../../assets/travelpics-logo.png" class="brand-logo" alt="TravelPics logo">
         <input type="text" pInputText placeholder="Search">
     </ng-template>
-
-    <input type="text" pInputText placeholder="Search">
-
 
     <ng-template pTemplate="end" style="height:70px;">
         <div *ngIf="isUserLoggedIn">
@@ -21,7 +18,7 @@
 
 <p-overlayPanel  #notificationPanel [showCloseIcon]="true" (onShow)="readNotifications()">
     <ng-template pTemplate="content">
-        <travelpics-loader class="mt-12" [isLoading]="newNotifications.length == 0" [loadingMessage]="'Retrieving notifications'"></travelpics-loader>
+        <travelpics-loader class="mt-4 mb-4" [isLoading]="newNotifications.length == 0" [loadingMessage]="'Retrieving notifications'"></travelpics-loader>
         <div *ngFor="let notif of newNotifications" class="w-12 flex align-items-center justify-content-start mt-0 mb-0" 
             [ngClass]="isNotificationRead(notif) ? 'notif-read' : 'notif-unread'" style="border-bottom: 1px solid var(--surface-300);">
             <div class="mb-2 mr-1 ml-4 mt-2 flex align-items-center justify-content-start">

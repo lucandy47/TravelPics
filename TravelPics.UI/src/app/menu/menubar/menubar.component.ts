@@ -18,7 +18,6 @@ export class MenubarComponent implements OnInit  {
   @ViewChild('notificationPanel') notificationPanel!: OverlayPanel;
 
   public items!: MenuItem[];
-  public user!: MenuItem[];
   public userIcon!: string;
 
   public isUserLoggedIn!: boolean;
@@ -45,6 +44,9 @@ export class MenubarComponent implements OnInit  {
     this._inAppNotificationService.notifications.subscribe({
       next: (notifs: InAppNotification[]) =>{
         this.newNotifications = notifs;
+        let receivedNotifs = this.newNotifications.filter(nn => nn.notificationLog.status == NotificationStatusEnum.Received);
+        console.log(receivedNotifs);
+        this.items[0].badge = receivedNotifs.length.toString();
       }
     });
   }
@@ -77,7 +79,7 @@ export class MenubarComponent implements OnInit  {
     });
   }
 
-  private showNotificationPanel(): void {
+  public showNotificationPanel(): void {
     if (this.notificationPanel) {
       this.notificationPanel.toggle(event);
     }
@@ -92,6 +94,7 @@ export class MenubarComponent implements OnInit  {
 
   public readNotifications(): void{
     if(!!this.loggedInUser &&  this.loggedInUser.userId > 0 && this.isReadRequired()){
+      this.items[0].badge = "0";
       this._notificationService.readNotifications(this.loggedInUser.userId).subscribe({
         next: (data: string)=>{
           this.message = data;
