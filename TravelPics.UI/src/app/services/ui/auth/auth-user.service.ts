@@ -8,6 +8,10 @@ import { LoginModel } from '../../auth/login-model';
 import { UserToken } from '../../auth/token';
 import * as moment from 'moment';
 import { InAppNotificationsService } from '../notifications/in-app-notifications.service';
+import { User } from '../../api/dtos/user';
+import { UserService } from '../../api/user.service';
+import { ImageService } from '../helpers/image.service';
+import { DisplayUserInfo } from '../../api/dtos/display-user-info';
 
 const ACCESS_TOKEN_KEY: string = 'TRAVELPICS-ACCESS-TOKEN';
 const EXPIRES_ON_KEY: string = 'TRAVELPICS-EXPIRES-ON';
@@ -24,19 +28,30 @@ export class AuthUserService {
   public loggedIn = this.loggedIn$.asObservable();
   private jwtHelper = new JwtHelperService();
 
+  public displayUserInfo$: BehaviorSubject<DisplayUserInfo | undefined> = new BehaviorSubject<DisplayUserInfo | undefined>(undefined);
+  public displayUserInfo = this.displayUserInfo$.asObservable();
+
   constructor(
     private authService: AuthService,
     private router: Router,
-    private inAppNotificationService: InAppNotificationsService
+    private inAppNotificationService: InAppNotificationsService,
+    public imageHelperService: ImageService,
+    private userService: UserService,
   ) { }
 
-  logout(): void{
+  logout(): void {
     this.userInfo = null;
     this.loggedIn$.next(false);
+    this.displayUserInfo$.next(undefined);
     this.clearAuthFromLocalStorage();
     this.router.navigate(['auth/login']);
     this.inAppNotificationService.stopNotificationTimer();
+  
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
   }
+  
 
   public login(loginModel: LoginModel): Observable<boolean> {
     return new Observable((observer: Observer<boolean>) => {
@@ -69,6 +84,23 @@ export class AuthUserService {
     this.userInfo.name = decodedToken.fullName;
     this.userInfo.userId = decodedToken.Id;
     this.userInfo.email = decodedToken.email;
+    if(!!this.loggedInUser && !!this.loggedInUser.userId){
+      this.userService.getUserInfo(this.loggedInUser.userId).subscribe({
+        next: (user: User) =>{
+          console.log(user);
+          if(!!user.profileImage){
+            this.userInfo!.profileImageSrc = this.imageHelperService.getSanitizedBlobUrlFromBase64(user.profileImage.content, user.profileImage.fileName);
+            this.displayUserInfo$.next(<DisplayUserInfo>{
+              name: this.userInfo!.name,
+              profileImageSrc: this.userInfo!.profileImageSrc
+            });
+          }
+        },
+        error: (error: any)=>{
+        }
+      });
+    }
+
 
     this.loggedIn$.next(true);
 

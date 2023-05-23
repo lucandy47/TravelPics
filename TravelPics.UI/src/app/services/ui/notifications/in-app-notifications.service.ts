@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AuthUserService } from '../auth/auth-user.service';
 import { NotificationService } from '../../api/notification.service';
 import { InAppNotification } from '../../api/dtos/notification';
 import { BehaviorSubject } from 'rxjs';
@@ -22,7 +21,6 @@ export class InAppNotificationsService {
     if(loggedInUserId > 0){
       this._notificationService.getLoggedInNotifications(loggedInUserId).subscribe({
         next: (notifs: InAppNotification[]) => {
-          console.log(notifs);
           this.notifications$.next(notifs);
         },
         error: (error: any) =>{
@@ -34,11 +32,10 @@ export class InAppNotificationsService {
 
   public startNotificationTimer(loggedInUserId: number): void {
     console.log("Start notifications.");
-    console.log(loggedInUserId);
     this.getLoggedInUserNotifications(loggedInUserId);
     this.intervalTimer = setInterval(() => {
       this.getLoggedInUserNotifications(loggedInUserId);
-    }, 50000); 
+    }, 25000); 
   }
 
   public stopNotificationTimer(): void {

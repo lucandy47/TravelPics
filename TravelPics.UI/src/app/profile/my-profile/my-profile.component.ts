@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { DisplayUserInfo } from 'src/app/services/api/dtos/display-user-info';
 import { PostImage } from 'src/app/services/api/dtos/post-image';
 import { User } from 'src/app/services/api/dtos/user';
 import { UserService } from 'src/app/services/api/user.service';
@@ -102,6 +103,8 @@ export class MyProfileComponent implements OnInit{
     formData.append('LastName', this.userForm.controls['lastName']!.value);
     formData.append('Phone', this.userForm.controls['phone']!.value);
   
+    const name = this.userForm.controls['firstName']!.value+", "+this.userForm.controls['lastName']!.value;
+
     for (let i = 0; i < this.selectedFiles.length; i++) {
       formData.append(`ProfileImage[${i}]`, this.selectedFiles[i]);
     }
@@ -112,6 +115,10 @@ export class MyProfileComponent implements OnInit{
           severity: 'success',
           summary: 'Update User',
           detail: 'Your information have been successfully saved!',
+        });
+        this._authUserService.displayUserInfo$.next(<DisplayUserInfo>{
+          name:name,
+          profileImageSrc: this.profileImage.itemImageSrc
         });
         this.router.navigate(['/navigation/home']);
       },

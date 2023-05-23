@@ -1,13 +1,16 @@
 <p-menubar [model]="items" class="main-menu" >
-    <ng-template pTemplate="start" style="height:70px;">
+    <ng-template pTemplate="start" style="height:70px;" class="mr-8">
         <img src="../../../assets/travelpics-logo.png" class="brand-logo" alt="TravelPics logo">
         <input type="text" pInputText placeholder="Search">
     </ng-template>
 
     <ng-template pTemplate="end" style="height:70px;">
-        <div *ngIf="isUserLoggedIn">
-            <span style="margin-right:5px;"><i class="pi pi-sign-out"></i></span>
-            <a (click)="logout()">Logout</a>
+        <div *ngIf="isUserLoggedIn && !!displayUserInfo && !loadingDisplay">
+            <div class="flex inline-block">
+                <img *ngIf="displayUserInfo.profileImageSrc == ''" class="border-circle mt-2" src="../../../assets/images/avatar.png" alt="avatar" class="border-circle" style="width:50px; height:50px;">
+                <img *ngIf="displayUserInfo.profileImageSrc != ''" [src]="displayUserInfo.profileImageSrc" alt="avatar" class="border-circle mt-2" style="width:50px; height:50px;">
+                <p class="ml-2 text-lg">{{displayUserInfo.name}}</p>
+            </div>
         </div>
         <div *ngIf="!isUserLoggedIn">
             <span style="margin-right:5px;"><i class="pi pi-sign-in"></i></span>

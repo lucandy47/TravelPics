@@ -3,6 +3,15 @@
         <p><b>Menu Navigation</b></p>
         <p-divider></p-divider>
         <travelpics-side-menu [baseRoute]="baseRoute"></travelpics-side-menu>
+        <div *ngIf="isUserLoggedIn" class="logout-area">
+            <p-divider></p-divider>
+            <div class="logout-action">
+                <a (click)="logout()">
+                    <span style="margin-right:5px;"><i class="pi pi-sign-out"></i></span>
+                    Logout
+                </a>
+            </div>
+        </div>
     </div>
     <div class="content-area col-offset-2 col-10 md:col-10">
         <router-outlet></router-outlet>

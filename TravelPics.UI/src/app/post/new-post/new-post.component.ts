@@ -11,8 +11,6 @@ import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { NewPost } from 'src/app/services/api/dtos/new-post';
 import { ImageHelper } from 'src/app/shared/helpers/imageHelper';
-import { DocumentHelper } from 'src/app/shared/helpers/documentHelper';
-import { DomSanitizer } from '@angular/platform-browser';
 import { UserService } from 'src/app/services/api/user.service';
 import { User } from 'src/app/services/api/dtos/user';
 import { ImageService } from 'src/app/services/ui/helpers/image.service';
@@ -88,7 +86,6 @@ export class NewPostComponent implements OnInit, OnDestroy {
     if(!!this.loggedInUser && !!this.loggedInUser.userId){
       this.userService.getUserInfo(this.loggedInUser.userId).subscribe({
         next: (user: User) =>{
-          console.log(user);
           if(!!user.profileImage){
             this.loggedInUser!.profileImageSrc = this.imageHelperService.getSanitizedBlobUrlFromBase64(user.profileImage.content, user.profileImage.fileName);
           }
