@@ -39,3 +39,11 @@
 .notif-unread{
     background-color: var(--surface-200);
 }
+
+::ng-deep .p-autocomplete-items{
+    .p-autocomplete-item{
+        .label-item{
+            cursor:pointer;
+        }
+    }
+}

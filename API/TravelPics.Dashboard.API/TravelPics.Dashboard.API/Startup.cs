@@ -23,6 +23,8 @@ using TravelPics.MessageClient;
 using TravelPics.MessageClient.Kafka;
 using TravelPics.MessageClient.Configs;
 using TravelPics.Notifications.Configs;
+using TravelPics.LookupItems.Repository;
+using TravelPics.LookupItems;
 
 namespace TravelPics.Dashboard.API
 {
@@ -59,6 +61,9 @@ namespace TravelPics.Dashboard.API
 
             services.AddScoped<INotificationsRepository, NotificationsRepository>();
             services.AddScoped<INotificationsService, NotificationsService>();
+
+            services.AddScoped<ILookupItemsRepository, LookupItemsRepository>();
+            services.AddScoped<ILookupItemsService, LookupItemsService>();
 
             //services.AddScoped<ILocationRepository, LocationRepository>();
             services.AddScoped<ILocationsService, LocationsService>();

@@ -87,7 +87,6 @@ export class AuthUserService {
     if(!!this.loggedInUser && !!this.loggedInUser.userId){
       this.userService.getUserInfo(this.loggedInUser.userId).subscribe({
         next: (user: User) =>{
-          console.log(user);
           if(!!user.profileImage){
             this.userInfo!.profileImageSrc = this.imageHelperService.getSanitizedBlobUrlFromBase64(user.profileImage.content, user.profileImage.fileName);
             this.displayUserInfo$.next(<DisplayUserInfo>{

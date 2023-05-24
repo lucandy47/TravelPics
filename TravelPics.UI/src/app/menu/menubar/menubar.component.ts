@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthUserService } from 'src/app/services/ui/auth/auth-user.service';
 import { Router } from '@angular/router';
@@ -9,6 +9,9 @@ import { UserInfo } from 'src/app/services/ui/auth/user-info';
 import { NotificationService } from 'src/app/services/api/notification.service';
 import { ImageService } from 'src/app/services/ui/helpers/image.service';
 import { DisplayUserInfo } from 'src/app/services/api/dtos/display-user-info';
+import { AvailableSearchItem } from 'src/app/services/api/dtos/available-search-item';
+import { LookupitemsService } from 'src/app/services/api/lookupitems.service';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'travelpics-menubar',
@@ -17,6 +20,7 @@ import { DisplayUserInfo } from 'src/app/services/api/dtos/display-user-info';
 })
 export class MenubarComponent implements OnInit  {
   @ViewChild('notificationPanel') notificationPanel!: OverlayPanel;
+  // @ViewChild('menubar', { static: true }) menubar!: ElementRef;
 
   constructor(
     private _authUserService: AuthUserService,
@@ -24,6 +28,7 @@ export class MenubarComponent implements OnInit  {
     private _inAppNotificationService: InAppNotificationsService,
     private _notificationService: NotificationService,
     public imageHelperService: ImageService,
+    private _lookupItemsService: LookupitemsService
   ){}
 
   public items!: MenuItem[];
@@ -40,9 +45,14 @@ export class MenubarComponent implements OnInit  {
 
   public loadingDisplay: boolean = true;
 
+  public searchKeyword!: string;
+
+  public results!: AvailableSearchItem[];
+
   ngOnInit(): void {
     this.getLoggedInUser();
     this.getNewNotifications();
+    this.items[0].badge = "0";
   }
 
   private getNewNotifications(): void{
@@ -77,6 +87,7 @@ export class MenubarComponent implements OnInit  {
             icon: 'pi pi-bell',
             visible: this.isUserLoggedIn,
             routerLink: '',
+            badge: "0",
             command: () => {
               this.showNotificationPanel();
             }
@@ -140,4 +151,25 @@ export class MenubarComponent implements OnInit  {
     return this.imageHelperService.getSanitizedBlobUrlFromBase64(base64,fileName);
   }
 
+  public search(event: any){
+    this._lookupItemsService
+      .findLookupItems(event.query)
+      .pipe(debounceTime(500))
+      .subscribe({
+        next: (data: AvailableSearchItem[]) =>{
+          this.results = data;
+        },
+        error: (error)=>{
+          console.log(error);
+        }
+      })
+  }
+
+  public goToResource(resource: AvailableSearchItem): void{
+    console.log(resource);
+  }
+  
+  public onAutoCompleteHide(): void{
+    this.searchKeyword='';
+  }
 }

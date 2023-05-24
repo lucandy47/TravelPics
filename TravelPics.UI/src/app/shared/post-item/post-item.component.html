@@ -24,8 +24,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 md:col-12 mt-2 mb-2">
-            {{post.description}}
+        <div [ngClass]="post.description != 'null' ? 'col-12 md:col-12 mt-2 mb-2' : 'mt-1 col-12 md:col-12'">
+            <span *ngIf="post.description != 'null'">{{post.description}}</span>
         </div>
         <div class="card w-12 border-round-xl"  style="background:black;">
             <div style="padding:15px;">
@@ -33,7 +33,7 @@
                     [responsiveOptions]="responsiveOptions" [showIndicatorsOnItem]="post.photos.length > 1 ? true : false" 
                     [containerStyle]="{'max-height': '300px' }">
                     <ng-template pTemplate="item" let-item>
-                            <img [src]="getImageUrl(item.content, item.fileName)" alt="{{item.fileName}}" style=" max-height:300px; display: block;" />
+                            <img [src]="getImageUrl(item.content, item.fileName)" alt="{{item.fileName}}" style=" max-height:300px; min-height:250px; display: block;" />
                     </ng-template>
                     <ng-template  pTemplate="thumbnail" let-item>
                     <div  class="grid grid-nogutter justify-content-center">
