@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { MessageService } from 'primeng/api';
 import { Post } from 'src/app/services/api/dtos/post';
-import { Image } from 'src/app/services/api/dtos/image';
 import { PostService } from 'src/app/services/api/post.service';
 import { AuthUserService } from 'src/app/services/ui/auth/auth-user.service';
 import { UserInfo } from 'src/app/services/ui/auth/user-info';
-import { DocumentHelper } from 'src/app/shared/helpers/documentHelper';
 import { GaleriaResponsiveOptions } from 'src/app/shared/utils/galeria-options';
 import { ImageService } from 'src/app/services/ui/helpers/image.service';
 

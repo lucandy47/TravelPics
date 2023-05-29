@@ -10,6 +10,8 @@ namespace TravelPics.Posts.Mapper
         {
             CreateMap<PostDTO, Post>();
             CreateMap<Post, PostDTO>();
+
+            CreateMap<Post, MapPostDTO>();
         }
     }
 }

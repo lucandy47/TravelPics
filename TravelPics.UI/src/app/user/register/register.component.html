@@ -48,7 +48,7 @@
         <div class="field">
             <label for="passwordConfirm" class="col-12  required-label">Confirm Password:</label>
             <div class=" col-12 md:col-12 flex block ">
-                <input type="passwordConfirm" id="passwordConfirm" class="inputfield w-12" pInputText formControlName="passwordConfirm">
+                <input type="password" id="passwordConfirm" class="inputfield w-12" pInputText formControlName="passwordConfirm">
                 <ng-container *ngIf="registerForm.controls['password'].value !== registerForm.controls['passwordConfirm'].value && registerForm.controls['passwordConfirm'].touched">
                     <small class="p-error">Passwords don't match.</small>
                 </ng-container>

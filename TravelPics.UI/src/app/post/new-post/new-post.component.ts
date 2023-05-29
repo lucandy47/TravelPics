@@ -72,6 +72,7 @@ export class NewPostComponent implements OnInit, OnDestroy {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
+          console.log(place);
           this.location = {
             name: place.name,
             address: place.formatted_address?.trim(),

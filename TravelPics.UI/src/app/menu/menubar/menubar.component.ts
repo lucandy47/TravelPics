@@ -95,7 +95,7 @@ export class MenubarComponent implements OnInit  {
           {
             label: "Map",
             icon: 'pi pi-map',
-            routerLink: ''
+            routerLink: this.isUserLoggedIn ? 'navigation/map' : 'map'
           },
         ];
       },

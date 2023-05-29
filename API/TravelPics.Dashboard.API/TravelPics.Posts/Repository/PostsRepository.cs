@@ -46,6 +46,18 @@ namespace TravelPics.Posts.Repository
             }
         }
 
+        public async Task<IEnumerable<Post>> GetAllPosts()
+        {
+            var posts = await _dbContext.Posts
+                .Include(p => p.User)
+                    .ThenInclude(u => u.ProfileImage)
+                .Include(p => p.Location)
+                .Include(p => p.Photos)
+                .ToListAsync();
+
+            return posts;
+        }
+
         public async Task<IEnumerable<Post>> GetLatestPosts()
         {
             var currentDay = DateTimeOffset.Now.Date;

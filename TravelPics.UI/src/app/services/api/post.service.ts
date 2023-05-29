@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Post } from './dtos/post';
 import { LikeModel } from './dtos/like-model';
+import { MapPost } from './dtos/map-post';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,9 @@ export class PostService {
 
   public dislikePost(likeModel: LikeModel): Observable<string>{
     return this.httpClient.post<string>(`${this.apiUrl}/dislike`, likeModel);
+  }
+
+  public getMapPosts():Observable<MapPost[]>{
+    return this.httpClient.get<MapPost[]>(`${this.apiUrl}/map`);
   }
 }

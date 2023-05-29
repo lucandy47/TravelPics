@@ -34,6 +34,21 @@ namespace TravelPics.Dashboard.API.Controllers
             _producer = producer;
             _usersService = usersService;
         }
+        [HttpGet]
+        [Route("map")]
+        public async Task<IActionResult> GetMapPosts()
+        {
+            try
+            {
+                var posts = await _postsService.GetMapPosts();
+
+                return Ok(posts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpPost]
         [Route("like")]
