@@ -45,13 +45,13 @@
         </div>
         <div class="col-12 md:col-12 mt-1 mb-1 flex align-items-center justify-content-center">
             <div *ngIf="!isLiked" class="flex flex-column">
-                <div class="flex align-items-center justify-content-center">
-                    <a (click)="likePost()" (mouseover)="isHovered = true" (mouseleave)="isHovered = false">
+                <div class="flex align-items-center justify-content-center" >
+                    <p-button  (click)="likePost()" (mouseover)="isHovered = true" (mouseleave)="isHovered = false" styleClass="p-button-link">
                         <i *ngIf="isHovered" class="pi pi-heart-fill post-liked" pTooltip="Like" tooltipPosition="top">
                         </i>
                         <i *ngIf="!isHovered"class="pi pi-heart post-not-liked" pTooltip="Like" tooltipPosition="top">
                         </i>
-                    </a>
+                    </p-button>
                 </div>
                 <div class="flex align-items-center justify-content-center mt-1" style="margin-bottom: 0px;">
                     <span *ngIf="post.likes.length + likesCount == 0">
@@ -64,12 +64,12 @@
             </div>
             <div *ngIf="isLiked" class="flex flex-column">
                 <div class="flex align-items-center justify-content-center">
-                    <a (click)="dislikePost()" (mouseover)="isHovered = true" (mouseleave)="isHovered = false">
+                    <p-button [disabled]="likeDisabled" (click)="!likeDisabled && dislikePost()" (mouseover)="isHovered = true" (mouseleave)="isHovered = false" styleClass="p-button-link">
                         <i *ngIf="!isHovered" pTooltip="Dislike"  tooltipPosition="top" class="pi pi-heart-fill post-liked">
                         </i>
                         <i *ngIf="isHovered" pTooltip="Dislike"  tooltipPosition="top" class="pi pi-heart post-not-liked">
                         </i>
-                    </a>
+                    </p-button>
                 </div>
                 <div class="flex align-items-center justify-content-center mt-1" style="margin-bottom: 0px;">
                     <span *ngIf="post.likes.length - 1 + likesCount == 0">

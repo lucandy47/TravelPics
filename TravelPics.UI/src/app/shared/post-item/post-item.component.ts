@@ -30,6 +30,8 @@ export class PostItemComponent implements OnInit {
   public isHovered: boolean = false;
   public likesCount: number = 0;
 
+  public likeDisabled: boolean = false;
+
   ngOnInit(): void {
     if(this.post.likes.length > 0 && this.post.likes.some(l => l.userId == this.loggedInUser.userId)){
       this.isLiked = true;
@@ -42,11 +44,13 @@ export class PostItemComponent implements OnInit {
       id: 0,
       userId: this.loggedInUser.userId,
       postId: this.post.id
-    }
+    };
+    this.isLiked = true;
+    this.likesCount = this.likesCount + 1;
+    this.likeDisabled = true;
     this._postService.likePost(like).subscribe({
       next: (data:any)=>{
-        this.isLiked = true;
-        this.likesCount = this.likesCount + 1;
+        this.likeDisabled = false;
       },
       error: (error:any)=>{
         this.messageService.add({
@@ -63,7 +67,8 @@ export class PostItemComponent implements OnInit {
       id: 0,
       userId: this.loggedInUser.userId,
       postId: this.post.id
-    }
+    };
+    
     this._postService.dislikePost(like).subscribe({
       next: (data:any)=>{
         this.isLiked = false;
