@@ -53,6 +53,10 @@ namespace TravelPics.Posts.Repository
                     .ThenInclude(u => u.ProfileImage)
                 .Include(p => p.Location)
                 .Include(p => p.Photos)
+                .Include(p => p.Likes.Where(l => !l.IsDeleted))
+                    .ThenInclude(l => l.User)
+                .Where(p => !p.IsDeleted)
+                .OrderByDescending(p => p.PublishedOn)
                 .ToListAsync();
 
             return posts;

@@ -10,18 +10,18 @@
                         <p-galleria [value]="marker.photos" [showItemNavigatorsOnHover]="true" [showItemNavigators]="marker.photos.length > 1 ? true : false" [showThumbnails]="false"  
                             [containerStyle]="{'max-height': '400px' }">
                             <ng-template pTemplate="item" let-item>
-                                    <img [src]="getImageUrl(item.content, item.fileName)" alt="{{item.fileName}}" style="width: 200px; display: block; height:auto;" />
+                                    <img class="cursor-pointer" (click)="navigateToPosts(marker.posts)" [src]="getImageUrl(item.content, item.fileName)" alt="{{item.fileName}}" style="width: 200px; display: block; height:auto;" />
                             </ng-template>
                             <ng-template  pTemplate="thumbnail" let-item>
                             <div  class="grid grid-nogutter justify-content-center">
-                                <img [src]="getImageUrl(item.content, item.fileName)" alt="{{item.fileName}}" style="width: 200px; display: block; height:auto;" />
+                                <img class="cursor-pointer" (click)="navigateToPosts(marker.posts)" [src]="getImageUrl(item.content, item.fileName)" alt="{{item.fileName}}" style="width: 200px; display: block; height:auto;" />
                             </div>
                             </ng-template>
                         </p-galleria>
                         <div class="badge">{{marker.photos.length}}</div>
                     </div>
                     <div class="description mt-1">
-                        <span><i>Total posts: </i><b>{{marker.posts.length}}</b></span>
+                        <span><i>Total posts: </i><b class="cursor-pointer" (click)="navigateToPosts(marker.posts)">{{marker.posts.length}}</b></span>
                     </div>
                 </div>
             </agm-info-window>

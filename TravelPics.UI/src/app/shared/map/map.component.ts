@@ -7,6 +7,8 @@ import { PostsCluster } from 'src/app/services/ui/DBSCAN/post-cluster';
 import { CustomMapMarker } from '../models/custom-map-marker';
 import { Image } from "../../services/api/dtos/image";
 import { ImageService } from 'src/app/services/ui/helpers/image.service';
+import { Router } from '@angular/router';
+import { MapService } from 'src/app/services/ui/map/map.service';
 
 @Component({
   selector: 'travelpics-map',
@@ -19,7 +21,9 @@ export class MapComponent implements OnInit{
     private _postService: PostService,
     private messageService: MessageService,
     public algoService: AlgoService,
-    public imageHelperService: ImageService
+    public imageHelperService: ImageService,
+    private router: Router,
+    private _mapService: MapService
   ){}
 
   ngOnInit(): void {
@@ -55,7 +59,6 @@ export class MapComponent implements OnInit{
   
   private updateMap(zoomLevel: number): void{
     this.clusters = this.algoService.getPostsClustered(zoomLevel, this.mapPosts);
-    console.log(this.clusters);
     this.markers = []; 
 
     for(let c of this.clusters){
@@ -113,4 +116,8 @@ export class MapComponent implements OnInit{
   //   });
   // }
 
+  public navigateToPosts(posts: MapPost[]):void{
+    this._mapService.setPosts(posts);
+    this.router.navigate(['navigation/posts/map']);
+  }
 }

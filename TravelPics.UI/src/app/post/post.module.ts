@@ -8,6 +8,7 @@ import { PreviewPostComponent } from './preview-post/preview-post.component';
 import { MyPostsComponent } from './my-posts/my-posts.component';
 import { UserPostsComponent } from './user-posts/user-posts.component';
 import { LocationPostsComponent } from './location-posts/location-posts.component';
+import { MapPostsComponent } from './map-posts/map-posts.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { LocationPostsComponent } from './location-posts/location-posts.componen
     PreviewPostComponent,
     MyPostsComponent,
     UserPostsComponent,
-    LocationPostsComponent
+    LocationPostsComponent,
+    MapPostsComponent
   ],
   imports: [
     CommonModule,

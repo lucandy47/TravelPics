@@ -5,6 +5,7 @@ import { AuthGuard } from '../services/ui/auth/guards/auth.guard';
 import { MyPostsComponent } from './my-posts/my-posts.component';
 import { UserPostsComponent } from './user-posts/user-posts.component';
 import { LocationPostsComponent } from './location-posts/location-posts.component';
+import { MapPostsComponent } from './map-posts/map-posts.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,11 @@ const routes: Routes = [
     path:'my',
     canActivate: [AuthGuard],
     component: MyPostsComponent,
+  },
+  {
+    path:'map',
+    canActivate: [AuthGuard],
+    component: MapPostsComponent,
   },
   {
     path:'location',

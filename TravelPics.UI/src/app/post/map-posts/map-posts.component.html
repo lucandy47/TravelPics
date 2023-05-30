@@ -1,0 +1,8 @@
+<travelpics-loader class="mt-12" [isLoading]="isLoading" [loadingMessage]="'Loading Map Posts'"></travelpics-loader>
+<div class="col-12 md:col-12 flex flex-column mt-4 mb-4">
+    <div *ngFor="let post of posts">
+        <travelpics-post-item [getImageUrl]="getImageUrl" [loggedInUser]="loggedInUser" [post]="post" [responsiveOptions]="responsiveOptions"></travelpics-post-item>
+    </div>
+</div>
+
+  
