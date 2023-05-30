@@ -3,33 +3,7 @@
     margin-right: 40px;
     width: $brandLogoWidth;
     margin-left: 10px;
-}
-
-.user {
-    display: flex;
-    width: $userMenuWidth;
-    height: $menuBarHeight;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 10px;
-    cursor: pointer;
-    .username {
-        height: $menuBarHeight;
-        display: flex;
-        justify-content: space-around;
-        flex-direction: column;
-        align-items: center;
-        margin-right: 8px;
-        margin-bottom: 5px;
-    }
-    .pi {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        height: $menuBarHeight;
-        margin-left: 5px;
-    }
+    cursor:pointer;
 }
 
 .notif-read{

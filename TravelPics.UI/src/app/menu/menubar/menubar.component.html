@@ -1,8 +1,7 @@
 <p-menubar [model]="items" class="main-menu" >
     <ng-template pTemplate="start" style="height:70px;" class="mr-8">
-        <img src="../../../assets/travelpics-logo.png" class="brand-logo" alt="TravelPics logo">
-        <!-- <input type="text" pInputText placeholder="Search"> -->
-        <p-autoComplete [(ngModel)]="searchKeyword" [suggestions]="results" (completeMethod)="search($event)" 
+        <img (click)="goToMainPage()" src="../../../assets/travelpics-logo.png" class="brand-logo" alt="TravelPics logo">
+        <p-autoComplete [disabled]="!isUserLoggedIn" [(ngModel)]="searchKeyword" [suggestions]="results" (completeMethod)="search($event)" 
             [minLength]="3" placeholder="Search" [showEmptyMessage]="true" (onHide)="onAutoCompleteHide()" (onSelect)="goToResource($event)">
             <ng-template let-result pTemplate="item">
                 <label class="label-item">

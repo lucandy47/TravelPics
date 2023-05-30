@@ -66,6 +66,10 @@ export class MenubarComponent implements OnInit  {
     });
   }
 
+  public goToMainPage(): void{
+    this.router.navigate(['']);
+  }
+
   private getLoggedInUser(): void{
     this.loggedInUser = this._authUserService.loggedInUser;
     this._authUserService.displayUserInfo.subscribe({
