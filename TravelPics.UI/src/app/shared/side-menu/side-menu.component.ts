@@ -14,11 +14,9 @@ export class SideMenuComponent implements OnInit {
   ) {
 
   }
-
-
+  
   menuItems: SideMenuItem[] = [];
   expanded: boolean = false;
-
 
   ngOnInit(): void {
     this.menuItems = [

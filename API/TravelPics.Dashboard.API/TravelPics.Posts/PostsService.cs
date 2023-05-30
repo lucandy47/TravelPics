@@ -37,6 +37,17 @@ namespace TravelPics.Posts
             return postsDTO;
         }
 
+        public async Task<IEnumerable<PostDTO>> GetLocationPosts(string locationName)
+        {
+            var posts = await _postsRepository.GetLocationPosts(locationName);
+
+            var postsDTO = _mapper.Map<List<PostDTO>>(posts);
+
+            if (postsDTO == null) throw new Exception($"Could not get location posts.");
+
+            return postsDTO;
+        }
+
         public async Task<IEnumerable<MapPostDTO>> GetMapPosts()
         {
             var posts = await _postsRepository.GetAllPosts();

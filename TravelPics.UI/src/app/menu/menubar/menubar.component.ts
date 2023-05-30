@@ -12,6 +12,7 @@ import { DisplayUserInfo } from 'src/app/services/api/dtos/display-user-info';
 import { AvailableSearchItem } from 'src/app/services/api/dtos/available-search-item';
 import { LookupitemsService } from 'src/app/services/api/lookupitems.service';
 import { debounceTime } from 'rxjs';
+import { EntityTypeEnum } from 'src/app/services/ui/enums/entity-type.enum';
 
 @Component({
   selector: 'travelpics-menubar',
@@ -28,7 +29,7 @@ export class MenubarComponent implements OnInit  {
     private _inAppNotificationService: InAppNotificationsService,
     private _notificationService: NotificationService,
     public imageHelperService: ImageService,
-    private _lookupItemsService: LookupitemsService
+    private _lookupItemsService: LookupitemsService,
   ){}
 
   public items!: MenuItem[];
@@ -167,6 +168,14 @@ export class MenubarComponent implements OnInit  {
 
   public goToResource(resource: AvailableSearchItem): void{
     console.log(resource);
+    switch(resource.entityTypeId){
+      case EntityTypeEnum.USER:
+        this.router.navigate([`navigation/posts/${resource.id}`]);
+        break;
+      case EntityTypeEnum.LOCATION:
+        this.router.navigate(['navigation/posts/location'], { queryParams: { locationName: resource.name } });
+        break;
+      }
   }
   
   public onAutoCompleteHide(): void{

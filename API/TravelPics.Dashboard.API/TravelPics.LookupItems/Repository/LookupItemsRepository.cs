@@ -19,13 +19,13 @@ namespace TravelPics.LookupItems.Repository
             var addedLocationNames = new HashSet<string>();
 
             var users = await _dbContext.Users
-                .Where(u => u.FirstName.Contains(searchKeyword) ||
-                            u.LastName.Contains(searchKeyword) ||
-                            u.Email.Contains(searchKeyword))
+                .Where(u => u.FirstName.ToLower().Contains(searchKeyword.ToLower()) ||
+                            u.LastName.ToLower().Contains(searchKeyword.ToLower()) ||
+                            u.Email.ToLower().Contains(searchKeyword.ToLower()))
                 .ToListAsync();
 
             var locations = await _dbContext.Locations
-                .Where(l => l.Name.Contains(searchKeyword))
+                .Where(l => l.Address.ToLower().Contains(searchKeyword.ToLower()))
                 .ToListAsync();
 
             if (users.Any())
@@ -42,16 +42,16 @@ namespace TravelPics.LookupItems.Repository
             {
                 foreach (var location in locations)
                 {
-                    if (!addedLocationNames.Contains(location.Name))
+                    if (!addedLocationNames.Contains(location.Address))
                     {
                         lookupItems.Add(new LookupItemModel
                         {
                             Id = location.Id,
-                            Name = location.Name ?? "",
+                            Name = location.Address ?? "",
                             EntityTypeId = Abstractions.Enums.LookupItemTypeEnum.LOCATION
                         });
 
-                        addedLocationNames.Add(location.Name);
+                        addedLocationNames.Add(location.Address);
                     }
                 }
             }

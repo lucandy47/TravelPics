@@ -8,7 +8,7 @@
             {{user.email}}
         </div>
         <div class="image-profile flex align-items-center justify-content-center mb-2">
-            <img *ngIf="!!profileImage" class="border-round-xl" [src]="profileImage.itemImageSrc" alt="Profile image" style="width:150px;">
+            <img *ngIf="!!profileImage" class="border-round-xl" [src]="profileImage.itemImageSrc" alt="Profile image" style="width:150px;max-height:200px;">
 
             <img *ngIf="profileImage == undefined || profileImage == null" class="border-round-xl" src="../../../assets/images/avatar.png" alt="avatar" style="width:150px;">
         </div>

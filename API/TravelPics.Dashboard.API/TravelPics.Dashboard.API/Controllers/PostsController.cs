@@ -7,6 +7,7 @@ using TravelPics.Abstractions.DTOs.Locations;
 using TravelPics.Abstractions.DTOs.Notifications;
 using TravelPics.Abstractions.DTOs.Posts;
 using TravelPics.Abstractions.Interfaces;
+using TravelPics.LookupItems;
 using TravelPics.MessageClient;
 using TravelPics.Notifications.Configs;
 
@@ -41,6 +42,21 @@ namespace TravelPics.Dashboard.API.Controllers
             try
             {
                 var posts = await _postsService.GetMapPosts();
+
+                return Ok(posts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("location")]
+        public async Task<IActionResult> GetLocationPosts([FromQuery] string locationName)
+        {
+            try
+            {
+                var posts = await _postsService.GetLocationPosts(locationName);
 
                 return Ok(posts);
             }

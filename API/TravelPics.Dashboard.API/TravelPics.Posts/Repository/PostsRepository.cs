@@ -77,6 +77,22 @@ namespace TravelPics.Posts.Repository
 
         }
 
+        public async Task<IEnumerable<Post>> GetLocationPosts(string locationName)
+        {
+            var posts = await _dbContext.Posts
+                .Include(p => p.User)
+                    .ThenInclude(u => u.ProfileImage)
+                .Include(p => p.Location)
+                .Include(p => p.Photos)
+                .Include(p => p.Likes.Where(l => !l.IsDeleted))
+                    .ThenInclude(l => l.User)
+                .Where(p => p.Location.Address == locationName)
+                .OrderByDescending(p => p.PublishedOn)
+                .ToListAsync();
+
+            return posts;
+        }
+
         public async Task<Post> GetPostById(int postId)
         {
             var post = await _dbContext.Posts

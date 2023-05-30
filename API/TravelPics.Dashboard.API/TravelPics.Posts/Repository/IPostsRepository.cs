@@ -11,5 +11,6 @@ namespace TravelPics.Posts.Repository
         Task DislikePost(int userId, int postId);
         Task<Post> GetPostById(int postId);
         Task<IEnumerable<Post>> GetAllPosts();
+        Task<IEnumerable<Post>> GetLocationPosts(string locationName);
     }
 }

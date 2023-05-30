@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Post } from './dtos/post';
 import { LikeModel } from './dtos/like-model';
 import { MapPost } from './dtos/map-post';
@@ -37,5 +37,13 @@ export class PostService {
 
   public getMapPosts():Observable<MapPost[]>{
     return this.httpClient.get<MapPost[]>(`${this.apiUrl}/map`);
+  }
+
+  public getLocationPosts(locationName: string):Observable<Post[]>{
+    let params = new HttpParams().set('locationName', locationName);
+    return this.httpClient.get<Post[]>(
+      `${this.apiUrl}/location`,
+      {params: params}
+    );
   }
 }

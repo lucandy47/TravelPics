@@ -5,3 +5,13 @@
 ::ng-deep .field>label {
     display: inline;
 }
+
+::ng-deep .p-galleria .p-galleria-item-nav{
+    width:2rem !important;
+    height:2rem !important;
+  }
+
+  ::ng-deep .p-galleria .p-galleria-item-nav .p-galleria-item-prev-icon,
+  ::ng-deep .p-galleria .p-galleria-item-nav .p-galleria-item-next-icon {
+    font-size: 1rem !important;
+  }
