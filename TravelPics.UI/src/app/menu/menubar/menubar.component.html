@@ -15,11 +15,12 @@
 
     <ng-template pTemplate="end" style="height:70px;">
         <div *ngIf="isUserLoggedIn && !!displayUserInfo && !loadingDisplay">
-            <div class="flex inline-block">
-                <img *ngIf="displayUserInfo.profileImageSrc == ''" class="border-circle mt-2" src="../../../assets/images/avatar.png" alt="avatar" class="border-circle" style="width:50px; height:50px;">
-                <img *ngIf="displayUserInfo.profileImageSrc != ''" [src]="displayUserInfo.profileImageSrc" alt="avatar" class="border-circle mt-2" style="width:50px; height:50px;">
-                <p class="ml-2 text-lg">{{displayUserInfo.name}}</p>
-            </div>
+                <a (click)="menu.toggle($event)" class="flex inline-block">
+                    <img *ngIf="displayUserInfo.profileImageSrc == ''" class="border-circle mt-2" src="../../../assets/images/avatar.png" alt="avatar" class="border-circle" style="width:50px; height:50px;">
+                    <img *ngIf="displayUserInfo.profileImageSrc != ''" [src]="displayUserInfo.profileImageSrc" alt="avatar" class="border-circle mt-2" style="width:50px; height:50px;">
+                    <p class="ml-2 text-lg">{{displayUserInfo.name}}</p>
+                </a>
+                <p-slideMenu #menu [model]="menuItems" [popup]="true" [viewportHeight]="130" [menuWidth]="200"></p-slideMenu>
         </div>
         <div *ngIf="!isUserLoggedIn">
             <span style="margin-right:5px;"><i class="pi pi-sign-in"></i></span>

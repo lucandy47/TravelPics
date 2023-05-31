@@ -50,10 +50,11 @@ export class MenubarComponent implements OnInit  {
 
   public results!: AvailableSearchItem[];
 
+  public menuItems!: MenuItem[];
   ngOnInit(): void {
     this.getLoggedInUser();
     this.getNewNotifications();
-    this.items[0].badge = "0";
+    this.items[1].badge = "0";
   }
 
   private getNewNotifications(): void{
@@ -61,7 +62,7 @@ export class MenubarComponent implements OnInit  {
       next: (notifs: InAppNotification[]) =>{
         this.newNotifications = notifs;
         let receivedNotifs = this.newNotifications.filter(nn => nn.notificationLog.status == NotificationStatusEnum.Received);
-        this.items[0].badge = receivedNotifs.length.toString();
+        this.items[1].badge = receivedNotifs.length.toString();
       }
     });
   }
@@ -86,7 +87,25 @@ export class MenubarComponent implements OnInit  {
     this._authUserService.loggedIn.subscribe({
       next: (isLoggedIn:boolean)=>{
         this.isUserLoggedIn = isLoggedIn;
+        this.menuItems = [
+          {
+            label: "My Profile",
+            icon: "pi pi-user",
+            routerLink: 'navigation/profile'
+          },
+          {
+            label: "Logout",
+            icon: "pi pi-sign-out",
+            command: ()=> this._authUserService.logout()
+          }
+        ]
         this.items = [
+          {
+            label: "Home",
+            icon: 'pi pi-home',
+            visible: this.isUserLoggedIn,
+            routerLink: 'navigation/home',
+          },
           {
             label: "Notifications",
             icon: 'pi pi-bell',
@@ -102,6 +121,13 @@ export class MenubarComponent implements OnInit  {
             icon: 'pi pi-map',
             routerLink: this.isUserLoggedIn ? 'navigation/map' : 'map'
           },
+          {
+            label: "Register",
+            icon: 'pi pi-user',
+            routerLink: 'user/register',
+            visible: !this.isUserLoggedIn,
+
+          },
         ];
       },
       error: ()=>{
@@ -112,7 +138,7 @@ export class MenubarComponent implements OnInit  {
 
   public showNotificationPanel(): void {
     if (this.notificationPanel) {
-      this.items[0].badge = "0";
+      this.items[1].badge = "0";
       this.notificationPanel.toggle(event);
     }
   }
@@ -184,5 +210,9 @@ export class MenubarComponent implements OnInit  {
   
   public onAutoCompleteHide(): void{
     this.searchKeyword='';
+  }
+
+  public openMenu(): void{
+
   }
 }

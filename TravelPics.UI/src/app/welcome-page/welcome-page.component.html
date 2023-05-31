@@ -1,1 +1,37 @@
-<p>welcome-page works!</p>
+
+<div class="mt-2 mb-2">
+    <p-galleria [value]="imageList" [showItemNavigators]="true" [autoPlay]="true" [showThumbnails]="false"
+    [showIndicatorsOnItem]="true"  [circular]="true"     [showItemNavigatorsOnHover]="true"
+    [transitionInterval]="6000" >
+        <ng-template pTemplate="item" let-item>
+            <img [src]="item.source" alt="{{item.fileName}}" style="width:100%"/>
+        </ng-template>
+        <ng-template pTemplate="caption" let-item>
+            <div class="flex flex-column align-items-center justify-content-center">
+                    <h4>{{item.title}}</h4>
+                    <h1><i>{{item.text}}</i></h1>
+            </div>
+        </ng-template>
+    </p-galleria>
+</div>
+<div class="mt-6 mb-6 flex flex-column justify-content-center align-items-center mr-8 ml-8">
+    <div class="about-text flex flex-column justify-content-start align-items-start border-round-xl border-bluegray-200 surface-overlay shadow-8">
+        <h5 class="text-primary" style="letter-spacing:4px;">ABOUT US</h5>
+        <h1 class="mt-0">We strive to give you the best experience through other traveler's eyes.</h1>
+        <p class="mt-0 mb-1">
+            Our efforts are to provide each user insights from what others feel like in their journeys from all around the world. We are in a continous development to improve your navigation experience in order to learn, discover or simply just to see pictures through other travelers' eyes.
+
+        </p>
+        <div class="grid mb-4 mt-2">
+            <div class="col-6 md:col-6">
+                <img src="../../assets/images/destination-1.jpg" style="max-width:100%;">
+            </div>
+            <div class="col-6 md:col-6">
+                <img src="../../assets/images/destination-2.jpg" style="max-width:100%;">
+            </div>
+        </div>
+        <div class="button-area">
+            <p-button (click)="redirect()" label="JOIN US NOW" styleClass="p-button-rounded"></p-button>
+        </div>
+    </div>
+</div>
