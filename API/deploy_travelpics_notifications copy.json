@@ -1,0 +1,74 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "imageVersion": {
+            "type": "string"
+        },
+        "environmentShortcut": {
+            "defaultValue": "dev",
+            "type": "string"
+        },
+        "containerappName": {
+            "defaultValue": "travelpics-api",
+            "type": "string"
+        },
+        "location": {
+            "defaultValue": "eastus",
+            "type": "string"
+        },
+        "environment_name": {
+            "defaultValue": "TRAVELPICS-CNTENV",
+            "type": "string"
+        },
+        "registryPassword": {
+            "defaultValue": "hcKsfCPLqx/kjAZrnEEzqaHpuUAkH3oeEMwJAEHx3T+ACRDMHaIU",
+            "type": "string"
+        },
+        "revisionNumber": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [{
+        "apiVersion": "2022-11-01-preview",
+        "type": "Microsoft.App/containerApps",
+        "name": "[concat(parameters('containerappName'),'-',parameters('environmentShortcut'))]",
+        "location": "[parameters('location')]",
+        "properties": {
+            "managedEnvironmentId": "[resourceId('Microsoft.App/managedEnvironments', parameters('environment_name'))]",
+            "configuration": {
+                "activeRevisionsMode": "Single",
+                "secrets": [{
+                    "name": "containerregistry-pwd",
+                    "value": "[parameters('registryPassword')]"
+                }],
+                "registries": [{
+                    "server": "travelpicscntapps.azurecr.io",
+                    "username": "travelpicscntapps",
+                    "passwordSecretRef": "containerregistry-pwd"
+                }]
+            },
+            "template": {
+                "revisionSuffix": "[parameters('revisionNumber')]",
+                "containers": [{
+                    "image": "[concat('travelpicscntapps.azurecr.io/',parameters('containerappName'),'-', parameters('environmentShortcut'),':',parameters('imageVersion'))]",
+                    "name": "[concat(parameters('containerappName'),'-', parameters('environmentShortcut'))]",
+                    "env": [{
+                        "name": "HTTP_PORT",
+                        "value": "80"
+                    }],
+                    "resources": {
+                        "cpu": 0.25,
+                        "memory": "0.5Gi"
+                    }
+                }],
+                "scale": {
+                    "minReplicas": 1,
+                    "maxReplicas": 1,
+                    "rules": []
+                }
+            }
+        }
+    }]
+}
