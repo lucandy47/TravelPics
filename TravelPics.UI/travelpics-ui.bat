@@ -5,7 +5,7 @@ TITLE "travelpics-ui-%environment%"
 ECHO "Image for travelpics-ui-%environment%:%imageVersion% will be created and pushed into the travelpicscntapps container registry"
 ECHO "Creating the image..."
 ECHO OFF
-docker build -t travelpics-ui-%environment%:%imageVersion% -f ./Dockerfile .
+docker build -t travelpics-ui-%environment%:%imageVersion% -f ./Dockerfile --no-cache .
 ECHO "Logging into the container registry.. "
 ECHO OFF
 docker login -u travelpicscntapps -p hcKsfCPLqx/kjAZrnEEzqaHpuUAkH3oeEMwJAEHx3T+ACRDMHaIU travelpicscntapps.azurecr.io
