@@ -7,6 +7,21 @@ ENV DOTNET_ENVIRONMENT=${Environment}
 ARG AppConfigConnectionString="Endpoint=https://travelpicsappconfiguration.azconfig.io;Id=/9U6-l0-s0:oHtG9HIFpsW3rua+iYCD;Secret=KcpyeMOfEhyp1/Uds6MXxzBvWl3Yj2SWPTtzvw7LRw8="
 ENV ConnectionStrings__AppConfig=${AppConfigConnectionString}
 
+# Install the .NET 6.0 runtime
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        gnupg \
+        lsb-release \
+    && curl -SL --output /tmp/packages-microsoft-prod.deb https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb \
+    && dpkg -i /tmp/packages-microsoft-prod.deb \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        aspnetcore-runtime-6.0 \
+    && rm -rf /var/lib/apt/lists/*
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["TravelPics.Notifications/TravelPics.Notifications/TravelPics.Notifications.csproj", "TravelPics.Notifications/"]
