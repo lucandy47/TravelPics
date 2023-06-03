@@ -1,0 +1,1 @@
+az deployment group create --name travelpics-notifications --resource-group TravelPics-RG --parameters revisionNumber="0" imageVersion="v0" --template-file deploy_travelpics_notifications.json
