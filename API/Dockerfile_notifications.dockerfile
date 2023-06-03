@@ -24,7 +24,7 @@ WORKDIR "/src/TravelPics.Notifications"
 RUN dotnet build "TravelPics.Notifications/TravelPics.Notifications.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "TravelPics.Notifications.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "TravelPics.Notifications/TravelPics.Notifications.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
