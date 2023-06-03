@@ -9,14 +9,14 @@ ENV ConnectionStrings__AppConfig=${AppConfigConnectionString}
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["TravelPics.Notifications/TravelPics.Notifications.csproj", "TravelPics.Notifications/"]
-COPY ["TravelPics.Notifications.Processors/TravelPics.Notifications.Processors.csproj", "TravelPics.Notifications.Processors/"]
-COPY ["../TravelPics.Dashboard.API/TravelPics.Domains/TravelPics.Domains.csproj", "TravelPics.Domains/"]
-COPY ["../TravelPics.Dashboard.API/TravelPics.Abstractions/TravelPics.Abstractions.csproj", "TravelPics.Abstractions/"]
-COPY ["../TravelPics.Dashboard.API/TravelPics.Documents/TravelPics.Documents.csproj", "TravelPics.Documents/"]
-COPY ["../TravelPics.Dashboard.API/TravelPics.Notifications.Core/TravelPics.Notifications.Core.csproj", "TravelPics.Notifications.Core/"]
-COPY ["../TravelPics.Dashboard.API/TravelPics.Users/TravelPics.Users.csproj", "TravelPics.Users/"]
-COPY ["../TravelPics.MessageClient/TravelPics.MessageClient.csproj", "TravelPics.MessageClient/"]
+COPY ["TravelPics.Notifications/TravelPics.Notifications/TravelPics.Notifications.csproj", "TravelPics.Notifications/"]
+COPY ["TravelPics.Notifications/TravelPics.Notifications.Processors/TravelPics.Notifications.Processors.csproj", "TravelPics.Notifications.Processors/"]
+COPY ["TravelPics.Dashboard.API/TravelPics.Domains/TravelPics.Domains.csproj", "TravelPics.Domains/"]
+COPY ["TravelPics.Dashboard.API/TravelPics.Abstractions/TravelPics.Abstractions.csproj", "TravelPics.Abstractions/"]
+COPY ["TravelPics.Dashboard.API/TravelPics.Documents/TravelPics.Documents.csproj", "TravelPics.Documents/"]
+COPY ["TravelPics.Dashboard.API/TravelPics.Notifications.Core/TravelPics.Notifications.Core.csproj", "TravelPics.Notifications.Core/"]
+COPY ["TravelPics.Dashboard.API/TravelPics.Users/TravelPics.Users.csproj", "TravelPics.Users/"]
+COPY ["TravelPics.MessageClient/TravelPics.MessageClient.csproj", "TravelPics.MessageClient/"]
 
 RUN dotnet restore "TravelPics.Notifications/TravelPics.Notifications.csproj"
 COPY . .
