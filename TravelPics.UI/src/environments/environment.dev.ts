@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  baseDashboardApiUrl: 'https://localhost:44332',
+  production: true,
+  baseDashboardApiUrl: 'https://travelpics-api-dev.politeflower-e1ea2cd1.eastus.azurecontainerapps.io',
 };
