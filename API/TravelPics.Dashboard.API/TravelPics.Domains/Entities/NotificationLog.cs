@@ -10,6 +10,7 @@
         public virtual User Receiver { get; set; }
         public virtual ICollection<InAppNotification> InAppNotifications { get; set; }
         public int? SenderId { get; set; }
+        public int? PostId { get; set; }
         public NotificationLog()
         {
             InAppNotifications = new List<InAppNotification>();

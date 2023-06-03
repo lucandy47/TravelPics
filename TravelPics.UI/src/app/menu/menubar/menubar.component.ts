@@ -57,12 +57,15 @@ export class MenubarComponent implements OnInit  {
     this.items[1].badge = "0";
   }
 
+  
+
   private getNewNotifications(): void{
     this._inAppNotificationService.notifications.subscribe({
       next: (notifs: InAppNotification[]) =>{
         this.newNotifications = notifs;
         let receivedNotifs = this.newNotifications.filter(nn => nn.notificationLog.status == NotificationStatusEnum.Received);
         this.items[1].badge = receivedNotifs.length.toString();
+        console.log(this.newNotifications);
       }
     });
   }
@@ -148,7 +151,6 @@ export class MenubarComponent implements OnInit  {
   }
 
   public readNotifications(): void{
-    console.log(this.isReadRequired());
     if(!!this.loggedInUser &&  this.loggedInUser.userId > 0 && this.isReadRequired()){
       this.newNotifications.forEach((notif)=>{
         notif.notificationLog.status = NotificationStatusEnum.Read;
@@ -200,7 +202,7 @@ export class MenubarComponent implements OnInit  {
     console.log(resource);
     switch(resource.entityTypeId){
       case EntityTypeEnum.USER:
-        this.router.navigate([`navigation/posts/${resource.id}`]);
+        this.router.navigate([`navigation/posts/user/${resource.id}`]);
         break;
       case EntityTypeEnum.LOCATION:
         this.router.navigate(['navigation/posts/location'], { queryParams: { locationName: resource.name } });
@@ -212,7 +214,8 @@ export class MenubarComponent implements OnInit  {
     this.searchKeyword='';
   }
 
-  public openMenu(): void{
-
+  public goToPost(postId: number): void{
+    this.router.navigate([`navigation/posts/${postId}`]);
+    this.notificationPanel.toggle(event);
   }
 }

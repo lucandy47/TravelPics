@@ -122,6 +122,7 @@ namespace TravelPics.Dashboard.API.Controllers
                     CreatedOn = sender.CreatedOn
                 },
                 PostDescription = postDto.Description,
+                PostId = postId,
             };
 
             return notification;
@@ -173,6 +174,21 @@ namespace TravelPics.Dashboard.API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("{postId:int}")]
+        public async Task<IActionResult> GetPostById([FromRoute] int postId)
+        {
+            try
+            {
+                var post = await _postsService.GetPostById(postId);
+
+                return Ok(post);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpPost]
         public async Task<IActionResult> UploadPhoto(CancellationToken cancellationToken)
         {

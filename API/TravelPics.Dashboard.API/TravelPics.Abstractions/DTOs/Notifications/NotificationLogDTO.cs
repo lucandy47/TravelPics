@@ -14,5 +14,6 @@ namespace TravelPics.Abstractions.DTOs.Notifications
         public UserPostInfoDTO Sender { get; set; }
         public string? Payload { get; set; }
         public string? PostDescription { get; set; }
+        public int PostId { get; set; }
     }
 }

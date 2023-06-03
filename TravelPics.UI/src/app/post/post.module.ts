@@ -9,6 +9,7 @@ import { MyPostsComponent } from './my-posts/my-posts.component';
 import { UserPostsComponent } from './user-posts/user-posts.component';
 import { LocationPostsComponent } from './location-posts/location-posts.component';
 import { MapPostsComponent } from './map-posts/map-posts.component';
+import { PostComponent } from './post/post.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MapPostsComponent } from './map-posts/map-posts.component';
     MyPostsComponent,
     UserPostsComponent,
     LocationPostsComponent,
-    MapPostsComponent
+    MapPostsComponent,
+    PostComponent
   ],
   imports: [
     CommonModule,

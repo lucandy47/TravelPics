@@ -10,6 +10,10 @@
     background-color: white;
 }
 
+.notif-read:hover{
+    background-color: var(--surface-300);
+}
+
 .notif-unread{
     background-color: var(--surface-200);
 }

@@ -6,6 +6,7 @@ import { MyPostsComponent } from './my-posts/my-posts.component';
 import { UserPostsComponent } from './user-posts/user-posts.component';
 import { LocationPostsComponent } from './location-posts/location-posts.component';
 import { MapPostsComponent } from './map-posts/map-posts.component';
+import { PostComponent } from './post/post.component';
 
 const routes: Routes = [
   {
@@ -29,9 +30,14 @@ const routes: Routes = [
     component: LocationPostsComponent,
   },
   {
-    path:':id',
+    path:'user/:id',
     canActivate: [AuthGuard],
     component: UserPostsComponent,
+  },
+  {
+    path:':id',
+    canActivate: [AuthGuard],
+    component: PostComponent,
   },
 ];
 

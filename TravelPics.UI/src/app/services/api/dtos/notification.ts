@@ -14,6 +14,7 @@ export interface NotificationLog{
     receiver: UserPostInfo;
     sender: UserFullInfo;
     status: NotificationStatusEnum;
+    postId: number;
 }
 
 export interface InAppNotification{

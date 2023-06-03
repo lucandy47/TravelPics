@@ -23,6 +23,10 @@ export class PostService {
     return this.httpClient.get<Post[]>(`${this.apiUrl}/user/${userId}`);
   }
 
+  public getPostById(postId: number):Observable<Post>{
+    return this.httpClient.get<Post>(`${this.apiUrl}/${postId}`);
+  }
+
   public getLatestPosts():Observable<Post[]>{
     return this.httpClient.get<Post[]>(`${this.apiUrl}`);
   }

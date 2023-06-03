@@ -42,7 +42,14 @@ namespace TravelPics.Notifications.Processors.Processors
             switch (notificationLog.Payload)
             {
                 case NotificationPayloadType.Like:
-                    subject = $"{notificationLog.Sender.FirstName} {notificationLog.Sender.LastName} liked your post - \"{notificationLog.PostDescription}\".";
+                    if (!string.IsNullOrWhiteSpace(notificationLog.PostDescription))
+                    {
+                        subject = $"{notificationLog.Sender.FirstName} {notificationLog.Sender.LastName} liked your post - \"{notificationLog.PostDescription}\".";
+                    }
+                    else
+                    {
+                        subject = $"{notificationLog.Sender.FirstName} {notificationLog.Sender.LastName} liked your post.";
+                    }
                     break;
                 case NotificationPayloadType.Comment:
                     subject = $"{notificationLog.Sender.FirstName} {notificationLog.Sender.LastName} commented your post - \"{notificationLog.PostDescription}\".";
