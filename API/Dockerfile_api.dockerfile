@@ -36,7 +36,7 @@ COPY ["TravelPics.Dashboard.API/TravelPics.Users/TravelPics.Users.csproj", "Trav
 COPY ["TravelPics.Dashboard.API/TravelPics.LookupItems/TravelPics.LookupItems.csproj", "TravelPics.LookupItems/"]
 COPY ["TravelPics.Dashboard.API/TravelPics.Posts/TravelPics.Posts.csproj", "TravelPics.Posts/"]
 COPY ["TravelPics.Dashboard.API/TravelPics.Security/TravelPics.Security.csproj", "TravelPics.Security/"]
-COPY ["TravelPics.Dashboard.API/TravelPics.Location/TravelPics.Location.csproj", "TravelPics.Location/"]
+COPY ["TravelPics.Dashboard.API/TravelPics.Location/TravelPics.Locations.csproj", "TravelPics.Locations/"]
 COPY ["TravelPics.MessageClient/TravelPics.MessageClient.csproj", "TravelPics.MessageClient/"]
 
 RUN dotnet restore "TravelPics.Dashboard.API/TravelPics.Dashboard.API.csproj"

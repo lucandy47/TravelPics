@@ -43,6 +43,16 @@
                     "name": "containerregistry-pwd",
                     "value": "[parameters('registryPassword')]"
                 }],
+                "ingress": {
+                    "external": true,
+                    "targetPort": 80,
+                    "allowInsecure": true,
+                    "traffic": [{
+                        "latestRevision": true,
+                        "weight": 100
+                    }],
+                    "transport": "auto"
+                },
                 "registries": [{
                     "server": "travelpicscntapps.azurecr.io",
                     "username": "travelpicscntapps",
@@ -59,8 +69,8 @@
                         "value": "80"
                     }],
                     "resources": {
-                        "cpu": 0.25,
-                        "memory": "0.5Gi"
+                        "cpu": 0.5,
+                        "memory": "1Gi"
                     }
                 }],
                 "scale": {
