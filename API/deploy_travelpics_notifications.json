@@ -40,18 +40,13 @@
             "configuration": {
                 "activeRevisionsMode": "Single",
                 "secrets": [{
-                        "name": "event-hub-namespace",
-                        "value": "[concat(parameters('eventHubNamespaceConnectionString'),';EntityPath=notification-v221201')]"
-                    },
-                    {
-                        "name": "storage",
-                        "value": "[parameters('storageConnectionString')]"
-                    }
-                ],
+                    "name": "containerregistry-pwd",
+                    "value": "[parameters('registryPassword')]"
+                }],
                 "registries": [{
                     "server": "travelpicscntapps.azurecr.io",
-                    "username": "MainToken",
-                    "registryPassword": "[parameters('registryPassword')]"
+                    "username": "travelpicscntapps",
+                    "passwordSecretRef": "containerregistry-pwd"
                 }]
             },
             "template": {
@@ -71,8 +66,6 @@
                 "scale": {
                     "minReplicas": 1,
                     "maxReplicas": 1,
-                    "pollingInterval": 30,
-                    "cooldownPeriod": 300,
                     "rules": []
                 }
             }
