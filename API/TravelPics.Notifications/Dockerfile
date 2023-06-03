@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/runtime:6.0 AS base
 WORKDIR /app
 ARG Environment=Development
 ENV DOTNET_ENVIRONMENT=${Environment}
-ARG AppConfigConnectionString
+ARG AppConfigConnectionString="Endpoint=https://travelpicsappconfiguration.azconfig.io;Id=/9U6-l0-s0:oHtG9HIFpsW3rua+iYCD;Secret=KcpyeMOfEhyp1/Uds6MXxzBvWl3Yj2SWPTtzvw7LRw8="
 ENV ConnectionStrings__AppConfig=${AppConfigConnectionString}
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
