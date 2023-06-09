@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-page-not-found',
@@ -10,7 +10,11 @@ export class PageNotFoundComponent implements OnInit {
   public pageUri: string | null = null;
 
   constructor(private router: Router) {
-    this.pageUri = this.router.getCurrentNavigation()?.extras.state?.pageUri;
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.pageUri = event.url;
+      }
+    });
   }
   ngOnInit(): void {}
 }

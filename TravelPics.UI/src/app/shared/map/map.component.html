@@ -1,6 +1,6 @@
 <travelpics-loader class="mt-12" [isLoading]="isLoading" [loadingMessage]="'Loading Map...'"></travelpics-loader>
 
-<div *ngIf="!isLoading" class="map-container mt-2">
+<div *ngIf="!isLoading" class="map-container mt-2 mb-2">
     <agm-map [zoom]="zoom" class="custom-map" [maxZoom]="6" [minZoom]="3" 
         (zoomChange)="onZoomChange($event)">
         <agm-marker *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.long" [iconUrl]="''" class="custom-marker">
@@ -28,6 +28,7 @@
         </agm-marker>
     </agm-map>
 </div>
+
 
   
   

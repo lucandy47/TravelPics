@@ -48,6 +48,7 @@ import { LongDatetimePipe, ShortDatetimePipe } from './pipes/datetime.pipe';
 import { PostItemComponent } from './post-item/post-item.component';
 import { MapComponent } from './map/map.component';
 import { SlideMenuModule } from 'primeng/slidemenu';
+import { FooterComponent } from './footer/footer.component';
 
 const PrimeModules = [
   TableModule,
@@ -105,7 +106,8 @@ const Pipes = [
     SideMenuComponent,
     ...Pipes,
     PostItemComponent,
-    MapComponent
+    MapComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -125,6 +127,7 @@ const Pipes = [
     SideMenuComponent,
     PostItemComponent,
     MapComponent,
+    FooterComponent,
     ...Pipes
   ],
     providers: [

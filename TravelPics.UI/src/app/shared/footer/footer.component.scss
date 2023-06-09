@@ -1,0 +1,17 @@
+@import '../../../styles/variables.scss';
+
+    .footer-content {
+    display: flex;
+    justify-content: center;
+  }
+  .footer{
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: $menuBarHeight;
+    background-color: var(--surface-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 5px 6px #ced4da;
+}

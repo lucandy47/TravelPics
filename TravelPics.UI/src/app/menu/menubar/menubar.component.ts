@@ -65,7 +65,6 @@ export class MenubarComponent implements OnInit  {
         this.newNotifications = notifs;
         let receivedNotifs = this.newNotifications.filter(nn => nn.notificationLog.status == NotificationStatusEnum.Received);
         this.items[1].badge = receivedNotifs.length.toString();
-        console.log(this.newNotifications);
       }
     });
   }
@@ -199,7 +198,6 @@ export class MenubarComponent implements OnInit  {
   }
 
   public goToResource(resource: AvailableSearchItem): void{
-    console.log(resource);
     switch(resource.entityTypeId){
       case EntityTypeEnum.USER:
         this.router.navigate([`navigation/posts/user/${resource.id}`]);
