@@ -1,0 +1,31 @@
+.main {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.invalid {
+    font-size: 6rem;
+    font-weight: bold;
+    letter-spacing: 1rem;
+}
+
+.blue {
+    color: #0e4c90;
+}
+
+.green {
+    color: #5ab947
+}
+
+.message {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.uri {
+    color: var(--text-color-secondary);
+}
