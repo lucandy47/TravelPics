@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { NavigationModule } from './navigation/navigation.module';
 import { MapComponent } from './shared/map/map.component';
+import { AuthGuard } from './services/ui/auth/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   },
   {
     path:'navigation',
+    canActivate: [AuthGuard],
     loadChildren: () => NavigationModule
   },
   {
@@ -29,9 +31,8 @@ const routes: Routes = [
     loadChildren: () => UserModule,
   },
   {
-    path:'404',
+    path:'**',
     component: PageNotFoundComponent,
-    pathMatch:'full'
   },
 ];
 

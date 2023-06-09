@@ -1,38 +1,46 @@
-<div class="w-12 mb-4">
-    <form [formGroup]="loginForm" (ngSubmit)="login()" class="form-section flex flex-column">
-        <div class="flex align-items-center justify-content-center">
-            <h1>Welcome</h1>
-        </div>
-        <div class="flex align-items-center justify-content-center mb-4">
-            <img src="../../../assets/images/avatar.png" alt="avatar" style="width:100px;">
-        </div>
-        <div *ngIf="errorMessage !== ''" class="flex align-items-center justify-content-center">
-            <p style="font-size:15px; color:red;">{{errorMessage}}</p>
-        </div>
-        <div class="field">
-            <label for="email" class="col-12 required-label">Email:</label>
-            <div class="col-12  md:col-12 flex block ">
-                <input id="email" class="inputfield w-12" pInputText formControlName="email">
-                <ng-container *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">
-                    <!-- <small class="p-error" *ngIf="loginForm.controls['email'].errors?.required">You must use an email address</small> -->
-                    <small class="p-error" *ngIf="loginForm.controls['email'].errors?.emailFormatError">{{loginForm.controls['email'].errors?.emailFormatError}}</small>
-                </ng-container>
+
+
+<div class="form-container mt-7">
+    <div class="image-container">
+        <img src="../../../assets/images/loginbg.jpeg" alt="background">
+    </div>
+      
+    <div class="form-section">
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="flex flex-column">
+            <div class="flex align-items-center justify-content-center">
+                <h2><i>Welcome</i></h2>
             </div>
-        </div>
-        <div class="field">
-            <label for="password" class="col-12  required-label">Password:</label>
-            <div class=" col-12 md:col-12 flex block ">
-                <input type="password" id="password" class="inputfield w-12" pInputText formControlName="password">
-                <!-- <ng-container *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid">
-                    <small class="p-error" *ngIf="loginForm.controls['password'].errors?.required">Password is required.</small>
-                </ng-container> -->
+            <div class="flex align-items-center justify-content-center mb-4">
+                <img src="../../../assets/images/avatar.png" alt="avatar" style="width:100px;">
             </div>
-        </div>
-        <div class="field">
-            <label class="col-12">Don't have an account yet? <a (click)="goToRegister()">Register!</a></label>
-        </div>
-        <div class="buttons mb-4">
-            <button [disabled]="!loginForm.valid" pButton pRipple type="submit" label="Login" class="p-button-raised p-button-primary"></button>
-        </div>
-    </form>
-</div>
+            <div *ngIf="errorMessage !== ''" class="flex align-items-center justify-content-center">
+                <p style="font-size:15px; color:red;">{{errorMessage}}</p>
+            </div>
+            <div class="field">
+                <label for="email" class="col-12 required-label">Email:</label>
+                <div class="col-12  md:col-12 flex block ">
+                    <input id="email" class="inputfield w-12" pInputText formControlName="email">
+                    <ng-container *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">
+                        <small class="p-error" *ngIf="loginForm.controls['email'].errors?.emailFormatError">{{loginForm.controls['email'].errors?.emailFormatError}}</small>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="field">
+                <label for="password" class="col-12  required-label">Password:</label>
+                <div class=" col-12 md:col-12 flex block ">
+                    <input type="password" id="password" class="inputfield w-12" pInputText formControlName="password">
+                    <ng-container *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid">
+                        <small class="p-error" *ngIf="loginForm.controls['password'].errors?.required">Password is required.</small>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="field mt-2">
+                <label class="col-12">Don't have an account yet? <a class="hover:text-blue-500" (click)="goToRegister()">Register!</a></label>
+            </div>
+            <div class="buttons mb-4">
+                <button [disabled]="!loginForm.valid" pButton pRipple type="submit" label="Login" class="p-button-raised p-button-primary"></button>
+            </div>
+        </form>
+    </div>
+  </div>
+  

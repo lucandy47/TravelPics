@@ -1,69 +1,96 @@
-<div class="col-12 md:col-12 mb-8">
-    <form [formGroup]="registerForm" (ngSubmit)="register()" class="form-section flex flex-column">
-        <div class="flex align-items-center justify-content-center">
-            <h1>Register</h1>
-        </div>
-        <div class="flex align-items-center justify-content-center">
-            <img src="../../../assets/images/avatar.png" alt="avatar" style="width:100px;">
-        </div>
-        <div class="field">
-            <label for="email" class="col-12 required-label">Email:</label>
-            <div class="col-12  md:col-12 flex block ">
-                <input id="email" class="inputfield w-12" pInputText formControlName="email">
-                <ng-container *ngIf="registerForm.controls['email'].touched && registerForm.controls['email'].invalid">
-                    <small class="p-error" *ngIf="registerForm.controls['email'].errors?.required">Email address is required.</small>
-                    <small class="p-error" *ngIf="registerForm.controls['email'].errors?.emailFormatError">{{registerForm.controls['email'].errors?.emailFormatError}}.</small>
-                </ng-container>
+
+
+<div class="form-container mt-6">
+    <div class="image-container">
+        <img src="../../../assets/images/registerbg.jpg" alt="background">
+    </div>
+      
+    <div class="form-section">
+        <form [formGroup]="registerForm" (ngSubmit)="register()" class="form-section flex flex-column">
+            <div class="flex align-items-center justify-content-center">
+                <h2><i>Register new user</i></h2>
             </div>
-        </div>
-        <div class="field">
-            <label for="firstName" class="col-12  required-label">First Name:</label>
-            <div class=" col-12 md:col-12 flex block ">
-                <input type="firstName" id="firstName" class="inputfield w-12" pInputText formControlName="firstName">
-                <ng-container *ngIf="registerForm.controls['firstName'].touched && registerForm.controls['firstName'].invalid">
-                    <small class="p-error" *ngIf="registerForm.controls['firstName'].errors?.required">First name is required.</small>
-                    <small class="p-error" *ngIf="registerForm.controls['firstName'].errors?.WhiteSpaceNotAllowed">{{registerForm.controls['firstName'].errors?.WhiteSpaceNotAllowed}}</small>
-                </ng-container>
+            <div class="flex align-items-center justify-content-center mb-4">
+                <img src="../../../assets/images/sign-up.png" alt="sign-up" style="width:100px;">
             </div>
-        </div>
-        <div class="field">
-            <label for="lastName" class="col-12  required-label">Last Name:</label>
-            <div class=" col-12 md:col-12 flex block ">
-                <input type="lastName" id="lastName" class="inputfield w-12" pInputText formControlName="lastName">
-                <ng-container *ngIf="registerForm.controls['lastName'].touched && registerForm.controls['lastName'].invalid">
-                    <small class="p-error" *ngIf="registerForm.controls['lastName'].errors?.required">Last name is required.</small>
-                    <small class="p-error" *ngIf="registerForm.controls['lastName'].errors?.WhiteSpaceNotAllowed">{{registerForm.controls['lastName'].errors?.WhiteSpaceNotAllowed}}</small>
-                </ng-container>
+            <div class="grid mr-2 ml-2">
+                <div class="col-12 md:col-6">
+                    <div class="field">
+                        <label for="email" class="col-12 required-label">Email:</label>
+                        <div class="col-12  md:col-12 flex block ">
+                            <input id="email" class="inputfield w-12" pInputText formControlName="email">
+                            <ng-container *ngIf="registerForm.controls['email'].touched && registerForm.controls['email'].invalid">
+                                <small class="p-error" *ngIf="registerForm.controls['email'].errors?.required">Email address is required.</small>
+                                <small class="p-error" *ngIf="registerForm.controls['email'].errors?.emailFormatError">{{registerForm.controls['email'].errors?.emailFormatError}}.</small>
+                            </ng-container>
+                        </div> 
+                    </div>
+                </div>
+                <div class="col-12 md:col-6">
+                    <div class="field">
+                        <label for="firstName" class="col-12  required-label">First Name:</label>
+                        <div class=" col-12 md:col-12 flex block ">
+                            <input type="firstName" id="firstName" class="inputfield w-12" pInputText formControlName="firstName">
+                            <ng-container *ngIf="registerForm.controls['firstName'].touched && registerForm.controls['firstName'].invalid">
+                                <small class="p-error" *ngIf="registerForm.controls['firstName'].errors?.required">First name is required.</small>
+                                <small class="p-error" *ngIf="registerForm.controls['firstName'].errors?.WhiteSpaceNotAllowed">{{registerForm.controls['firstName'].errors?.WhiteSpaceNotAllowed}}</small>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <label for="password" class="col-12  required-label">Password:</label>
-            <div class=" col-12 md:col-12 flex block ">
-                <input type="password" id="password" class="inputfield w-12" pInputText formControlName="password">
-                <ng-container *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].invalid">
-                    <small class="p-error" *ngIf="registerForm.controls['password'].errors?.required">Password is required.</small>
-                </ng-container>
+            <div class="grid mr-2 ml-2">
+                <div class="col-12 md:col-6">
+                    <div class="field">
+                        <label for="lastName" class="col-12  required-label">Last Name:</label>
+                        <div class=" col-12 md:col-12 flex block ">
+                            <input type="lastName" id="lastName" class="inputfield w-12" pInputText formControlName="lastName">
+                            <ng-container *ngIf="registerForm.controls['lastName'].touched && registerForm.controls['lastName'].invalid">
+                                <small class="p-error" *ngIf="registerForm.controls['lastName'].errors?.required">Last name is required.</small>
+                                <small class="p-error" *ngIf="registerForm.controls['lastName'].errors?.WhiteSpaceNotAllowed">{{registerForm.controls['lastName'].errors?.WhiteSpaceNotAllowed}}</small>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 md:col-6">
+                    <div class="field">
+                        <label for="phone" class="col-12">Phone:</label>
+                        <div class=" col-12 md:col-12 flex block ">
+                            <input type="phone" id="phone" class="inputfield w-12" pInputText formControlName="phone">
+                            <ng-container *ngIf="registerForm.controls['phone'].touched && registerForm.controls['phone'].invalid">
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <label for="passwordConfirm" class="col-12  required-label">Confirm Password:</label>
-            <div class=" col-12 md:col-12 flex block ">
-                <input type="password" id="passwordConfirm" class="inputfield w-12" pInputText formControlName="passwordConfirm">
-                <ng-container *ngIf="registerForm.controls['password'].value !== registerForm.controls['passwordConfirm'].value && registerForm.controls['passwordConfirm'].touched">
-                    <small class="p-error">Passwords don't match.</small>
-                </ng-container>
+            <div class="grid mr-2 ml-2 h-6rem">
+                <div class="col-12 md:col-6">
+                    <div class="field">
+                        <label for="password" class="col-12  required-label">Password:</label>
+                        <div class=" col-12 md:col-12 flex block ">
+                            <input type="password" id="password" class="inputfield w-12" pInputText formControlName="password">
+                            <ng-container *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].invalid">
+                                <small class="p-error" *ngIf="registerForm.controls['password'].errors?.required">Password is required.</small>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 md:col-6">
+                    <div class="field">
+                        <label for="passwordConfirm" class="col-12  required-label">Confirm Password:</label>
+                        <div class=" col-12 md:col-12 flex block ">
+                            <input type="password" id="passwordConfirm" class="inputfield w-12" pInputText formControlName="passwordConfirm">
+                            <ng-container *ngIf="registerForm.controls['password'].value !== registerForm.controls['passwordConfirm'].value && registerForm.controls['passwordConfirm'].touched">
+                                <small class="p-error">Passwords don't match.</small>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <label for="phone" class="col-12">Phone:</label>
-            <div class=" col-12 md:col-12 flex block ">
-                <input type="phone" id="phone" class="inputfield w-12" pInputText formControlName="phone">
-                <ng-container *ngIf="registerForm.controls['phone'].touched && registerForm.controls['phone'].invalid">
-                </ng-container>
+            <div class="buttons mb-4">
+                <button [disabled]="!registerForm.valid" pButton pRipple type="submit" label="Register" class="p-button-raised p-button-primary"></button>
             </div>
-        </div>
-        <div class="buttons mb-4">
-            <button [disabled]="!registerForm.valid" pButton pRipple type="submit" label="Register" class="p-button-raised p-button-primary"></button>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
+  </div>
+  
