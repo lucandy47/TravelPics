@@ -3,8 +3,8 @@
 <div *ngIf="!isLoading" class="map-container mt-2 mb-2">
     <agm-map [zoom]="zoom" class="custom-map" [maxZoom]="6" [minZoom]="3" 
         (zoomChange)="onZoomChange($event)">
-        <agm-marker *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.long" [iconUrl]="''" class="custom-marker">
-            <agm-info-window>
+        <agm-marker *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.long" [iconUrl]="'https://maps.google.com/mapfiles/ms/icons/grn-pushpin.png'" class="custom-marker" style="width: 50px; height: 50px;">
+        <agm-info-window>
                 <div class="flex flex-column flex-wrap">
                     <div class="mt-1 mb-1">
                         <p-galleria [value]="marker.photos" [showItemNavigatorsOnHover]="true" [showItemNavigators]="marker.photos.length > 1 ? true : false" [showThumbnails]="false"  
