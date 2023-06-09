@@ -30,12 +30,13 @@ export class LocationPostsComponent implements OnInit, OnDestroy{
   public loggedInUser!: UserInfo;
 
   public responsiveOptions: any[] = [];
+  public message: string = "No posts found at the specified location";
 
   ngOnInit(): void {
     this.loggedInUser = this.authUserService.loggedInUser;
     this.route.queryParams.subscribe((params) => {
       const locationName: string = params['locationName'];
-      console.log(locationName);
+      this.message = `${this.message} - ${locationName}.`;
       this.getLocationPosts(locationName);
     });
     this.responsiveOptions = GaleriaResponsiveOptions.responsiveOptions;

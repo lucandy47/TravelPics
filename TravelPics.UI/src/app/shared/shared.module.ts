@@ -49,6 +49,7 @@ import { PostItemComponent } from './post-item/post-item.component';
 import { MapComponent } from './map/map.component';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { FooterComponent } from './footer/footer.component';
+import { NoPostsComponent } from './no-posts/no-posts.component';
 
 const PrimeModules = [
   TableModule,
@@ -107,7 +108,8 @@ const Pipes = [
     ...Pipes,
     PostItemComponent,
     MapComponent,
-    FooterComponent
+    FooterComponent,
+    NoPostsComponent
   ],
   imports: [
     CommonModule,
@@ -128,6 +130,7 @@ const Pipes = [
     PostItemComponent,
     MapComponent,
     FooterComponent,
+    NoPostsComponent,
     ...Pipes
   ],
     providers: [

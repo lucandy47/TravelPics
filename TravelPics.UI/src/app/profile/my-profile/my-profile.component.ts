@@ -37,6 +37,7 @@ export class MyProfileComponent implements OnInit{
   public selectedFiles: any[] = [];
 
   public profileImage!: PostImage;
+  public errorMessage!: string;
 
   ngOnInit(): void {
     this.loggedInUser = this._authUserService.loggedInUser;
@@ -56,9 +57,9 @@ export class MyProfileComponent implements OnInit{
         Validators.required,
         StringValidators.whiteSpaceValidator
       ]),
-      phone: new FormControl(null)
+      phone: new FormControl('')
     });
-
+    this.errorMessage = "";
   }
 
   private getUserInfo(userId: number): void{
@@ -71,7 +72,7 @@ export class MyProfileComponent implements OnInit{
             userId: this.user.id,
             firstName: this.user.firstName,
             lastName: this.user.lastName,
-            phone: this.user.phone,
+            phone: this.user.phone == null ? '' : this.user.phone,
             email: this.user.email
           });
           if(!!this.user.profileImage){
@@ -128,6 +129,7 @@ export class MyProfileComponent implements OnInit{
           summary: 'Update User',
           detail: 'Could not save new information.',
         });
+        this.errorMessage = error.error;
       }
     });
   }

@@ -18,13 +18,22 @@ namespace TravelPics.Dashboard.API.Controllers
         [HttpPut]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
-            var token = await _authenticationService.AuthenticateAsync(loginModel);
-            if (token == null)
+            try
             {
-                return Unauthorized(new { message = "Invalid email or password" });
+                var token = await _authenticationService.AuthenticateAsync(loginModel);
+
+                if (token == null)
+                {
+                    return Unauthorized(new { message = "Invalid email or password" });
+                }
+
+                return Ok(token);
+            }
+            catch(Exception ex)
+            {
+                return Unauthorized(new { message = ex.Message });
             }
 
-            return Ok(token);
         }
     }
 }

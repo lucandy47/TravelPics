@@ -56,6 +56,12 @@ namespace TravelPics.Dashboard.API.Controllers
         {
             try
             {
+
+                if (Request.Query.Count > 1)
+                {
+                    return BadRequest("Incorrect request - cannot have more than 1 parameter in query.");
+                }
+
                 var posts = await _postsService.GetLocationPosts(locationName);
 
                 return Ok(posts);

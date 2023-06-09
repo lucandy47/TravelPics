@@ -44,7 +44,7 @@
             <div class="field">
                 <label for="firstName" class="col-12  required-label">First Name:</label>
                 <div class=" col-12 md:col-12 flex block ">
-                    <input type="firstName" id="firstName" class="inputfield w-12" pInputText formControlName="firstName">
+                    <input  id="firstName" class="inputfield w-12" pInputText formControlName="firstName">
                     <ng-container *ngIf="userForm.controls['firstName'].touched && userForm.controls['firstName'].invalid">
                         <small class="p-error" *ngIf="userForm.controls['firstName'].errors?.required">First name is required.</small>
                         <small class="p-error" *ngIf="userForm.controls['firstName'].errors?.WhiteSpaceNotAllowed">{{userForm.controls['firstName'].errors?.WhiteSpaceNotAllowed}}</small>
@@ -54,7 +54,7 @@
             <div class="field">
                 <label for="lastName" class="col-12  required-label">Last Name:</label>
                 <div class=" col-12 md:col-12 flex block ">
-                    <input type="lastName" id="lastName" class="inputfield w-12" pInputText formControlName="lastName">
+                    <input  id="lastName" class="inputfield w-12" pInputText formControlName="lastName">
                     <ng-container *ngIf="userForm.controls['lastName'].touched && userForm.controls['lastName'].invalid">
                         <small class="p-error" *ngIf="userForm.controls['lastName'].errors?.required">Last name is required.</small>
                         <small class="p-error" *ngIf="userForm.controls['lastName'].errors?.WhiteSpaceNotAllowed">{{userForm.controls['lastName'].errors?.WhiteSpaceNotAllowed}}</small>
@@ -64,10 +64,11 @@
             <div class="field">
                 <label for="phone" class="col-12">Phone:</label>
                 <div class=" col-12 md:col-12 flex block ">
-                    <input type="phone" id="phone" class="inputfield w-12" pInputText formControlName="phone">
-                    <ng-container *ngIf="userForm.controls['phone'].touched && userForm.controls['phone'].invalid">
-                    </ng-container>
+                    <input  id="phone" class="inputfield w-12" pInputText formControlName="phone">
                 </div>
+            </div>
+            <div *ngIf="errorMessage !== ''" class="flex align-items-center justify-content-center">
+                <p style="font-size:15px; color:red;">{{errorMessage}}</p>
             </div>
             <div class="buttons mb-4">
                 <button [disabled]="!userForm.valid" pButton pRipple type="submit" label="Save Changes" class="p-button-raised p-button-primary"></button>

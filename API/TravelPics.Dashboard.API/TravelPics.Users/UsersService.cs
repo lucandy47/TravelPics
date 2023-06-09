@@ -52,35 +52,36 @@ public class UsersService : IUsersService
     {
         var userEntity = _mapper.Map<UserUpdate>(user);
 
-        CancellationToken cancellationToken = new CancellationToken();
-
-        var documentBlobContainerDTO = new DocumentBlobContainerDTO()
-        {
-            Id = 4
-        };
         if (userEntity == null) throw new Exception($"Could not map the updated user.");
 
-        if (user.ProfileImage == null || userEntity.ProfileImage == null) return user.Id;
-
-        var userProfileImagePath = $"{user.Id}_{user.Email}_{user.FirstName}-{user.LastName}";
-
-        var photo = await _documentsService.ComputeDocument(user.ProfileImage, documentBlobContainerDTO, userProfileImagePath, true, cancellationToken);
-
-        userEntity.ProfileImage = photo;
-
-        await _usersRepository.UpdateUser(userEntity);
-
-        try
+        if(user.ProfileImage != null)
         {
-            await _documentsService.UploadPhotos(new List<Document>()
+            CancellationToken cancellationToken = new CancellationToken();
+
+            var documentBlobContainerDTO = new DocumentBlobContainerDTO()
+            {
+                Id = 4
+            };
+            var userProfileImagePath = $"{user.Id}_{user.Email}_{user.FirstName}-{user.LastName}";
+
+            var photo = await _documentsService.ComputeDocument(user.ProfileImage, documentBlobContainerDTO, userProfileImagePath, true, cancellationToken);
+
+            userEntity.ProfileImage = photo;
+
+            try
+            {
+                await _documentsService.UploadPhotos(new List<Document>()
             {
                 photo
             }, documentBlobContainerDTO, cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Unable to upload profile picture to cloud.", ex);
+            }
         }
-        catch (Exception ex)
-        {
-            throw new Exception($"Unable to upload profile picture to cloud.", ex);
-        }
+
+        await _usersRepository.UpdateUser(userEntity);
 
         return user.Id;
     }

@@ -68,6 +68,7 @@ export class RegisterComponent {
           summary: 'User',
           detail: 'Could not register new user.',
         });
+        this.errorMessage = error.error;
       }
     })
   }

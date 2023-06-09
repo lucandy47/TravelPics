@@ -31,6 +31,7 @@ export class UserPostsComponent implements OnInit, OnDestroy{
   public loggedInUser!: UserInfo;
 
   public responsiveOptions: any[] = [];
+  public message: string = "No posts found for specified user.";
 
   ngOnInit(): void {
     this.loggedInUser = this.authUserService.loggedInUser;

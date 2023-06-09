@@ -19,6 +19,11 @@ public class UsersRepository : IUsersRepository
     {
         var salt = PasswordHelper.GenerateSalt(128);
         var hash = PasswordHelper.GenerateHash(user.Password, salt, 10000, 64);
+
+        var existingUser = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
+
+        if (existingUser != null) throw new Exception($"An user with this email address: '{user.Email}' already exists!");
+
         await _dbContext.Users.AddAsync(new User
         {
             FirstName = user.FirstName,
@@ -57,11 +62,13 @@ public class UsersRepository : IUsersRepository
 
         if (userEntity != null)
         {
-
+            if(user.ProfileImage != null)
+            {
+                userEntity.ProfileImage = user.ProfileImage;
+            }
             userEntity.FirstName = user.FirstName;
             userEntity.LastName = user.LastName;
             userEntity.Phone = user.Phone;
-            userEntity.ProfileImage = user.ProfileImage;
 
             await _dbContext.SaveChangesAsync();
         }
