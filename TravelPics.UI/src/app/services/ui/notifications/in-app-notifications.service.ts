@@ -16,7 +16,7 @@ export class InAppNotificationsService {
 
   private notifications$: BehaviorSubject<InAppNotification[]> = new BehaviorSubject<InAppNotification[]>([]);
   public notifications = this.notifications$.asObservable();
-  
+
   public getLoggedInUserNotifications(loggedInUserId: number): void{
     if(loggedInUserId > 0){
       this._notificationService.getLoggedInNotifications(loggedInUserId).subscribe({
@@ -35,7 +35,7 @@ export class InAppNotificationsService {
     this.getLoggedInUserNotifications(loggedInUserId);
     this.intervalTimer = setInterval(() => {
       this.getLoggedInUserNotifications(loggedInUserId);
-    }, 25000); 
+    }, 20000);
   }
 
   public stopNotificationTimer(): void {

@@ -10,13 +10,14 @@ import { ImageService } from '../helpers/image.service';
 })
 export class AlgoService {
 
-  private readonly ClusterProperties: Map<number, DBSCANConfig> = new Map<number, DBSCANConfig>([
-    [3, new DBSCANConfig(10, 1)],
-    [4, new DBSCANConfig(5, 1)],
-    [5, new DBSCANConfig(2, 1)],
+  private readonly ClusterProperties: Map<number, DBSCANConfig> = new Map<number, DBSCANConfig>
+  ([
+    [3, new DBSCANConfig(100, 1)],
+    [4, new DBSCANConfig(25, 1)],
+    [5, new DBSCANConfig(4, 1)],
     [6, new DBSCANConfig(1, 1)],
   ]);
-  
+
   constructor(
     public imageHelperService: ImageService
   ) { }
@@ -44,8 +45,6 @@ export class AlgoService {
     let visited: Set<MapPost> = new Set<MapPost>();
 
     let clusterId: number = 1;
-
-    epsilon = epsilon * epsilon;
 
     for(let p of mapPosts){
       if(visited.has(p)) continue;
@@ -76,9 +75,9 @@ export class AlgoService {
       if(currentP == undefined) continue;
 
       visited.add(currentP);
-  
+
       const currentNeighbors = this.getRegion(mapPosts, currentP, epsilon);
-  
+
       if (currentNeighbors.length >= minPts) {
         for (const neighbor of currentNeighbors) {
           if (!visited.has(neighbor)) {
@@ -87,12 +86,11 @@ export class AlgoService {
           }
         }
       }
-  
+
       if (!cluster.posts.includes(currentP)) {
         cluster.posts.push(currentP);
       }
     }
-
   }
 
   private getRegion(mapPosts: MapPost[], mapPost:MapPost, epsilon: number): MapPost[]{
