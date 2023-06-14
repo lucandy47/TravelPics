@@ -69,13 +69,6 @@ export class MapComponent implements OnInit{
         icon: c.clusterProfileImageSrc,
         posts: c.posts
       };
-      // this.resizeImage(marker.icon, 32, 32)
-      //   .then(resizedImageUrl => {
-      //     marker.icon = resizedImageUrl;
-      //   })
-      //   .catch(error => {
-      //     console.error('Error resizing image:', error);
-      //   });
       this.markers.push(marker);
     }
   }
@@ -98,23 +91,6 @@ export class MapComponent implements OnInit{
   public getImageUrl(base64: string, fileName: string): any {
     return this.imageHelperService.getSanitizedBlobUrlFromBase64(base64,fileName);
   }
-
-  // resizeImage(imageUrl: string, width: number, height: number): Promise<string> {
-  //   return new Promise<string>((resolve, reject) => {
-  //     const img = new Image();
-  //     img.onload = () => {
-  //       const canvas = document.createElement('canvas');
-  //       canvas.width = width;
-  //       canvas.height = height;
-  //       const ctx = canvas.getContext('2d');
-  //       ctx!.drawImage(img, 0, 0, width, height);
-  //       const resizedImageUrl = canvas.toDataURL(); 
-  //       resolve(resizedImageUrl);
-  //     };
-  //     img.onerror = reject;
-  //     img.src = imageUrl;
-  //   });
-  // }
 
   public navigateToPosts(posts: MapPost[]):void{
     this._mapService.setPosts(posts);

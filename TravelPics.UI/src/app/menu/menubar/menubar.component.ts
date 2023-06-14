@@ -21,8 +21,7 @@ import { EntityTypeEnum } from 'src/app/services/ui/enums/entity-type.enum';
 })
 export class MenubarComponent implements OnInit  {
   @ViewChild('notificationPanel') notificationPanel!: OverlayPanel;
-  // @ViewChild('menubar', { static: true }) menubar!: ElementRef;
-
+  
   constructor(
     private _authUserService: AuthUserService,
     private router: Router,
