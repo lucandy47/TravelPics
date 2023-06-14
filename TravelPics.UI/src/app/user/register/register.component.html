@@ -1,10 +1,8 @@
-
-
-<div class="form-container mt-6 mb-6">
+<div class="form-container">
     <div class="image-container">
         <img src="../../../assets/images/registerbg.jpg" alt="background">
     </div>
-      
+
     <div class="form-section">
         <form [formGroup]="registerForm" (ngSubmit)="register()" class="form-section flex flex-column">
             <div class="flex align-items-center justify-content-center">
@@ -26,7 +24,7 @@
                                 <small class="p-error" *ngIf="registerForm.controls['email'].errors?.required">Email address is required.</small>
                                 <small class="p-error" *ngIf="registerForm.controls['email'].errors?.emailFormatError">{{registerForm.controls['email'].errors?.emailFormatError}}.</small>
                             </ng-container>
-                        </div> 
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 md:col-6">
@@ -95,6 +93,5 @@
             </div>
         </form>
     </div>
-  </div>
-  <travelpics-footer></travelpics-footer>
-
+</div>
+<travelpics-footer></travelpics-footer>
