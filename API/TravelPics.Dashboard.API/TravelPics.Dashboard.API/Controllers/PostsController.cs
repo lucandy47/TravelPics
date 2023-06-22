@@ -165,6 +165,22 @@ namespace TravelPics.Dashboard.API.Controllers
         }
 
         [HttpGet]
+        [Route("most-appreciated")]
+        public async Task<IActionResult> GetMostAppreciatedPosts()
+        {
+            try
+            {
+                var posts = await _postsService.GetMostAppreciatedPosts();
+
+                return Ok(posts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
         [Route("user/{userId:int}")]
         public async Task<IActionResult> GetUserPosts([FromRoute] int userId)
         {

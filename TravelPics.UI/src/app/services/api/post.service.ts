@@ -30,6 +30,10 @@ export class PostService {
   public getLatestPosts():Observable<Post[]>{
     return this.httpClient.get<Post[]>(`${this.apiUrl}`);
   }
+
+  public getMostAppreciatedPosts():Observable<Post[]>{
+    return this.httpClient.get<Post[]>(`${this.apiUrl}/most-appreciated`);
+  }
   
   public likePost(likeModel: LikeModel): Observable<string>{
     return this.httpClient.post<string>(`${this.apiUrl}/like`, likeModel);

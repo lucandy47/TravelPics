@@ -7,6 +7,7 @@ import { UserPostsComponent } from './user-posts/user-posts.component';
 import { LocationPostsComponent } from './location-posts/location-posts.component';
 import { MapPostsComponent } from './map-posts/map-posts.component';
 import { PostComponent } from './post/post.component';
+import { MostAppreciatedComponent } from './most-appreciated/most-appreciated.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
     path:'location',
     canActivate: [AuthGuard],
     component: LocationPostsComponent,
+  },
+  {
+    path:'most-appreciated',
+    canActivate: [AuthGuard],
+    component: MostAppreciatedComponent,
   },
   {
     path:'user/:id',

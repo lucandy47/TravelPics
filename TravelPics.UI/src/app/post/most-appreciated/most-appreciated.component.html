@@ -1,10 +1,10 @@
-<travelpics-loader class="mt-12" [isLoading]="isLoading" [loadingMessage]="'Loading Latest Posts'"></travelpics-loader>
+<travelpics-loader *ngIf="posts.length == 0" class="mt-12" [isLoading]="isLoading" [loadingMessage]="'Loading Most Appreciated Posts'"></travelpics-loader>
+<travelpics-no-posts *ngIf="posts.length == 0 && !isLoading" [message]="'No posts yet.'"></travelpics-no-posts>
 <div *ngIf="posts.length > 0" class="col-12 md:col-12 flex flex-column mt-4 mb-4">
     <div *ngFor="let post of posts">
         <travelpics-post-item [getImageUrl]="getImageUrl" [loggedInUser]="loggedInUser" [post]="post" [responsiveOptions]="responsiveOptions"></travelpics-post-item>
     </div>
 </div>
-<travelpics-no-posts *ngIf="posts.length == 0 && !isLoading" [message]="'No recent posts in the last 7 days.'"></travelpics-no-posts>
 
 
   

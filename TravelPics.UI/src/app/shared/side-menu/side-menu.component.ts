@@ -25,15 +25,32 @@ export class SideMenuComponent implements OnInit {
         listOrder: 1,
         routerLink: 'home',
         icon:'pi pi-home',
-        onClick: () => console.log('home'),
+        onClick: () => {},
         children: [],
+      },
+      {
+        label: 'Popular',
+        routerLink: null,
+        listOrder: 2,
+        icon:'pi pi-star',
+        onClick: () => {},
+        children: [
+          {
+            label: 'Most Appreciated',
+            routerLink: 'posts/most-appreciated',
+            listOrder: 1,
+            icon:'pi pi-thumbs-up',
+            onClick: () => {},
+            children: [],
+          },
+        ],
       },
       {
         label: 'Posts',
         routerLink: null,
-        listOrder: 2,
+        listOrder: 3,
         icon:'pi pi-images',
-        onClick: () => console.log('posts'),
+        onClick: () => {},
         children: [
           {
             label: 'New Post',
@@ -55,7 +72,7 @@ export class SideMenuComponent implements OnInit {
       },
       {
         label: 'Profile',
-        listOrder: 3,
+        listOrder: 4,
         routerLink: 'profile',
         icon:'pi pi-fw pi-user',
         onClick: () => {},

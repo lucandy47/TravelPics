@@ -59,6 +59,17 @@ namespace TravelPics.Posts
             return mapPosts;
         }
 
+        public async Task<IEnumerable<PostDTO>> GetMostAppreciatedPosts()
+        {
+            var posts = await _postsRepository.GetMostAppreciatedPosts();
+
+            var postsDTO = _mapper.Map<List<PostDTO>>(posts);
+
+            if (postsDTO == null) throw new Exception($"Could not get most appreciated posts.");
+
+            return postsDTO;
+        }
+
         public async Task<PostDTO> GetPostById(int postId)
         {
             var post = await _postsRepository.GetPostById(postId);

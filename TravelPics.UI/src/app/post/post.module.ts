@@ -10,6 +10,7 @@ import { UserPostsComponent } from './user-posts/user-posts.component';
 import { LocationPostsComponent } from './location-posts/location-posts.component';
 import { MapPostsComponent } from './map-posts/map-posts.component';
 import { PostComponent } from './post/post.component';
+import { MostAppreciatedComponent } from './most-appreciated/most-appreciated.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { PostComponent } from './post/post.component';
     UserPostsComponent,
     LocationPostsComponent,
     MapPostsComponent,
-    PostComponent
+    PostComponent,
+    MostAppreciatedComponent
   ],
   imports: [
     CommonModule,

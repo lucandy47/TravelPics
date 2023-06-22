@@ -1,6 +1,5 @@
 ﻿using TravelPics.Abstractions.DTOs.Likes;
 using TravelPics.Abstractions.DTOs.Posts;
-using TravelPics.Domains.Entities;
 
 namespace TravelPics.Abstractions.Interfaces
 {
@@ -14,5 +13,6 @@ namespace TravelPics.Abstractions.Interfaces
         Task<PostDTO> GetPostById(int postId);
         Task<IEnumerable<MapPostDTO>> GetMapPosts();
         Task<IEnumerable<PostDTO>> GetLocationPosts(string locationName);
+        Task<IEnumerable<PostDTO>> GetMostAppreciatedPosts();
     }
 }

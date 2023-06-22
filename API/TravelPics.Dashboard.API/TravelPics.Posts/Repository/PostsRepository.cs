@@ -97,6 +97,22 @@ namespace TravelPics.Posts.Repository
             return posts;
         }
 
+        public async Task<IEnumerable<Post>> GetMostAppreciatedPosts()
+        {
+            var posts = await _dbContext.Posts
+                .Include(p => p.User)
+                    .ThenInclude(u => u.ProfileImage)
+                .Include(p => p.Location)
+                .Include(p => p.Photos)
+                .Include(p => p.Likes.Where(l => !l.IsDeleted))
+                    .ThenInclude(l => l.User)
+                .Where(p => p.Likes.Count > 0)
+                .OrderByDescending(p => p.Likes.Count)
+                .OrderByDescending(p => p.PublishedOn)
+                .ToListAsync();
+            return posts;
+        }
+
         public async Task<Post> GetPostById(int postId)
         {
             var post = await _dbContext.Posts
