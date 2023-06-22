@@ -29,16 +29,29 @@
         </div>
         <div class="card w-12 border-round-xl"  style="background:black;">
             <div style="padding:15px;">
-                <p-galleria [value]="post.photos" [showItemNavigators]="post.photos.length > 1 ? true : false" [showThumbnails]="false" [showIndicators]="post.photos.length > 1 ? true : false" 
+                <p-galleria  [value]="post.photos" [showItemNavigators]="post.photos.length > 1 ? true : false" [showThumbnails]="false" [showIndicators]="post.photos.length > 1 ? true : false" 
                     [responsiveOptions]="responsiveOptions" [showIndicatorsOnItem]="post.photos.length > 1 ? true : false" 
                     [containerStyle]="{'max-height': '300px' }">
                     <ng-template pTemplate="item" let-item>
+                        <div (click)="makeGalleriaFullScreen()">
                             <img [src]="getImageUrl(item.content, item.fileName)" alt="{{item.fileName}}" style=" max-height:300px; min-height:250px; display: block;" />
+                        </div>
                     </ng-template>
                     <ng-template  pTemplate="thumbnail" let-item>
                     <div  class="grid grid-nogutter justify-content-center">
                         <img [src]="getImageUrl(item.content, item.fileName)" alt="{{item.fileName}}" style="display: block; width:50px;" />
                     </div>
+                    </ng-template>
+                </p-galleria>
+                <p-galleria [fullScreen]="true" [visible]="visible" [value]="post.photos" [responsiveOptions]="responsiveOptions" 
+                  [fullScreen]="true" [showItemNavigators]="post.photos.length > 1 ? true : false" [containerStyle]="{ 'max-width': '850px' }" [showThumbnails]="false" [circular]="true" (visibleChange)="closeGalleria()">
+                    <ng-template pTemplate="item" let-item>
+                        <img [src]="getImageUrl(item.content, item.fileName)" alt="{{item.fileName}}" style="width: 100%;"/>
+                    </ng-template>
+                    <ng-template  pTemplate="thumbnail" let-item>
+                        <div  class="grid grid-nogutter justify-content-center">
+                            <img [src]="getImageUrl(item.content, item.fileName)" alt="{{item.fileName}}" style="display: block;"/>
+                        </div>
                     </ng-template>
                 </p-galleria>
             </div>

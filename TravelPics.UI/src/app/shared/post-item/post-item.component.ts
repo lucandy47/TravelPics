@@ -31,6 +31,7 @@ export class PostItemComponent implements OnInit {
   public likesCount: number = 0;
 
   public likeDisabled: boolean = false;
+  public visible: boolean = false;
 
   ngOnInit(): void {
     if(this.post.likes.length > 0 && this.post.likes.some(l => l.userId == this.loggedInUser.userId)){
@@ -82,5 +83,13 @@ export class PostItemComponent implements OnInit {
         });
       }
     });
+  }
+
+  public makeGalleriaFullScreen(): void{
+    this.visible = true;
+  }
+
+  public closeGalleria(): void{
+    this.visible = false;
   }
 }
