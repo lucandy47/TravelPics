@@ -50,6 +50,7 @@ export class MenubarComponent implements OnInit  {
   public results!: AvailableSearchItem[];
 
   public menuItems!: MenuItem[];
+
   ngOnInit(): void {
     this.getLoggedInUser();
     this.getNewNotifications();
@@ -73,7 +74,12 @@ export class MenubarComponent implements OnInit  {
   }
 
   private getLoggedInUser(): void{
-    this.loggedInUser = this._authUserService.loggedInUser;
+    this._authUserService.userLoggedIn.subscribe({
+      next: (user: UserInfo | null) => {
+        this.loggedInUser = user ?? new UserInfo();
+      }
+    });
+    
     this._authUserService.displayUserInfo.subscribe({
       next: (userInfoDisplay)=>{
         if(!!userInfoDisplay){

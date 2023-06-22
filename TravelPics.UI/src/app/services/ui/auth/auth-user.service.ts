@@ -22,9 +22,14 @@ const EXPIRES_ON_KEY: string = 'TRAVELPICS-EXPIRES-ON';
 export class AuthUserService {
 
   private userInfo: UserInfo | null = new UserInfo();
+  private userInfo$: BehaviorSubject<UserInfo | null> = new BehaviorSubject<UserInfo | null>(
+    null
+  );
   private loggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
+  
+  public userLoggedIn = this.userInfo$.asObservable();
   public loggedIn = this.loggedIn$.asObservable();
   private jwtHelper = new JwtHelperService();
 
@@ -41,6 +46,7 @@ export class AuthUserService {
 
   logout(): void {
     this.userInfo = null;
+    this.userInfo$.next(this.userInfo);
     this.loggedIn$.next(false);
     this.displayUserInfo$.next(undefined);
     this.clearAuthFromLocalStorage();
@@ -102,6 +108,7 @@ export class AuthUserService {
 
 
     this.loggedIn$.next(true);
+    this.userInfo$.next(this.userInfo);
 
     if(this.userInfo.userId > 0){
       this.inAppNotificationService.startNotificationTimer(this.userInfo.userId);
