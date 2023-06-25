@@ -16,7 +16,7 @@
                     <textarea class="inputfield w-12 h-3rem description-area" placeholder="Describe your experience..." pInputTextarea formControlName="description"></textarea>
                 </div>
                 <div [ngClass]="selectedFiles.length === 0 ? 'field w-10' : 'field w-12'">
-                    <p-fileUpload class="col-12 md:col-12" [previewWidth]="50" (onSelect)="selectFiles($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000" [showUploadButton]="false" [showCancelButton]="true" (onRemove)="removeSelectedFile($event)" (onClear)="removeAllFiles()" [cancelLabel]="'Clear'"
+                    <p-fileUpload class="col-12 md:col-12" [previewWidth]="50" (onSelect)="selectFiles($event)" [multiple]="true" accept="image/*" [maxFileSize]="10000000" [showUploadButton]="false" [showCancelButton]="true" (onRemove)="removeSelectedFile($event)" (onClear)="removeAllFiles()" [cancelLabel]="'Clear'"
                         [chooseLabel]="'Select photos'">
                         <ng-template pTemplate="content">
                             <div *ngIf="this.selectedFiles.length === 0">

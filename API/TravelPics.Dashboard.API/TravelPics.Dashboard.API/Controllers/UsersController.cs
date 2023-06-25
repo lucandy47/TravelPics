@@ -62,7 +62,7 @@ namespace TravelPics.Dashboard.API.Controllers
             try
             {
                 await _usersService.RegisterUser(userCreateDTO);
-                return Ok("User successfully registered!");
+                return Ok(new { message = "User successfully registered!" });
             }
             catch (Exception ex)
             {

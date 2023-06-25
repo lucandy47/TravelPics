@@ -73,7 +73,7 @@ namespace TravelPics.Posts.Repository
                 .Include(p => p.Photos)
                 .Include(p => p.Likes.Where(l => !l.IsDeleted))
                     .ThenInclude(l => l.User)
-                .Where(p => p.PublishedOn >= currentDay.AddDays(-7))
+                .Where(p => p.PublishedOn >= currentDay.AddDays(-4))
                 .OrderByDescending(p => p.PublishedOn)
                 .ToListAsync();
 
@@ -106,9 +106,8 @@ namespace TravelPics.Posts.Repository
                 .Include(p => p.Photos)
                 .Include(p => p.Likes.Where(l => !l.IsDeleted))
                     .ThenInclude(l => l.User)
-                .Where(p => p.Likes.Count > 0)
+                .Where(p => p.Likes.Count > 2)
                 .OrderByDescending(p => p.Likes.Count)
-                .OrderByDescending(p => p.PublishedOn)
                 .ToListAsync();
             return posts;
         }
